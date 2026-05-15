@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "park": {
+      "PARK00": {
+        "address": "s46",
+        "amenity": [],
+        "hour": {},
+        "id": "PARK00",
+        "name": "s4a",
+        "phone": "s4b",
+        "type": "s4c"
+      },
+      "PARK01": {
+        "address": "s8c",
+        "amenity": [],
+        "hour": {},
+        "id": "PARK01",
+        "name": "s90",
+        "phone": "s91",
+        "type": "s92"
+      },
+      "PARK02": {
+        "address": "sd2",
+        "amenity": [],
+        "hour": {},
+        "id": "PARK02",
+        "name": "sd6",
+        "phone": "sd7",
+        "type": "sd8"
+      }
+    }
+  },
+  "new": {
+    "park": {
+      "park_ref01": {
+        "address": "s118",
+        "amenity": [],
+        "hour": {},
+        "name": "s11c",
+        "phone": "s11d",
+        "type": "s11e"
+      }
+    }
+  }
+}

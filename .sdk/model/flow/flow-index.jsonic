@@ -1,0 +1,13 @@
+# Flows
+
+@"BasicCityInfoFlow.jsonic"
+@"BasicCouncilFlow.jsonic"
+@"BasicDepartmentFlow.jsonic"
+@"BasicEconomicDevelopmentFlow.jsonic"
+@"BasicEventFlow.jsonic"
+@"BasicJobFlow.jsonic"
+@"BasicMeetingFlow.jsonic"
+@"BasicNewFlow.jsonic"
+@"BasicParkFlow.jsonic"
+@"BasicPermitFlow.jsonic"
+@"BasicPublicSafetyFlow.jsonic"

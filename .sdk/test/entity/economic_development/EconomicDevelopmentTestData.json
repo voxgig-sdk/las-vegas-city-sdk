@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "economic_development": {
+      "ECONOMIC_DEVELOPMENT00": {
+        "industry": [],
+        "initiatif": [],
+        "resource": []
+      },
+      "ECONOMIC_DEVELOPMENT01": {
+        "industry": [],
+        "initiatif": [],
+        "resource": []
+      },
+      "ECONOMIC_DEVELOPMENT02": {
+        "industry": [],
+        "initiatif": [],
+        "resource": []
+      }
+    }
+  },
+  "new": {
+    "economic_development": {
+      "economic_development_ref01": {
+        "industry": [],
+        "initiatif": [],
+        "resource": []
+      }
+    }
+  }
+}

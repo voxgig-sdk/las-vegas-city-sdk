@@ -1,0 +1,67 @@
+# Entity: city_info
+
+main: kit: entity: city_info: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "annual_visitor"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "established"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "number_of_park"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "phone"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "square_mile"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "city_info"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/city-info"
+          parts: [
+            "city-info"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

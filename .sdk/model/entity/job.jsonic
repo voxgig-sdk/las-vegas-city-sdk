@@ -1,0 +1,111 @@
+# Entity: job
+
+main: kit: entity: job: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "application_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "close_date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "department"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "post_date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "requirement"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "salary_range"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "job"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "category"
+                orig: "category"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "department"
+                orig: "department"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/jobs"
+          parts: [
+            "jobs"
+          ]
+          select: {
+            exist: [
+              "category"
+              "department"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

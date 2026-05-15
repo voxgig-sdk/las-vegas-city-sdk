@@ -1,0 +1,74 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 11
+  metrics: count: path: 11
+  metrics: count: method: 11
+
+  entity: city_info: {
+    path: "/city-info": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: council: {
+    path: "/council": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: department: {
+    path: "/departments": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: economic_development: {
+    path: "/business/economic-development": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: event: {
+    path: "/events": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: job: {
+    path: "/jobs": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: meeting: {
+    path: "/meetings": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: new: {
+    path: "/news": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: park: {
+    path: "/parks": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: permit: {
+    path: "/permits": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: public_safety: {
+    path: "/public-safety": {
+      op: load: method: *GET
+    }
+  }
+
+}

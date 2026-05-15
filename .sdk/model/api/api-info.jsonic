@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "City of Las Vegas"
+        url: "https://www.lasvegasnevada.gov/"
+      }
+      description: "This API provides access to various city services, resources, and information for residents, visitors, and businesses in Las Vegas. Users can retrieve data about city events, government initiatives, public safety services, and more."
+      servers: [
+        {
+          description: "Las Vegas City API Server"
+          url: "https://www.lasvegasnevada.gov/api"
+        }
+      ]
+      title: "Las Vegas City API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

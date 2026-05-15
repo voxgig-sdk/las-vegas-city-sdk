@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "council": {
+      "COUNCIL00": {
+        "bio": "s46",
+        "email": "s47",
+        "id": "COUNCIL00",
+        "name": "s49",
+        "phone": "s4a",
+        "title": "s4b",
+        "ward": "s4c"
+      },
+      "COUNCIL01": {
+        "bio": "s8c",
+        "email": "s8d",
+        "id": "COUNCIL01",
+        "name": "s8f",
+        "phone": "s90",
+        "title": "s91",
+        "ward": "s92"
+      },
+      "COUNCIL02": {
+        "bio": "sd2",
+        "email": "sd3",
+        "id": "COUNCIL02",
+        "name": "sd5",
+        "phone": "sd6",
+        "title": "sd7",
+        "ward": "sd8"
+      }
+    }
+  },
+  "new": {
+    "council": {
+      "council_ref01": {
+        "bio": "s118",
+        "email": "s119",
+        "name": "s11b",
+        "phone": "s11c",
+        "title": "s11d",
+        "ward": "s11e"
+      }
+    }
+  }
+}

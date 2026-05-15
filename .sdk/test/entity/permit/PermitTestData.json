@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "permit": {
+      "PERMIT00": {
+        "application_url": "s50",
+        "description": "s51",
+        "fee": 82,
+        "id": "PERMIT00",
+        "name": "s54",
+        "processing_time": "s55",
+        "requirement": [],
+        "type": "s57"
+      },
+      "PERMIT01": {
+        "application_url": "sa0",
+        "description": "sa1",
+        "fee": 162,
+        "id": "PERMIT01",
+        "name": "sa4",
+        "processing_time": "sa5",
+        "requirement": [],
+        "type": "sa7"
+      },
+      "PERMIT02": {
+        "application_url": "sf0",
+        "description": "sf1",
+        "fee": 242,
+        "id": "PERMIT02",
+        "name": "sf4",
+        "processing_time": "sf5",
+        "requirement": [],
+        "type": "sf7"
+      }
+    }
+  },
+  "new": {
+    "permit": {
+      "permit_ref01": {
+        "application_url": "s140",
+        "description": "s141",
+        "fee": 322,
+        "name": "s144",
+        "processing_time": "s145",
+        "requirement": [],
+        "type": "s147"
+      }
+    }
+  }
+}

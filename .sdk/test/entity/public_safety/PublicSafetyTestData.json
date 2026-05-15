@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "public_safety": {
+      "PUBLIC_SAFETY00": {
+        "fire": {},
+        "medical": {},
+        "police": {}
+      },
+      "PUBLIC_SAFETY01": {
+        "fire": {},
+        "medical": {},
+        "police": {}
+      },
+      "PUBLIC_SAFETY02": {
+        "fire": {},
+        "medical": {},
+        "police": {}
+      }
+    }
+  },
+  "new": {
+    "public_safety": {
+      "public_safety_ref01": {
+        "fire": {},
+        "medical": {},
+        "police": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+# Entity: public_safety
+
+main: kit: entity: public_safety: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "fire"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "medical"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "police"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "public_safety"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/public-safety"
+          parts: [
+            "public-safety"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

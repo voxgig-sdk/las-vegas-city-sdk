@@ -1,0 +1,22 @@
+# BasicEconomicDevelopmentFlow
+
+main: kit: flow: BasicEconomicDevelopmentFlow:
+{
+  entity: "economic_development",
+  kind: "basic",
+  name: "BasicEconomicDevelopmentFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "economic_development_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEconomicDevelopmentFlow"
+}

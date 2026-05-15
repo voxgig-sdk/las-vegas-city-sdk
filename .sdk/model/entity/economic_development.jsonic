@@ -1,0 +1,48 @@
+# Entity: economic_development
+
+main: kit: entity: economic_development: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "industry"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "initiatif"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "resource"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "economic_development"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/business/economic-development"
+          parts: [
+            "business"
+            "economic-development"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

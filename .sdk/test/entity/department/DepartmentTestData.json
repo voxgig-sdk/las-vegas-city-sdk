@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "department": {
+      "DEPARTMENT00": {
+        "contact": {},
+        "description": "s3d",
+        "id": "DEPARTMENT00",
+        "name": "s3f",
+        "service": [],
+        "url": "s41"
+      },
+      "DEPARTMENT01": {
+        "contact": {},
+        "description": "s79",
+        "id": "DEPARTMENT01",
+        "name": "s7b",
+        "service": [],
+        "url": "s7d"
+      },
+      "DEPARTMENT02": {
+        "contact": {},
+        "description": "sb5",
+        "id": "DEPARTMENT02",
+        "name": "sb7",
+        "service": [],
+        "url": "sb9"
+      }
+    }
+  },
+  "new": {
+    "department": {
+      "department_ref01": {
+        "contact": {},
+        "description": "sf1",
+        "name": "sf3",
+        "service": [],
+        "url": "sf5"
+      }
+    }
+  }
+}

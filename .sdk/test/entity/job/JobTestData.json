@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "job": {
+      "JOB00": {
+        "application_url": "s64",
+        "category": "s65",
+        "close_date": "s66",
+        "department": "s67",
+        "description": "s68",
+        "id": "JOB00",
+        "post_date": "s6a",
+        "requirement": [],
+        "salary_range": {},
+        "title": "s6d"
+      },
+      "JOB01": {
+        "application_url": "sc8",
+        "category": "sc9",
+        "close_date": "sca",
+        "department": "scb",
+        "description": "scc",
+        "id": "JOB01",
+        "post_date": "sce",
+        "requirement": [],
+        "salary_range": {},
+        "title": "sd1"
+      },
+      "JOB02": {
+        "application_url": "s12c",
+        "category": "s12d",
+        "close_date": "s12e",
+        "department": "s12f",
+        "description": "s130",
+        "id": "JOB02",
+        "post_date": "s132",
+        "requirement": [],
+        "salary_range": {},
+        "title": "s135"
+      }
+    }
+  },
+  "new": {
+    "job": {
+      "job_ref01": {
+        "application_url": "s190",
+        "category": "s191",
+        "close_date": "s192",
+        "department": "s193",
+        "description": "s194",
+        "post_date": "s196",
+        "requirement": [],
+        "salary_range": {},
+        "title": "s199"
+      }
+    }
+  }
+}

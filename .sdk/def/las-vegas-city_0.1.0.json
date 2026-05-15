@@ -1,0 +1,971 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Las Vegas City API",
+    "description": "This API provides access to various city services, resources, and information for residents, visitors, and businesses in Las Vegas. Users can retrieve data about city events, government initiatives, public safety services, and more.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "City of Las Vegas",
+      "url": "https://www.lasvegasnevada.gov/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.lasvegasnevada.gov/api",
+      "description": "Las Vegas City API Server"
+    }
+  ],
+  "paths": {
+    "/city-info": {
+      "get": {
+        "summary": "Get City Information",
+        "description": "Retrieves general information about the City of Las Vegas including statistics, history, and city council information",
+        "operationId": "getCityInfo",
+        "tags": [
+          "City Information"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "summary": "Get City Events",
+        "description": "Retrieves a list of upcoming events in Las Vegas",
+        "operationId": "getEvents",
+        "tags": [
+          "Events"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter events by category (e.g., arts, culture, concerts)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Filter events starting from this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Filter events ending before this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Event"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/parks": {
+      "get": {
+        "summary": "Get Parks and Facilities",
+        "description": "Retrieves information about parks and community centers in Las Vegas",
+        "operationId": "getParks",
+        "tags": [
+          "Parks & Facilities"
+        ],
+        "parameters": [
+          {
+            "name": "location",
+            "in": "query",
+            "description": "Filter by location or neighborhood",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amenities",
+            "in": "query",
+            "description": "Filter by available amenities",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Park"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/council": {
+      "get": {
+        "summary": "Get City Council Information",
+        "description": "Retrieves information about Las Vegas City Council members",
+        "operationId": "getCouncil",
+        "tags": [
+          "Government"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CouncilMember"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/meetings": {
+      "get": {
+        "summary": "Get Meetings and Agendas",
+        "description": "Retrieves upcoming city meetings and their agendas",
+        "operationId": "getMeetings",
+        "tags": [
+          "Government"
+        ],
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Filter meetings starting from this date (ISO 8601 format)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Filter by meeting type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Meeting"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/news": {
+      "get": {
+        "summary": "Get News Releases",
+        "description": "Retrieves recent news releases from the City of Las Vegas",
+        "operationId": "getNews",
+        "tags": [
+          "News"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of news items to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter by news category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsRelease"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/departments": {
+      "get": {
+        "summary": "Get City Departments",
+        "description": "Retrieves information about city departments and their services",
+        "operationId": "getDepartments",
+        "tags": [
+          "Government"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Department"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/public-safety": {
+      "get": {
+        "summary": "Get Public Safety Services",
+        "description": "Retrieves information about public safety services including fire, medical, and law enforcement",
+        "operationId": "getPublicSafety",
+        "tags": [
+          "Public Safety"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublicSafety"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/business/economic-development": {
+      "get": {
+        "summary": "Get Economic Development Information",
+        "description": "Retrieves information about economic development opportunities and initiatives in Las Vegas",
+        "operationId": "getEconomicDevelopment",
+        "tags": [
+          "Business"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EconomicDevelopment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/permits": {
+      "get": {
+        "summary": "Get Permit Information",
+        "description": "Retrieves information about permits and licenses available through the city",
+        "operationId": "getPermits",
+        "tags": [
+          "Business",
+          "Residents"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Type of permit (e.g., business, construction, special event)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Permit"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/jobs": {
+      "get": {
+        "summary": "Get Job Openings",
+        "description": "Retrieves current job openings with the City of Las Vegas",
+        "operationId": "getJobs",
+        "tags": [
+          "Employment"
+        ],
+        "parameters": [
+          {
+            "name": "department",
+            "in": "query",
+            "description": "Filter by department",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter by job category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Job"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CityInfo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "City of Las Vegas"
+          },
+          "established": {
+            "type": "integer",
+            "example": 1905
+          },
+          "squareMiles": {
+            "type": "number",
+            "example": 142
+          },
+          "annualVisitors": {
+            "type": "number",
+            "example": 41700000
+          },
+          "numberOfParks": {
+            "type": "integer",
+            "example": 130
+          },
+          "address": {
+            "type": "string",
+            "example": "495 S. Main St. Las Vegas, NV 89101"
+          },
+          "phone": {
+            "type": "string",
+            "example": "(702) 229-6011"
+          }
+        }
+      },
+      "Event": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "arts",
+              "culture",
+              "concerts",
+              "dance",
+              "plays",
+              "community"
+            ]
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "string"
+          },
+          "isFree": {
+            "type": "boolean"
+          },
+          "ticketUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Park": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "park",
+              "community_center",
+              "recreation_center"
+            ]
+          },
+          "amenities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hours": {
+            "type": "object",
+            "properties": {
+              "monday": {
+                "type": "string"
+              },
+              "tuesday": {
+                "type": "string"
+              },
+              "wednesday": {
+                "type": "string"
+              },
+              "thursday": {
+                "type": "string"
+              },
+              "friday": {
+                "type": "string"
+              },
+              "saturday": {
+                "type": "string"
+              },
+              "sunday": {
+                "type": "string"
+              }
+            }
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      },
+      "CouncilMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "ward": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "bio": {
+            "type": "string"
+          }
+        }
+      },
+      "Meeting": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "location": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "agendaUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minutesUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "scheduled",
+              "in_progress",
+              "completed",
+              "cancelled"
+            ]
+          }
+        }
+      },
+      "NewsRelease": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "publishDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "category": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Department": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contact": {
+            "type": "object",
+            "properties": {
+              "phone": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "address": {
+                "type": "string"
+              }
+            }
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "PublicSafety": {
+        "type": "object",
+        "properties": {
+          "fire": {
+            "type": "object",
+            "properties": {
+              "emergencyNumber": {
+                "type": "string"
+              },
+              "nonEmergencyNumber": {
+                "type": "string"
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "police": {
+            "type": "object",
+            "properties": {
+              "emergencyNumber": {
+                "type": "string"
+              },
+              "nonEmergencyNumber": {
+                "type": "string"
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "medical": {
+            "type": "object",
+            "properties": {
+              "emergencyNumber": {
+                "type": "string"
+              },
+              "services": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "EconomicDevelopment": {
+        "type": "object",
+        "properties": {
+          "initiatives": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "benefits": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "industries": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Permit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fee": {
+            "type": "number"
+          },
+          "processingTime": {
+            "type": "string"
+          },
+          "applicationUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "Job": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "salaryRange": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            }
+          },
+          "postDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "closeDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "applicationUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "City Information",
+      "description": "General information about the City of Las Vegas"
+    },
+    {
+      "name": "Events",
+      "description": "City events and activities"
+    },
+    {
+      "name": "Parks & Facilities",
+      "description": "Parks and community centers"
+    },
+    {
+      "name": "Government",
+      "description": "Government services and information"
+    },
+    {
+      "name": "News",
+      "description": "News releases and updates"
+    },
+    {
+      "name": "Public Safety",
+      "description": "Public safety services and information"
+    },
+    {
+      "name": "Business",
+      "description": "Business resources and services"
+    },
+    {
+      "name": "Residents",
+      "description": "Services for residents"
+    },
+    {
+      "name": "Employment",
+      "description": "Job opportunities with the city"
+    }
+  ]
+}

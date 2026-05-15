@@ -1,0 +1,22 @@
+# BasicCouncilFlow
+
+main: kit: flow: BasicCouncilFlow:
+{
+  entity: "council",
+  kind: "basic",
+  name: "BasicCouncilFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "council_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCouncilFlow"
+}

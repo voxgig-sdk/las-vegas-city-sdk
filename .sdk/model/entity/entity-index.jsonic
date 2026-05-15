@@ -1,0 +1,13 @@
+# Entity Models
+
+@"city_info.jsonic"
+@"council.jsonic"
+@"department.jsonic"
+@"economic_development.jsonic"
+@"event.jsonic"
+@"job.jsonic"
+@"meeting.jsonic"
+@"new.jsonic"
+@"park.jsonic"
+@"permit.jsonic"
+@"public_safety.jsonic"

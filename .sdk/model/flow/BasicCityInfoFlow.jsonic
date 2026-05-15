@@ -1,0 +1,28 @@
+# BasicCityInfoFlow
+
+main: kit: flow: BasicCityInfoFlow:
+{
+  entity: "city_info",
+  kind: "basic",
+  name: "BasicCityInfoFlow",
+  step: [
+    {
+      input: {
+        ref: "city_info_ref01",
+        srcdatavar: "city_info_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-city_info_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCityInfoFlow"
+}

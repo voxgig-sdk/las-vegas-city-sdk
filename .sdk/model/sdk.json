@@ -1118,6 +1118,9 @@
             },
             "rb": {
               "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
             }
           }
         }
@@ -1419,6 +1422,33 @@
         }
       },
       "target": {
+        "go-cli": {
+          "title": "Go CLI",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "las-vegas-city"
+          },
+          "phase": {
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "deps": {},
+          "name": "go-cli",
+          "active": true
+        },
         "ts": {
           "title": "TypeScript",
           "ext": "ts",
@@ -1459,14 +1489,7 @@
             "name": "las-vegas-city"
           },
           "srcfeature": false,
-          "deps": {
-            "github.com/voxgig/struct": {
-              "active": true,
-              "version": "v0.0.0",
-              "replace": "./utility/struct",
-              "kind": "prod"
-            }
-          },
+          "deps": {},
           "name": "go",
           "active": true
         },
@@ -1554,15 +1577,6 @@
     },
     "def": {
       "desc": ""
-    },
-    "api": {
-      "guide": {},
-      "entity": {}
     }
-  },
-  "name__orig": "las-vegas-city",
-  "Name": "LasVegasCity",
-  "name_": "las_vegas_city",
-  "name-": "las-vegas-city",
-  "NAME": "LAS-VEGAS-CITY"
+  }
 }

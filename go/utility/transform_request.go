@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/las-vegas-city-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 )
 
 func transformRequestUtil(ctx *core.Context) any {

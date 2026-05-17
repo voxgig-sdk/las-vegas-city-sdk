@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/las-vegas-city-sdk/core"
+import "github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 
 func makeErrorUtil(ctx *core.Context, err error) (any, error) {
 	if ctx == nil {

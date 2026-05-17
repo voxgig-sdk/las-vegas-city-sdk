@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/las-vegas-city-sdk"
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
+	sdk "github.com/voxgig-sdk/las-vegas-city-sdk/go"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/las-vegas-city-sdk/go/utility/struct"
 )
 
 func TestPublicSafetyEntity(t *testing.T) {

@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 )
 
 type BaseFeature struct {

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/las-vegas-city-sdk"
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
+	sdk "github.com/voxgig-sdk/las-vegas-city-sdk/go"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 )
 
 func TestPermitDirect(t *testing.T) {

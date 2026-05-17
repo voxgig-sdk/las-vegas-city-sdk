@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/las-vegas-city-sdk/core"
+import "github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 
 func makeRequestUtil(ctx *core.Context) (*core.Response, error) {
 	if ctx.Out["request"] != nil {

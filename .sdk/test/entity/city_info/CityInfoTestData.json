@@ -8,7 +8,8 @@
         "name": "s49",
         "number_of_park": "s4a",
         "phone": "s4b",
-        "square_mile": 76
+        "square_mile": 76,
+        "id": "CITY_INFO00"
       },
       "CITY_INFO01": {
         "address": "s8c",
@@ -17,7 +18,8 @@
         "name": "s8f",
         "number_of_park": "s90",
         "phone": "s91",
-        "square_mile": 146
+        "square_mile": 146,
+        "id": "CITY_INFO01"
       },
       "CITY_INFO02": {
         "address": "sd2",
@@ -26,7 +28,8 @@
         "name": "sd5",
         "number_of_park": "sd6",
         "phone": "sd7",
-        "square_mile": 216
+        "square_mile": 216,
+        "id": "CITY_INFO02"
       }
     }
   },

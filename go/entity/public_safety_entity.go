@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/las-vegas-city-sdk/go/utility/struct"
 )
 
 type PublicSafetyEntity struct {

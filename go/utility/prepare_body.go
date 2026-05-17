@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/las-vegas-city-sdk/core"
+import "github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 
 func prepareBodyUtil(ctx *core.Context) any {
 	op := ctx.Op

@@ -1,10 +1,10 @@
 package voxgiglasvegascitysdk
 
 import (
-	"github.com/voxgig-sdk/las-vegas-city-sdk/core"
-	"github.com/voxgig-sdk/las-vegas-city-sdk/entity"
-	"github.com/voxgig-sdk/las-vegas-city-sdk/feature"
-	_ "github.com/voxgig-sdk/las-vegas-city-sdk/utility"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/entity"
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/feature"
+	_ "github.com/voxgig-sdk/las-vegas-city-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

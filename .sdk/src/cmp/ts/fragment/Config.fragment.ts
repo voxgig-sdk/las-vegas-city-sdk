@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://www.lasvegasnevada.gov/api',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

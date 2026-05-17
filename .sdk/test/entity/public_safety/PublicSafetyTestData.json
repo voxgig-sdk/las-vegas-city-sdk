@@ -4,17 +4,20 @@
       "PUBLIC_SAFETY00": {
         "fire": {},
         "medical": {},
-        "police": {}
+        "police": {},
+        "id": "PUBLIC_SAFETY00"
       },
       "PUBLIC_SAFETY01": {
         "fire": {},
         "medical": {},
-        "police": {}
+        "police": {},
+        "id": "PUBLIC_SAFETY01"
       },
       "PUBLIC_SAFETY02": {
         "fire": {},
         "medical": {},
-        "police": {}
+        "police": {},
+        "id": "PUBLIC_SAFETY02"
       }
     }
   },

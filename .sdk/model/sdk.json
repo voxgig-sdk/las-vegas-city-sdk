@@ -17,7 +17,27 @@
           }
         ],
         "title": "Las Vegas City API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "tagline": "Access City of Las Vegas civic data covering departments, council, parks, permits, jobs, events, meetings and public safety",
+        "homepage": "https://www.lasvegasnevada.gov/",
+        "docs_url": "https://freepublicapis.com/las-vegas-city-api",
+        "license_short": "No explicit licence published; treat as municipal public information from the City of Las Vegas.",
+        "license_md": "- The City of Las Vegas does not publish explicit licence terms for this API.\n- Content is sourced from the official municipal website at `lasvegasnevada.gov` and represents public civic information.\n- Attribute the City of Las Vegas when redistributing data and verify any sensitive use against the source.\n- No warranty is provided; data may change without notice.",
+        "about_md": "The Las Vegas City API surfaces civic data from the [City of Las Vegas, Nevada](https://www.lasvegasnevada.gov/) — the municipal government for Nevada's largest city. It is catalogued on [Free Public APIs](https://freepublicapis.com/las-vegas-city-api) as a community-tracked endpoint exposing information that residents, visitors, and businesses interact with day to day.\n\nWhat you can expect from the data:\n\n- City departments, council members and meeting agendas\n- Parks, community events and recreation programs\n- Jobs, permits and economic development resources\n- Public safety information (fire, medical and law enforcement)\n- General city news and announcements\n\nThe base server is `https://www.lasvegasnevada.gov/api`. Community monitoring reports roughly 97% uptime over a rolling 30 day window with average response times near 1.3 seconds and CORS disabled, so server-side calls are recommended. No authentication or rate-limit policy is publicly documented; be considerate when polling.",
+        "entity_desc": {
+          "city_info": "General information about the City of Las Vegas — overview content describing the municipality and its services.",
+          "council": "Las Vegas City Council resources covering the seven-member elected body and related governance data.",
+          "department": "Listings and details for city departments that deliver municipal services.",
+          "economic_development": "Economic development programs and business support resources offered by the city.",
+          "event": "Community events, classes, performances and civic activities hosted or promoted by the city.",
+          "job": "Open government job listings and career opportunities with the City of Las Vegas.",
+          "meeting": "Public meetings and agendas, including City Council and board sessions surfaced via the city's meeting portal.",
+          "new": "City news items and announcements.",
+          "park": "Parks, recreation facilities and community centers across the city's 130+ park locations.",
+          "permit": "Building permits, business licences and related application/status data.",
+          "public_safety": "Public safety information covering fire, medical response and law enforcement services."
+        },
+        "auth": false
       },
       "config": {
         "auth": {
@@ -25,7 +45,15 @@
         },
         "headers": {
           "content-type": "application/json"
-        }
+        },
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ]
       },
       "entity": {
         "city_info": {

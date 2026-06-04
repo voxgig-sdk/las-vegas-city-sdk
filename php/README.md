@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'lasvegascity_sdk.php';
 
-$client = new LasVegasCitySDK([
-    "apikey" => getenv("LAS-VEGAS-CITY_APIKEY"),
-]);
+$client = new LasVegasCitySDK([]);
 ```
 
 ### 3. Load a cityinfo
@@ -113,7 +111,6 @@ Create a `.env.local` file at the project root:
 
 ```
 LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -136,7 +133,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

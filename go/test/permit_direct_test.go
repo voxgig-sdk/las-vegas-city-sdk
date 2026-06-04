@@ -93,14 +93,12 @@ func permitDirectSetup(mockres any) *permitDirectSetupResult {
 	env := envOverride(map[string]any{
 		"LASVEGASCITY_TEST_PERMIT_ENTID": map[string]any{},
 		"LASVEGASCITY_TEST_LIVE":    "FALSE",
-		"LASVEGASCITY_APIKEY":       "NONE",
 	})
 
 	live := env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["LASVEGASCITY_APIKEY"],
 		}
 		client := sdk.NewLasVegasCitySDK(mergedOpts)
 

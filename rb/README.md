@@ -31,9 +31,7 @@ loading a specific record.
 ```ruby
 require_relative "LasVegasCity_sdk"
 
-client = LasVegasCitySDK.new({
-  "apikey" => ENV["LAS-VEGAS-CITY_APIKEY"],
-})
+client = LasVegasCitySDK.new({})
 ```
 
 ### 3. Load a cityinfo
@@ -121,7 +119,6 @@ Create a `.env.local` file at the project root:
 
 ```
 LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |

@@ -62,14 +62,12 @@ def new_direct_setup(mockres)
   env = Runner.env_override({
     "LASVEGASCITY_TEST_NEW_ENTID" => {},
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   live = env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["LASVEGASCITY_APIKEY"],
     }
     client = LasVegasCitySDK.new(merged_opts)
     return {

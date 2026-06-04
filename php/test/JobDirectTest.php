@@ -68,14 +68,12 @@ function job_direct_setup($mockres)
     $env = Runner::env_override([
         "LASVEGASCITY_TEST_JOB_ENTID" => [],
         "LASVEGASCITY_TEST_LIVE" => "FALSE",
-        "LASVEGASCITY_APIKEY" => "NONE",
     ]);
 
     $live = $env["LASVEGASCITY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["LASVEGASCITY_APIKEY"],
         ];
         $client = new LasVegasCitySDK($merged_opts);
         return [

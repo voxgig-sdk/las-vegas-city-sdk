@@ -59,14 +59,12 @@ def _public_safety_direct_setup(mockres):
     env = runner.env_override({
         "LASVEGASCITY_TEST_PUBLIC_SAFETY_ENTID": {},
         "LASVEGASCITY_TEST_LIVE": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     live = env.get("LASVEGASCITY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("LASVEGASCITY_APIKEY"),
         }
         client = LasVegasCitySDK(merged_opts)
         return {

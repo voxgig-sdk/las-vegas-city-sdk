@@ -20,9 +20,6 @@ class LasVegasCityConfig
             ],
             "options" => [
                 "base" => "https://www.lasvegasnevada.gov/api",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

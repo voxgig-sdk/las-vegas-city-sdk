@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from lasvegascity_sdk import LasVegasCitySDK
 
-client = LasVegasCitySDK({
-    "apikey": os.environ.get("LAS-VEGAS-CITY_APIKEY"),
-})
+client = LasVegasCitySDK({})
 ```
 
 ### 3. Load a cityinfo
@@ -117,7 +114,6 @@ Create a `.env.local` file at the project root:
 
 ```
 LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -141,7 +137,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

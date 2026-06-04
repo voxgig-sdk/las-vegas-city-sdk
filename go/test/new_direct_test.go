@@ -93,14 +93,12 @@ func newDirectSetup(mockres any) *newDirectSetupResult {
 	env := envOverride(map[string]any{
 		"LASVEGASCITY_TEST_NEW_ENTID": map[string]any{},
 		"LASVEGASCITY_TEST_LIVE":    "FALSE",
-		"LASVEGASCITY_APIKEY":       "NONE",
 	})
 
 	live := env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["LASVEGASCITY_APIKEY"],
 		}
 		client := sdk.NewLasVegasCitySDK(mergedOpts)
 

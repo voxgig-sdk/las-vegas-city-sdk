@@ -92,6 +92,7 @@ function permit_basic_setup(extra)
     ["LASVEGASCITY_TEST_PERMIT_ENTID"] = idmap,
     ["LASVEGASCITY_TEST_LIVE"] = "FALSE",
     ["LASVEGASCITY_TEST_EXPLAIN"] = "FALSE",
+    ["LASVEGASCITY_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function permit_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["LASVEGASCITY_APIKEY"],
       },
       extra or {},
     })

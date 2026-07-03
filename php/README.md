@@ -1,6 +1,11 @@
 # LasVegasCity PHP SDK
 
-The PHP SDK for the LasVegasCity API. Provides an entity-oriented interface using PHP conventions.
+
+
+The PHP SDK for the LasVegasCity API — an entity-oriented client using PHP conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -20,13 +25,15 @@ loading a specific record.
 <?php
 require_once 'lasvegascity_sdk.php';
 
-$client = new LasVegasCitySDK([]);
+$client = new LasVegasCitySDK([
+    "apikey" => getenv("LAS-VEGAS-CITY_APIKEY"),
+]);
 ```
 
 ### 3. Load a cityinfo
 
 ```php
-[$result, $err] = $client->CityInfo(null)->load(["id" => "example_id"], null);
+[$result, $err] = $client->CityInfo()->load(["id" => "example_id"]);
 if ($err) { throw new \Exception($err); }
 print_r($result);
 ```
@@ -72,11 +79,9 @@ print_r($fetchdef["headers"]);
 Create a mock client for unit testing — no server required:
 
 ```php
-$client = LasVegasCitySDK::test(null, null);
+$client = LasVegasCitySDK::test();
 
-[$result, $err] = $client->LasVegasCity(null)->load(
-    ["id" => "test01"], null
-);
+[$result, $err] = $client->LasVegasCity()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -111,6 +116,7 @@ Create a `.env.local` file at the project root:
 
 ```
 LAS-VEGAS-CITY_TEST_LIVE=TRUE
+LAS-VEGAS-CITY_APIKEY=<your-key>
 ```
 
 Then run:
@@ -133,6 +139,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

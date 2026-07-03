@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID': idmap,
     'LAS_VEGAS_CITY_TEST_LIVE': 'FALSE',
     'LAS_VEGAS_CITY_TEST_EXPLAIN': 'FALSE',
+    'LAS_VEGAS_CITY_APIKEY': 'NONE',
   })
 
   idmap = env['LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new LasVegasCitySDK(merge([
       {
+        apikey: env.LAS_VEGAS_CITY_APIKEY,
       },
       extra
     ]))

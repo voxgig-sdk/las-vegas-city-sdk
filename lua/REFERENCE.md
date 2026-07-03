@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -146,7 +146,7 @@ local city_info = client:CityInfo(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:CityInfo(nil):load({ id = "city_info_id" }, nil)
+local result, err = client:CityInfo():load({ id = "city_info_id" })
 ```
 
 ### Common Methods
@@ -204,7 +204,7 @@ local council = client:Council(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Council(nil):list(nil, nil)
+local results, err = client:Council():list()
 ```
 
 ### Common Methods
@@ -261,7 +261,7 @@ local department = client:Department(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Department(nil):list(nil, nil)
+local results, err = client:Department():list()
 ```
 
 ### Common Methods
@@ -315,7 +315,7 @@ local economic_development = client:EconomicDevelopment(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:EconomicDevelopment(nil):list(nil, nil)
+local results, err = client:EconomicDevelopment():list()
 ```
 
 ### Common Methods
@@ -375,7 +375,7 @@ local event = client:Event(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Event(nil):list(nil, nil)
+local results, err = client:Event():list()
 ```
 
 ### Common Methods
@@ -436,7 +436,7 @@ local job = client:Job(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Job(nil):list(nil, nil)
+local results, err = client:Job():list()
 ```
 
 ### Common Methods
@@ -495,7 +495,7 @@ local meeting = client:Meeting(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Meeting(nil):list(nil, nil)
+local results, err = client:Meeting():list()
 ```
 
 ### Common Methods
@@ -554,7 +554,7 @@ local new = client:New(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:New(nil):list(nil, nil)
+local results, err = client:New():list()
 ```
 
 ### Common Methods
@@ -612,7 +612,7 @@ local park = client:Park(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Park(nil):list(nil, nil)
+local results, err = client:Park():list()
 ```
 
 ### Common Methods
@@ -671,7 +671,7 @@ local permit = client:Permit(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Permit(nil):list(nil, nil)
+local results, err = client:Permit():list()
 ```
 
 ### Common Methods
@@ -725,7 +725,7 @@ local public_safety = client:PublicSafety(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PublicSafety(nil):load({ id = "public_safety_id" }, nil)
+local result, err = client:PublicSafety():load({ id = "public_safety_id" })
 ```
 
 ### Common Methods

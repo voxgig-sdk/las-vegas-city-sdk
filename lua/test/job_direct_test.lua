@@ -63,12 +63,14 @@ function job_direct_setup(mockres)
   local env = runner.env_override({
     ["LASVEGASCITY_TEST_JOB_ENTID"] = {},
     ["LASVEGASCITY_TEST_LIVE"] = "FALSE",
+    ["LASVEGASCITY_APIKEY"] = "NONE",
   })
 
   local live = env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["LASVEGASCITY_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

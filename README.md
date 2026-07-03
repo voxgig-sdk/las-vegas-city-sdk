@@ -1,22 +1,8 @@
 # LasVegasCity SDK
 
-Access City of Las Vegas civic data covering departments, council, parks, permits, jobs, events, meetings and public safety
+Las Vegas City API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Las Vegas City API
-
-The Las Vegas City API surfaces civic data from the [City of Las Vegas, Nevada](https://www.lasvegasnevada.gov/) — the municipal government for Nevada's largest city. It is catalogued on [Free Public APIs](https://freepublicapis.com/las-vegas-city-api) as a community-tracked endpoint exposing information that residents, visitors, and businesses interact with day to day.
-
-What you can expect from the data:
-
-- City departments, council members and meeting agendas
-- Parks, community events and recreation programs
-- Jobs, permits and economic development resources
-- Public safety information (fire, medical and law enforcement)
-- General city news and announcements
-
-The base server is `https://www.lasvegasnevada.gov/api`. Community monitoring reports roughly 97% uptime over a rolling 30 day window with average response times near 1.3 seconds and CORS disabled, so server-side calls are recommended. No authentication or rate-limit policy is publicly documented; be considerate when polling.
 
 ## Try it
 
@@ -50,27 +36,31 @@ gem install las-vegas-city-sdk
 luarocks install las-vegas-city-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { LasVegasCitySDK } from 'las-vegas-city'
 
-const client = new LasVegasCitySDK({})
+const client = new LasVegasCitySDK({
+  apikey: process.env.LAS-VEGAS-CITY_APIKEY,
+})
 
+// Load cityinfo data
+const cityinfo = await client.CityInfo().load({})
+console.log(cityinfo.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,17 +90,17 @@ The API exposes 11 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **CityInfo** | General information about the City of Las Vegas — overview content describing the municipality and its services. | `/city-info` |
-| **Council** | Las Vegas City Council resources covering the seven-member elected body and related governance data. | `/council` |
-| **Department** | Listings and details for city departments that deliver municipal services. | `/departments` |
-| **EconomicDevelopment** | Economic development programs and business support resources offered by the city. | `/business/economic-development` |
-| **Event** | Community events, classes, performances and civic activities hosted or promoted by the city. | `/events` |
-| **Job** | Open government job listings and career opportunities with the City of Las Vegas. | `/jobs` |
-| **Meeting** | Public meetings and agendas, including City Council and board sessions surfaced via the city's meeting portal. | `/meetings` |
-| **New** | City news items and announcements. | `/news` |
-| **Park** | Parks, recreation facilities and community centers across the city's 130+ park locations. | `/parks` |
-| **Permit** | Building permits, business licences and related application/status data. | `/permits` |
-| **PublicSafety** | Public safety information covering fire, medical response and law enforcement services. | `/public-safety` |
+| **CityInfo** |  | `/city-info` |
+| **Council** |  | `/council` |
+| **Department** |  | `/departments` |
+| **EconomicDevelopment** |  | `/business/economic-development` |
+| **Event** |  | `/events` |
+| **Job** |  | `/jobs` |
+| **Meeting** |  | `/meetings` |
+| **New** |  | `/news` |
+| **Park** |  | `/parks` |
+| **Permit** |  | `/permits` |
+| **PublicSafety** |  | `/public-safety` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -120,15 +110,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from lasvegascity_sdk import LasVegasCitySDK
 
-client = LasVegasCitySDK({})
+client = LasVegasCitySDK({
+    "apikey": os.environ.get("LAS-VEGAS-CITY_APIKEY"),
+})
 
 
 # Load a specific cityinfo
-cityinfo, err = client.CityInfo(None).load(
-    {"id": "example_id"}, None
-)
+cityinfo, err = client.CityInfo().load({"id": "example_id"})
+print(cityinfo)
 ```
 
 ### PHP
@@ -137,13 +129,14 @@ cityinfo, err = client.CityInfo(None).load(
 <?php
 require_once 'lasvegascity_sdk.php';
 
-$client = new LasVegasCitySDK([]);
+$client = new LasVegasCitySDK([
+    "apikey" => getenv("LAS-VEGAS-CITY_APIKEY"),
+]);
 
 
 // Load a specific cityinfo
-[$cityinfo, $err] = $client->CityInfo(null)->load(
-    ["id" => "example_id"], null
-);
+[$cityinfo, $err] = $client->CityInfo()->load(["id" => "example_id"]);
+print_r($cityinfo);
 ```
 
 ### Golang
@@ -151,8 +144,13 @@ $client = new LasVegasCitySDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/las-vegas-city-sdk/go"
 
-client := sdk.NewLasVegasCitySDK(map[string]any{})
+client := sdk.NewLasVegasCitySDK(map[string]any{
+    "apikey": os.Getenv("LAS-VEGAS-CITY_APIKEY"),
+})
 
+// Load cityinfo data
+cityinfo, err := client.CityInfo(nil).Load(map[string]any{}, nil)
+fmt.Println(cityinfo)
 ```
 
 ### Ruby
@@ -160,13 +158,14 @@ client := sdk.NewLasVegasCitySDK(map[string]any{})
 ```ruby
 require_relative "LasVegasCity_sdk"
 
-client = LasVegasCitySDK.new({})
+client = LasVegasCitySDK.new({
+  "apikey" => ENV["LAS-VEGAS-CITY_APIKEY"],
+})
 
 
 # Load a specific cityinfo
-cityinfo, err = client.CityInfo(nil).load(
-  { "id" => "example_id" }, nil
-)
+cityinfo, err = client.CityInfo().load({ "id" => "example_id" })
+puts cityinfo
 ```
 
 ### Lua
@@ -174,13 +173,14 @@ cityinfo, err = client.CityInfo(nil).load(
 ```lua
 local sdk = require("las-vegas-city_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("LAS-VEGAS-CITY_APIKEY"),
+})
 
 
 -- Load a specific cityinfo
-local cityinfo, err = client:CityInfo(nil):load(
-  { id = "example_id" }, nil
-)
+local cityinfo, err = client:CityInfo():load({ id = "example_id" })
+print(cityinfo)
 ```
 
 ## Unit testing in offline mode
@@ -199,25 +199,21 @@ const result = await client.CityInfo().load({ id: 'test01' })
 ### Python
 
 ```python
-client = LasVegasCitySDK.test(None, None)
-result, err = client.CityInfo(None).load(
-    {"id": "test01"}, None
-)
+client = LasVegasCitySDK.test()
+result, err = client.CityInfo().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = LasVegasCitySDK::test(null, null);
-[$result, $err] = $client->CityInfo(null)->load(
-    ["id" => "test01"], null
-);
+$client = LasVegasCitySDK::test();
+[$result, $err] = $client->CityInfo()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.CityInfo(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -226,19 +222,15 @@ result, err := client.CityInfo(nil).Load(
 ### Ruby
 
 ```ruby
-client = LasVegasCitySDK.test(nil, nil)
-result, err = client.CityInfo(nil).load(
-  { "id" => "test01" }, nil
-)
+client = LasVegasCitySDK.test
+result, err = client.CityInfo().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:CityInfo(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:CityInfo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -342,16 +334,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Las Vegas City API
-
-- Upstream: [https://www.lasvegasnevada.gov/](https://www.lasvegasnevada.gov/)
-- API docs: [https://freepublicapis.com/las-vegas-city-api](https://freepublicapis.com/las-vegas-city-api)
-
-- The City of Las Vegas does not publish explicit licence terms for this API.
-- Content is sourced from the official municipal website at `lasvegasnevada.gov` and represents public civic information.
-- Attribute the City of Las Vegas when redistributing data and verify any sensitive use against the source.
-- No warranty is provided; data may change without notice.
 
 ---
 

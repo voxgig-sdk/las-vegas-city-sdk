@@ -10,13 +10,13 @@ The Ruby SDK for the LasVegasCity API — an entity-oriented client using idioma
 
 ## Install
 ```bash
-gem install las-vegas-city-sdk
+gem install voxgig-sdk-las-vegas-city
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "las-vegas-city-sdk"
+gem "voxgig-sdk-las-vegas-city"
 ```
 
 Then run:

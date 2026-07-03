@@ -10,7 +10,7 @@ The Python SDK for the LasVegasCity API — an entity-oriented client following 
 
 ## Install
 ```bash
-pip install las-vegas-city-sdk
+pip install voxgig-sdk-las-vegas-city
 ```
 
 Or install from source:

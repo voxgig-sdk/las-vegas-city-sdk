@@ -10,7 +10,7 @@ The TypeScript SDK for the LasVegasCity API — a type-safe, entity-oriented cli
 
 ## Install
 ```bash
-npm install las-vegas-city
+npm install @voxgig-sdk/las-vegas-city
 ```
 ## Tutorial: your first API call
 

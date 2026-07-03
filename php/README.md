@@ -10,7 +10,7 @@ The PHP SDK for the LasVegasCity API — an entity-oriented client using PHP con
 
 ## Install
 ```bash
-composer require voxgig/las-vegas-city-sdk
+composer require voxgig-sdk/las-vegas-city
 ```
 
 

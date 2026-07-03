@@ -10,7 +10,7 @@ The Lua SDK for the LasVegasCity API — an entity-oriented client using Lua con
 
 ## Install
 ```bash
-luarocks install las-vegas-city-sdk
+luarocks install voxgig-sdk-las-vegas-city
 ```
 
 If the module is not yet published, add the source directory to

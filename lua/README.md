@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a cityinfo
 
 ```lua
-local result, err = client:cityinfo():load({ id = "example_id" })
+local cityinfo, err = client:CityInfo():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(cityinfo)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:cityinfo():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:CityInfo():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -164,8 +164,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CityInfo` | `(data) -> CityInfoEntity` | Create a CityInfo entity instance. |
 | `Council` | `(data) -> CouncilEntity` | Create a Council entity instance. |
 | `Department` | `(data) -> DepartmentEntity` | Create a Department entity instance. |
-| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create a EconomicDevelopment entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
+| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create an EconomicDevelopment entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
 | `Job` | `(data) -> JobEntity` | Create a Job entity instance. |
 | `Meeting` | `(data) -> MeetingEntity` | Create a Meeting entity instance. |
 | `New` | `(data) -> NewEntity` | Create a New entity instance. |
@@ -193,17 +193,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local city_info, err = client:CityInfo():load({ id = "example_id" })
+    if err then error(err) end
+    -- city_info is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -389,7 +394,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.city_info`
+Create an instance: `local city_info = client:CityInfo(nil)`
 
 #### Operations
 
@@ -411,14 +416,14 @@ Create an instance: `const city_info = client.city_info`
 
 #### Example: Load
 
-```ts
-const city_info = await client.city_info.load({ id: 'city_info_id' })
+```lua
+local city_info, err = client:CityInfo():load({ id = "city_info_id" })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.council`
+Create an instance: `local council = client:Council(nil)`
 
 #### Operations
 
@@ -440,14 +445,14 @@ Create an instance: `const council = client.council`
 
 #### Example: List
 
-```ts
-const councils = await client.council.list()
+```lua
+local councils, err = client:Council():list()
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.department`
+Create an instance: `local department = client:Department(nil)`
 
 #### Operations
 
@@ -468,14 +473,14 @@ Create an instance: `const department = client.department`
 
 #### Example: List
 
-```ts
-const departments = await client.department.list()
+```lua
+local departments, err = client:Department():list()
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.economic_development`
+Create an instance: `local economic_development = client:EconomicDevelopment(nil)`
 
 #### Operations
 
@@ -493,14 +498,14 @@ Create an instance: `const economic_development = client.economic_development`
 
 #### Example: List
 
-```ts
-const economic_developments = await client.economic_development.list()
+```lua
+local economic_developments, err = client:EconomicDevelopment():list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `local event = client:Event(nil)`
 
 #### Operations
 
@@ -524,14 +529,14 @@ Create an instance: `const event = client.event`
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```lua
+local events, err = client:Event():list()
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.job`
+Create an instance: `local job = client:Job(nil)`
 
 #### Operations
 
@@ -556,14 +561,14 @@ Create an instance: `const job = client.job`
 
 #### Example: List
 
-```ts
-const jobs = await client.job.list()
+```lua
+local jobs, err = client:Job():list()
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.meeting`
+Create an instance: `local meeting = client:Meeting(nil)`
 
 #### Operations
 
@@ -586,14 +591,14 @@ Create an instance: `const meeting = client.meeting`
 
 #### Example: List
 
-```ts
-const meetings = await client.meeting.list()
+```lua
+local meetings, err = client:Meeting():list()
 ```
 
 
 ### New
 
-Create an instance: `const new = client.new`
+Create an instance: `local new = client:New(nil)`
 
 #### Operations
 
@@ -616,14 +621,14 @@ Create an instance: `const new = client.new`
 
 #### Example: List
 
-```ts
-const news = await client.new.list()
+```lua
+local news, err = client:New():list()
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.park`
+Create an instance: `local park = client:Park(nil)`
 
 #### Operations
 
@@ -645,14 +650,14 @@ Create an instance: `const park = client.park`
 
 #### Example: List
 
-```ts
-const parks = await client.park.list()
+```lua
+local parks, err = client:Park():list()
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.permit`
+Create an instance: `local permit = client:Permit(nil)`
 
 #### Operations
 
@@ -675,14 +680,14 @@ Create an instance: `const permit = client.permit`
 
 #### Example: List
 
-```ts
-const permits = await client.permit.list()
+```lua
+local permits, err = client:Permit():list()
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.public_safety`
+Create an instance: `local public_safety = client:PublicSafety(nil)`
 
 #### Operations
 
@@ -700,8 +705,8 @@ Create an instance: `const public_safety = client.public_safety`
 
 #### Example: Load
 
-```ts
-const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
+```lua
+local public_safety, err = client:PublicSafety():load({ id = "public_safety_id" })
 ```
 
 
@@ -776,7 +781,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local cityinfo = client:cityinfo()
+local cityinfo = client:CityInfo()
 cityinfo:load({ id = "example_id" })
 
 -- cityinfo:data_get() now returns the loaded cityinfo data

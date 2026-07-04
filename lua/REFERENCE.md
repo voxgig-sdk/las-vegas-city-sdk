@@ -123,7 +123,7 @@ same parameters as `direct()`.
 ## CityInfoEntity
 
 ```lua
-local city_info = client:city_info(nil)
+local city_info = client:CityInfo(nil)
 ```
 
 ### Fields
@@ -145,7 +145,7 @@ local city_info = client:city_info(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:city_info():load({ id = "city_info_id" })
+local result, err = client:CityInfo():load({ id = "city_info_id" })
 ```
 
 ### Common Methods
@@ -181,7 +181,7 @@ Return the entity name.
 ## CouncilEntity
 
 ```lua
-local council = client:council(nil)
+local council = client:Council(nil)
 ```
 
 ### Fields
@@ -203,7 +203,7 @@ local council = client:council(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:council():list()
+local results, err = client:Council():list()
 ```
 
 ### Common Methods
@@ -239,7 +239,7 @@ Return the entity name.
 ## DepartmentEntity
 
 ```lua
-local department = client:department(nil)
+local department = client:Department(nil)
 ```
 
 ### Fields
@@ -260,7 +260,7 @@ local department = client:department(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:department():list()
+local results, err = client:Department():list()
 ```
 
 ### Common Methods
@@ -296,7 +296,7 @@ Return the entity name.
 ## EconomicDevelopmentEntity
 
 ```lua
-local economic_development = client:economic_development(nil)
+local economic_development = client:EconomicDevelopment(nil)
 ```
 
 ### Fields
@@ -314,7 +314,7 @@ local economic_development = client:economic_development(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:economic_development():list()
+local results, err = client:EconomicDevelopment():list()
 ```
 
 ### Common Methods
@@ -350,7 +350,7 @@ Return the entity name.
 ## EventEntity
 
 ```lua
-local event = client:event(nil)
+local event = client:Event(nil)
 ```
 
 ### Fields
@@ -374,7 +374,7 @@ local event = client:event(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:event():list()
+local results, err = client:Event():list()
 ```
 
 ### Common Methods
@@ -410,7 +410,7 @@ Return the entity name.
 ## JobEntity
 
 ```lua
-local job = client:job(nil)
+local job = client:Job(nil)
 ```
 
 ### Fields
@@ -435,7 +435,7 @@ local job = client:job(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:job():list()
+local results, err = client:Job():list()
 ```
 
 ### Common Methods
@@ -471,7 +471,7 @@ Return the entity name.
 ## MeetingEntity
 
 ```lua
-local meeting = client:meeting(nil)
+local meeting = client:Meeting(nil)
 ```
 
 ### Fields
@@ -494,7 +494,7 @@ local meeting = client:meeting(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:meeting():list()
+local results, err = client:Meeting():list()
 ```
 
 ### Common Methods
@@ -530,7 +530,7 @@ Return the entity name.
 ## NewEntity
 
 ```lua
-local new = client:new(nil)
+local new = client:New(nil)
 ```
 
 ### Fields
@@ -553,7 +553,7 @@ local new = client:new(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:new():list()
+local results, err = client:New():list()
 ```
 
 ### Common Methods
@@ -589,7 +589,7 @@ Return the entity name.
 ## ParkEntity
 
 ```lua
-local park = client:park(nil)
+local park = client:Park(nil)
 ```
 
 ### Fields
@@ -611,7 +611,7 @@ local park = client:park(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:park():list()
+local results, err = client:Park():list()
 ```
 
 ### Common Methods
@@ -647,7 +647,7 @@ Return the entity name.
 ## PermitEntity
 
 ```lua
-local permit = client:permit(nil)
+local permit = client:Permit(nil)
 ```
 
 ### Fields
@@ -670,7 +670,7 @@ local permit = client:permit(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:permit():list()
+local results, err = client:Permit():list()
 ```
 
 ### Common Methods
@@ -706,7 +706,7 @@ Return the entity name.
 ## PublicSafetyEntity
 
 ```lua
-local public_safety = client:public_safety(nil)
+local public_safety = client:PublicSafety(nil)
 ```
 
 ### Fields
@@ -724,7 +724,7 @@ local public_safety = client:public_safety(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:public_safety():load({ id = "public_safety_id" })
+local result, err = client:PublicSafety():load({ id = "public_safety_id" })
 ```
 
 ### Common Methods

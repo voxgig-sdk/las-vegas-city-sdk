@@ -32,8 +32,9 @@ client = LasVegasCitySDK.new
 
 ```ruby
 begin
-  result = client.cityinfo.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare CityInfo record (raises on error).
+  cityinfo = client.CityInfo.load({ "id" => "example_id" })
+  puts cityinfo
 rescue => err
   warn "load failed: #{err}"
 end
@@ -80,13 +81,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = LasVegasCitySDK.test
+client = LasVegasCitySDK.test({
+  "entity" => { "cityinfo" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.cityinfo.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+cityinfo = client.CityInfo.load({ "id" => "test01" })
+puts cityinfo
 ```
 
 ### Use a custom fetch function
@@ -165,8 +170,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CityInfo` | `(data) -> CityInfoEntity` | Create a CityInfo entity instance. |
 | `Council` | `(data) -> CouncilEntity` | Create a Council entity instance. |
 | `Department` | `(data) -> DepartmentEntity` | Create a Department entity instance. |
-| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create a EconomicDevelopment entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
+| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create an EconomicDevelopment entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
 | `Job` | `(data) -> JobEntity` | Create a Job entity instance. |
 | `Meeting` | `(data) -> MeetingEntity` | Create a Meeting entity instance. |
 | `New` | `(data) -> NewEntity` | Create a New entity instance. |
@@ -393,7 +398,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.city_info`
+Create an instance: `city_info = client.CityInfo`
 
 #### Operations
 
@@ -415,14 +420,15 @@ Create an instance: `const city_info = client.city_info`
 
 #### Example: Load
 
-```ts
-const city_info = await client.city_info.load({ id: 'city_info_id' })
+```ruby
+# load returns the bare CityInfo record (raises on error).
+city_info = client.CityInfo.load({ "id" => "city_info_id" })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.council`
+Create an instance: `council = client.Council`
 
 #### Operations
 
@@ -444,14 +450,15 @@ Create an instance: `const council = client.council`
 
 #### Example: List
 
-```ts
-const councils = await client.council.list()
+```ruby
+# list returns an Array of Council records (raises on error).
+councils = client.Council.list
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.department`
+Create an instance: `department = client.Department`
 
 #### Operations
 
@@ -472,14 +479,15 @@ Create an instance: `const department = client.department`
 
 #### Example: List
 
-```ts
-const departments = await client.department.list()
+```ruby
+# list returns an Array of Department records (raises on error).
+departments = client.Department.list
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.economic_development`
+Create an instance: `economic_development = client.EconomicDevelopment`
 
 #### Operations
 
@@ -497,14 +505,15 @@ Create an instance: `const economic_development = client.economic_development`
 
 #### Example: List
 
-```ts
-const economic_developments = await client.economic_development.list()
+```ruby
+# list returns an Array of EconomicDevelopment records (raises on error).
+economic_developments = client.EconomicDevelopment.list
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `event = client.Event`
 
 #### Operations
 
@@ -528,14 +537,15 @@ Create an instance: `const event = client.event`
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```ruby
+# list returns an Array of Event records (raises on error).
+events = client.Event.list
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.job`
+Create an instance: `job = client.Job`
 
 #### Operations
 
@@ -560,14 +570,15 @@ Create an instance: `const job = client.job`
 
 #### Example: List
 
-```ts
-const jobs = await client.job.list()
+```ruby
+# list returns an Array of Job records (raises on error).
+jobs = client.Job.list
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.meeting`
+Create an instance: `meeting = client.Meeting`
 
 #### Operations
 
@@ -590,14 +601,15 @@ Create an instance: `const meeting = client.meeting`
 
 #### Example: List
 
-```ts
-const meetings = await client.meeting.list()
+```ruby
+# list returns an Array of Meeting records (raises on error).
+meetings = client.Meeting.list
 ```
 
 
 ### New
 
-Create an instance: `const new = client.new`
+Create an instance: `new = client.New`
 
 #### Operations
 
@@ -620,14 +632,15 @@ Create an instance: `const new = client.new`
 
 #### Example: List
 
-```ts
-const news = await client.new.list()
+```ruby
+# list returns an Array of New records (raises on error).
+news = client.New.list
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.park`
+Create an instance: `park = client.Park`
 
 #### Operations
 
@@ -649,14 +662,15 @@ Create an instance: `const park = client.park`
 
 #### Example: List
 
-```ts
-const parks = await client.park.list()
+```ruby
+# list returns an Array of Park records (raises on error).
+parks = client.Park.list
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.permit`
+Create an instance: `permit = client.Permit`
 
 #### Operations
 
@@ -679,14 +693,15 @@ Create an instance: `const permit = client.permit`
 
 #### Example: List
 
-```ts
-const permits = await client.permit.list()
+```ruby
+# list returns an Array of Permit records (raises on error).
+permits = client.Permit.list
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.public_safety`
+Create an instance: `public_safety = client.PublicSafety`
 
 #### Operations
 
@@ -704,8 +719,9 @@ Create an instance: `const public_safety = client.public_safety`
 
 #### Example: Load
 
-```ts
-const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
+```ruby
+# load returns the bare PublicSafety record (raises on error).
+public_safety = client.PublicSafety.load({ "id" => "public_safety_id" })
 ```
 
 
@@ -780,7 +796,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-cityinfo = client.cityinfo
+cityinfo = client.CityInfo
 cityinfo.load({ "id" => "example_id" })
 
 # cityinfo.data_get now returns the loaded cityinfo data

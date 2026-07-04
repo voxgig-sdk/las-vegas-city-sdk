@@ -30,11 +30,14 @@ const client = new LasVegasCitySDK()
 
 ### 3. Load a cityinfo
 
-```ts
-const result = await client.cityinfo.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const cityinfo = await client.CityInfo().load({ id: 'example_id' })
+  console.log(cityinfo)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = LasVegasCitySDK.test()
 
-const result = await client.cityinfo.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const cityinfo = await client.CityInfo().load({ id: 'test01' })
+// cityinfo is a bare entity populated with mock response data
+console.log(cityinfo)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.cityinfo
+const entity = client.CityInfo()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -178,8 +184,8 @@ new LasVegasCitySDK(options?: {
 | `CityInfo(data?)` | `CityInfoEntity` | Create a CityInfo entity instance. |
 | `Council(data?)` | `CouncilEntity` | Create a Council entity instance. |
 | `Department(data?)` | `DepartmentEntity` | Create a Department entity instance. |
-| `EconomicDevelopment(data?)` | `EconomicDevelopmentEntity` | Create a EconomicDevelopment entity instance. |
-| `Event(data?)` | `EventEntity` | Create a Event entity instance. |
+| `EconomicDevelopment(data?)` | `EconomicDevelopmentEntity` | Create an EconomicDevelopment entity instance. |
+| `Event(data?)` | `EventEntity` | Create an Event entity instance. |
 | `Job(data?)` | `JobEntity` | Create a Job entity instance. |
 | `Meeting(data?)` | `MeetingEntity` | Create a Meeting entity instance. |
 | `New(data?)` | `NewEntity` | Create a New entity instance. |
@@ -202,29 +208,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): LasVegasCitySDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -438,7 +445,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.city_info`
+Create an instance: `const city_info = client.CityInfo()`
 
 #### Operations
 
@@ -461,13 +468,13 @@ Create an instance: `const city_info = client.city_info`
 #### Example: Load
 
 ```ts
-const city_info = await client.city_info.load({ id: 'city_info_id' })
+const city_info = await client.CityInfo().load({ id: 'city_info_id' })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.council`
+Create an instance: `const council = client.Council()`
 
 #### Operations
 
@@ -490,13 +497,13 @@ Create an instance: `const council = client.council`
 #### Example: List
 
 ```ts
-const councils = await client.council.list()
+const councils = await client.Council().list()
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.department`
+Create an instance: `const department = client.Department()`
 
 #### Operations
 
@@ -518,13 +525,13 @@ Create an instance: `const department = client.department`
 #### Example: List
 
 ```ts
-const departments = await client.department.list()
+const departments = await client.Department().list()
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.economic_development`
+Create an instance: `const economic_development = client.EconomicDevelopment()`
 
 #### Operations
 
@@ -543,13 +550,13 @@ Create an instance: `const economic_development = client.economic_development`
 #### Example: List
 
 ```ts
-const economic_developments = await client.economic_development.list()
+const economic_developments = await client.EconomicDevelopment().list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `const event = client.Event()`
 
 #### Operations
 
@@ -574,13 +581,13 @@ Create an instance: `const event = client.event`
 #### Example: List
 
 ```ts
-const events = await client.event.list()
+const events = await client.Event().list()
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.job`
+Create an instance: `const job = client.Job()`
 
 #### Operations
 
@@ -606,13 +613,13 @@ Create an instance: `const job = client.job`
 #### Example: List
 
 ```ts
-const jobs = await client.job.list()
+const jobs = await client.Job().list()
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.meeting`
+Create an instance: `const meeting = client.Meeting()`
 
 #### Operations
 
@@ -636,13 +643,13 @@ Create an instance: `const meeting = client.meeting`
 #### Example: List
 
 ```ts
-const meetings = await client.meeting.list()
+const meetings = await client.Meeting().list()
 ```
 
 
 ### New
 
-Create an instance: `const new = client.new`
+Create an instance: `const new = client.New()`
 
 #### Operations
 
@@ -666,13 +673,13 @@ Create an instance: `const new = client.new`
 #### Example: List
 
 ```ts
-const news = await client.new.list()
+const news = await client.New().list()
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.park`
+Create an instance: `const park = client.Park()`
 
 #### Operations
 
@@ -695,13 +702,13 @@ Create an instance: `const park = client.park`
 #### Example: List
 
 ```ts
-const parks = await client.park.list()
+const parks = await client.Park().list()
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.permit`
+Create an instance: `const permit = client.Permit()`
 
 #### Operations
 
@@ -725,13 +732,13 @@ Create an instance: `const permit = client.permit`
 #### Example: List
 
 ```ts
-const permits = await client.permit.list()
+const permits = await client.Permit().list()
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.public_safety`
+Create an instance: `const public_safety = client.PublicSafety()`
 
 #### Operations
 
@@ -750,7 +757,7 @@ Create an instance: `const public_safety = client.public_safety`
 #### Example: Load
 
 ```ts
-const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
+const public_safety = await client.PublicSafety().load({ id: 'public_safety_id' })
 ```
 
 
@@ -821,7 +828,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const cityinfo = client.cityinfo
+const cityinfo = client.CityInfo()
 await cityinfo.load({ id: "example_id" })
 
 // cityinfo.data() now returns the loaded cityinfo data

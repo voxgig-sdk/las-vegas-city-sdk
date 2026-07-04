@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:city_info():list() / client:city_info():load({ id = ... })
-function LasVegasCitySDK:city_info(data)
+-- Idiomatic facade: client:CityInfo():list() / client:CityInfo():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:CityInfo(data)
   local EntityMod = require("entity.city_info_entity")
   if data == nil then
     if self._city_info == nil then
@@ -256,15 +257,10 @@ function LasVegasCitySDK:city_info(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:city_info() instead.
-function LasVegasCitySDK:CityInfo(data)
-  local EntityMod = require("entity.city_info_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:council():list() / client:council():load({ id = ... })
-function LasVegasCitySDK:council(data)
+-- Idiomatic facade: client:Council():list() / client:Council():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Council(data)
   local EntityMod = require("entity.council_entity")
   if data == nil then
     if self._council == nil then
@@ -275,15 +271,10 @@ function LasVegasCitySDK:council(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:council() instead.
-function LasVegasCitySDK:Council(data)
-  local EntityMod = require("entity.council_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:department():list() / client:department():load({ id = ... })
-function LasVegasCitySDK:department(data)
+-- Idiomatic facade: client:Department():list() / client:Department():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Department(data)
   local EntityMod = require("entity.department_entity")
   if data == nil then
     if self._department == nil then
@@ -294,15 +285,10 @@ function LasVegasCitySDK:department(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:department() instead.
-function LasVegasCitySDK:Department(data)
-  local EntityMod = require("entity.department_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:economic_development():list() / client:economic_development():load({ id = ... })
-function LasVegasCitySDK:economic_development(data)
+-- Idiomatic facade: client:EconomicDevelopment():list() / client:EconomicDevelopment():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:EconomicDevelopment(data)
   local EntityMod = require("entity.economic_development_entity")
   if data == nil then
     if self._economic_development == nil then
@@ -313,15 +299,10 @@ function LasVegasCitySDK:economic_development(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:economic_development() instead.
-function LasVegasCitySDK:EconomicDevelopment(data)
-  local EntityMod = require("entity.economic_development_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:event():list() / client:event():load({ id = ... })
-function LasVegasCitySDK:event(data)
+-- Idiomatic facade: client:Event():list() / client:Event():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Event(data)
   local EntityMod = require("entity.event_entity")
   if data == nil then
     if self._event == nil then
@@ -332,15 +313,10 @@ function LasVegasCitySDK:event(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:event() instead.
-function LasVegasCitySDK:Event(data)
-  local EntityMod = require("entity.event_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:job():list() / client:job():load({ id = ... })
-function LasVegasCitySDK:job(data)
+-- Idiomatic facade: client:Job():list() / client:Job():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Job(data)
   local EntityMod = require("entity.job_entity")
   if data == nil then
     if self._job == nil then
@@ -351,15 +327,10 @@ function LasVegasCitySDK:job(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:job() instead.
-function LasVegasCitySDK:Job(data)
-  local EntityMod = require("entity.job_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:meeting():list() / client:meeting():load({ id = ... })
-function LasVegasCitySDK:meeting(data)
+-- Idiomatic facade: client:Meeting():list() / client:Meeting():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Meeting(data)
   local EntityMod = require("entity.meeting_entity")
   if data == nil then
     if self._meeting == nil then
@@ -370,15 +341,10 @@ function LasVegasCitySDK:meeting(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:meeting() instead.
-function LasVegasCitySDK:Meeting(data)
-  local EntityMod = require("entity.meeting_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:new():list() / client:new():load({ id = ... })
-function LasVegasCitySDK:new(data)
+-- Idiomatic facade: client:New():list() / client:New():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:New(data)
   local EntityMod = require("entity.new_entity")
   if data == nil then
     if self._new == nil then
@@ -389,15 +355,10 @@ function LasVegasCitySDK:new(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:new() instead.
-function LasVegasCitySDK:New(data)
-  local EntityMod = require("entity.new_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:park():list() / client:park():load({ id = ... })
-function LasVegasCitySDK:park(data)
+-- Idiomatic facade: client:Park():list() / client:Park():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Park(data)
   local EntityMod = require("entity.park_entity")
   if data == nil then
     if self._park == nil then
@@ -408,15 +369,10 @@ function LasVegasCitySDK:park(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:park() instead.
-function LasVegasCitySDK:Park(data)
-  local EntityMod = require("entity.park_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:permit():list() / client:permit():load({ id = ... })
-function LasVegasCitySDK:permit(data)
+-- Idiomatic facade: client:Permit():list() / client:Permit():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:Permit(data)
   local EntityMod = require("entity.permit_entity")
   if data == nil then
     if self._permit == nil then
@@ -427,15 +383,10 @@ function LasVegasCitySDK:permit(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:permit() instead.
-function LasVegasCitySDK:Permit(data)
-  local EntityMod = require("entity.permit_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:public_safety():list() / client:public_safety():load({ id = ... })
-function LasVegasCitySDK:public_safety(data)
+-- Idiomatic facade: client:PublicSafety():list() / client:PublicSafety():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function LasVegasCitySDK:PublicSafety(data)
   local EntityMod = require("entity.public_safety_entity")
   if data == nil then
     if self._public_safety == nil then
@@ -443,12 +394,6 @@ function LasVegasCitySDK:public_safety(data)
     end
     return self._public_safety
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:public_safety() instead.
-function LasVegasCitySDK:PublicSafety(data)
-  local EntityMod = require("entity.public_safety_entity")
   return EntityMod.new(self, data)
 end
 

@@ -4,249 +4,231 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class CityInfo:
-    address: Optional[str] = None
-    annual_visitor: Optional[float] = None
-    established: Optional[int] = None
-    name: Optional[str] = None
-    number_of_park: Optional[int] = None
-    phone: Optional[str] = None
-    square_mile: Optional[float] = None
+class CityInfo(TypedDict, total=False):
+    address: str
+    annual_visitor: float
+    established: int
+    name: str
+    number_of_park: int
+    phone: str
+    square_mile: float
 
 
-@dataclass
-class CityInfoLoadMatch:
-    address: Optional[str] = None
-    annual_visitor: Optional[float] = None
-    established: Optional[int] = None
-    name: Optional[str] = None
-    number_of_park: Optional[int] = None
-    phone: Optional[str] = None
-    square_mile: Optional[float] = None
+class CityInfoLoadMatch(TypedDict, total=False):
+    address: str
+    annual_visitor: float
+    established: int
+    name: str
+    number_of_park: int
+    phone: str
+    square_mile: float
 
 
-@dataclass
-class Council:
-    bio: Optional[str] = None
-    email: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    title: Optional[str] = None
-    ward: Optional[str] = None
+class Council(TypedDict, total=False):
+    bio: str
+    email: str
+    id: str
+    name: str
+    phone: str
+    title: str
+    ward: str
 
 
-@dataclass
-class CouncilListMatch:
-    bio: Optional[str] = None
-    email: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    title: Optional[str] = None
-    ward: Optional[str] = None
+class CouncilListMatch(TypedDict, total=False):
+    bio: str
+    email: str
+    id: str
+    name: str
+    phone: str
+    title: str
+    ward: str
 
 
-@dataclass
-class Department:
-    contact: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    service: Optional[list] = None
-    url: Optional[str] = None
+class Department(TypedDict, total=False):
+    contact: dict
+    description: str
+    id: str
+    name: str
+    service: list
+    url: str
 
 
-@dataclass
-class DepartmentListMatch:
-    contact: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    service: Optional[list] = None
-    url: Optional[str] = None
+class DepartmentListMatch(TypedDict, total=False):
+    contact: dict
+    description: str
+    id: str
+    name: str
+    service: list
+    url: str
 
 
-@dataclass
-class EconomicDevelopment:
-    industry: Optional[list] = None
-    initiatif: Optional[list] = None
-    resource: Optional[list] = None
+class EconomicDevelopment(TypedDict, total=False):
+    industry: list
+    initiatif: list
+    resource: list
 
 
-@dataclass
-class EconomicDevelopmentListMatch:
-    industry: Optional[list] = None
-    initiatif: Optional[list] = None
-    resource: Optional[list] = None
+class EconomicDevelopmentListMatch(TypedDict, total=False):
+    industry: list
+    initiatif: list
+    resource: list
 
 
-@dataclass
-class Event:
-    category: Optional[str] = None
-    description: Optional[str] = None
-    end_date: Optional[str] = None
-    id: Optional[str] = None
-    is_free: Optional[bool] = None
-    location: Optional[str] = None
-    start_date: Optional[str] = None
-    ticket_url: Optional[str] = None
-    title: Optional[str] = None
+class Event(TypedDict, total=False):
+    category: str
+    description: str
+    end_date: str
+    id: str
+    is_free: bool
+    location: str
+    start_date: str
+    ticket_url: str
+    title: str
 
 
-@dataclass
-class EventListMatch:
-    category: Optional[str] = None
-    description: Optional[str] = None
-    end_date: Optional[str] = None
-    id: Optional[str] = None
-    is_free: Optional[bool] = None
-    location: Optional[str] = None
-    start_date: Optional[str] = None
-    ticket_url: Optional[str] = None
-    title: Optional[str] = None
+class EventListMatch(TypedDict, total=False):
+    category: str
+    description: str
+    end_date: str
+    id: str
+    is_free: bool
+    location: str
+    start_date: str
+    ticket_url: str
+    title: str
 
 
-@dataclass
-class Job:
-    application_url: Optional[str] = None
-    category: Optional[str] = None
-    close_date: Optional[str] = None
-    department: Optional[str] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    post_date: Optional[str] = None
-    requirement: Optional[list] = None
-    salary_range: Optional[dict] = None
-    title: Optional[str] = None
+class Job(TypedDict, total=False):
+    application_url: str
+    category: str
+    close_date: str
+    department: str
+    description: str
+    id: str
+    post_date: str
+    requirement: list
+    salary_range: dict
+    title: str
 
 
-@dataclass
-class JobListMatch:
-    application_url: Optional[str] = None
-    category: Optional[str] = None
-    close_date: Optional[str] = None
-    department: Optional[str] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    post_date: Optional[str] = None
-    requirement: Optional[list] = None
-    salary_range: Optional[dict] = None
-    title: Optional[str] = None
+class JobListMatch(TypedDict, total=False):
+    application_url: str
+    category: str
+    close_date: str
+    department: str
+    description: str
+    id: str
+    post_date: str
+    requirement: list
+    salary_range: dict
+    title: str
 
 
-@dataclass
-class Meeting:
-    agenda_url: Optional[str] = None
-    date: Optional[str] = None
-    id: Optional[str] = None
-    location: Optional[str] = None
-    minutes_url: Optional[str] = None
-    status: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class Meeting(TypedDict, total=False):
+    agenda_url: str
+    date: str
+    id: str
+    location: str
+    minutes_url: str
+    status: str
+    title: str
+    type: str
 
 
-@dataclass
-class MeetingListMatch:
-    agenda_url: Optional[str] = None
-    date: Optional[str] = None
-    id: Optional[str] = None
-    location: Optional[str] = None
-    minutes_url: Optional[str] = None
-    status: Optional[str] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+class MeetingListMatch(TypedDict, total=False):
+    agenda_url: str
+    date: str
+    id: str
+    location: str
+    minutes_url: str
+    status: str
+    title: str
+    type: str
 
 
-@dataclass
-class New:
-    author: Optional[str] = None
-    category: Optional[str] = None
-    content: Optional[str] = None
-    id: Optional[str] = None
-    publish_date: Optional[str] = None
-    summary: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class New(TypedDict, total=False):
+    author: str
+    category: str
+    content: str
+    id: str
+    publish_date: str
+    summary: str
+    title: str
+    url: str
 
 
-@dataclass
-class NewListMatch:
-    author: Optional[str] = None
-    category: Optional[str] = None
-    content: Optional[str] = None
-    id: Optional[str] = None
-    publish_date: Optional[str] = None
-    summary: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+class NewListMatch(TypedDict, total=False):
+    author: str
+    category: str
+    content: str
+    id: str
+    publish_date: str
+    summary: str
+    title: str
+    url: str
 
 
-@dataclass
-class Park:
-    address: Optional[str] = None
-    amenity: Optional[list] = None
-    hour: Optional[dict] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    type: Optional[str] = None
+class Park(TypedDict, total=False):
+    address: str
+    amenity: list
+    hour: dict
+    id: str
+    name: str
+    phone: str
+    type: str
 
 
-@dataclass
-class ParkListMatch:
-    address: Optional[str] = None
-    amenity: Optional[list] = None
-    hour: Optional[dict] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    type: Optional[str] = None
+class ParkListMatch(TypedDict, total=False):
+    address: str
+    amenity: list
+    hour: dict
+    id: str
+    name: str
+    phone: str
+    type: str
 
 
-@dataclass
-class Permit:
-    application_url: Optional[str] = None
-    description: Optional[str] = None
-    fee: Optional[float] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    processing_time: Optional[str] = None
-    requirement: Optional[list] = None
-    type: Optional[str] = None
+class Permit(TypedDict, total=False):
+    application_url: str
+    description: str
+    fee: float
+    id: str
+    name: str
+    processing_time: str
+    requirement: list
+    type: str
 
 
-@dataclass
-class PermitListMatch:
-    application_url: Optional[str] = None
-    description: Optional[str] = None
-    fee: Optional[float] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    processing_time: Optional[str] = None
-    requirement: Optional[list] = None
-    type: Optional[str] = None
+class PermitListMatch(TypedDict, total=False):
+    application_url: str
+    description: str
+    fee: float
+    id: str
+    name: str
+    processing_time: str
+    requirement: list
+    type: str
 
 
-@dataclass
-class PublicSafety:
-    fire: Optional[dict] = None
-    medical: Optional[dict] = None
-    police: Optional[dict] = None
+class PublicSafety(TypedDict, total=False):
+    fire: dict
+    medical: dict
+    police: dict
 
 
-@dataclass
-class PublicSafetyLoadMatch:
-    fire: Optional[dict] = None
-    medical: Optional[dict] = None
-    police: Optional[dict] = None
-
+class PublicSafetyLoadMatch(TypedDict, total=False):
+    fire: dict
+    medical: dict
+    police: dict

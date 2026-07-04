@@ -33,10 +33,12 @@ client = LasVegasCitySDK()
 
 ### 3. Load a cityinfo
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.cityinfo.load({"id": "example_id"})
-    print(result)
+    cityinfo = client.CityInfo().load({"id": "example_id"})
+    print(cityinfo)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -84,8 +86,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = LasVegasCitySDK.test()
 
-result = client.cityinfo.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+cityinfo = client.CityInfo().load({"id": "test01"})
+# cityinfo contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -164,8 +167,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `CityInfo` | `(data) -> CityInfoEntity` | Create a CityInfo entity instance. |
 | `Council` | `(data) -> CouncilEntity` | Create a Council entity instance. |
 | `Department` | `(data) -> DepartmentEntity` | Create a Department entity instance. |
-| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create a EconomicDevelopment entity instance. |
-| `Event` | `(data) -> EventEntity` | Create a Event entity instance. |
+| `EconomicDevelopment` | `(data) -> EconomicDevelopmentEntity` | Create an EconomicDevelopment entity instance. |
+| `Event` | `(data) -> EventEntity` | Create an Event entity instance. |
 | `Job` | `(data) -> JobEntity` | Create a Job entity instance. |
 | `Meeting` | `(data) -> MeetingEntity` | Create a Meeting entity instance. |
 | `New` | `(data) -> NewEntity` | Create a New entity instance. |
@@ -393,7 +396,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.city_info`
+Create an instance: `city_info = client.CityInfo()`
 
 #### Operations
 
@@ -415,14 +418,14 @@ Create an instance: `const city_info = client.city_info`
 
 #### Example: Load
 
-```ts
-const city_info = await client.city_info.load({ id: 'city_info_id' })
+```python
+city_info = client.CityInfo().load({"id": "city_info_id"})
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.council`
+Create an instance: `council = client.Council()`
 
 #### Operations
 
@@ -444,14 +447,14 @@ Create an instance: `const council = client.council`
 
 #### Example: List
 
-```ts
-const councils = await client.council.list()
+```python
+councils = client.Council().list({})
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.department`
+Create an instance: `department = client.Department()`
 
 #### Operations
 
@@ -472,14 +475,14 @@ Create an instance: `const department = client.department`
 
 #### Example: List
 
-```ts
-const departments = await client.department.list()
+```python
+departments = client.Department().list({})
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.economic_development`
+Create an instance: `economic_development = client.EconomicDevelopment()`
 
 #### Operations
 
@@ -497,14 +500,14 @@ Create an instance: `const economic_development = client.economic_development`
 
 #### Example: List
 
-```ts
-const economic_developments = await client.economic_development.list()
+```python
+economic_developments = client.EconomicDevelopment().list({})
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `event = client.Event()`
 
 #### Operations
 
@@ -528,14 +531,14 @@ Create an instance: `const event = client.event`
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```python
+events = client.Event().list({})
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.job`
+Create an instance: `job = client.Job()`
 
 #### Operations
 
@@ -560,14 +563,14 @@ Create an instance: `const job = client.job`
 
 #### Example: List
 
-```ts
-const jobs = await client.job.list()
+```python
+jobs = client.Job().list({})
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.meeting`
+Create an instance: `meeting = client.Meeting()`
 
 #### Operations
 
@@ -590,14 +593,14 @@ Create an instance: `const meeting = client.meeting`
 
 #### Example: List
 
-```ts
-const meetings = await client.meeting.list()
+```python
+meetings = client.Meeting().list({})
 ```
 
 
 ### New
 
-Create an instance: `const new = client.new`
+Create an instance: `new = client.New()`
 
 #### Operations
 
@@ -620,14 +623,14 @@ Create an instance: `const new = client.new`
 
 #### Example: List
 
-```ts
-const news = await client.new.list()
+```python
+news = client.New().list({})
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.park`
+Create an instance: `park = client.Park()`
 
 #### Operations
 
@@ -649,14 +652,14 @@ Create an instance: `const park = client.park`
 
 #### Example: List
 
-```ts
-const parks = await client.park.list()
+```python
+parks = client.Park().list({})
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.permit`
+Create an instance: `permit = client.Permit()`
 
 #### Operations
 
@@ -679,14 +682,14 @@ Create an instance: `const permit = client.permit`
 
 #### Example: List
 
-```ts
-const permits = await client.permit.list()
+```python
+permits = client.Permit().list({})
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.public_safety`
+Create an instance: `public_safety = client.PublicSafety()`
 
 #### Operations
 
@@ -704,8 +707,8 @@ Create an instance: `const public_safety = client.public_safety`
 
 #### Example: Load
 
-```ts
-const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
+```python
+public_safety = client.PublicSafety().load({"id": "public_safety_id"})
 ```
 
 
@@ -779,7 +782,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-cityinfo = client.cityinfo
+cityinfo = client.CityInfo()
 cityinfo.load({"id": "example_id"})
 
 # cityinfo.data_get() now returns the loaded cityinfo data

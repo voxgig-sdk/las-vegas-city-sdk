@@ -125,7 +125,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CityInfoEntity
 
 ```php
-$city_info = $client->city_info();
+$city_info = $client->CityInfo();
 ```
 
 ### Fields
@@ -147,7 +147,7 @@ $city_info = $client->city_info();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->city_info()->load(["id" => "city_info_id"]);
+$result = $client->CityInfo()->load(["id" => "city_info_id"]);
 ```
 
 ### Common Methods
@@ -183,7 +183,7 @@ Return the entity name.
 ## CouncilEntity
 
 ```php
-$council = $client->council();
+$council = $client->Council();
 ```
 
 ### Fields
@@ -205,7 +205,7 @@ $council = $client->council();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->council()->list([]);
+$results = $client->Council()->list([]);
 ```
 
 ### Common Methods
@@ -241,7 +241,7 @@ Return the entity name.
 ## DepartmentEntity
 
 ```php
-$department = $client->department();
+$department = $client->Department();
 ```
 
 ### Fields
@@ -262,7 +262,7 @@ $department = $client->department();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->department()->list([]);
+$results = $client->Department()->list([]);
 ```
 
 ### Common Methods
@@ -298,7 +298,7 @@ Return the entity name.
 ## EconomicDevelopmentEntity
 
 ```php
-$economic_development = $client->economic_development();
+$economic_development = $client->EconomicDevelopment();
 ```
 
 ### Fields
@@ -316,7 +316,7 @@ $economic_development = $client->economic_development();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->economic_development()->list([]);
+$results = $client->EconomicDevelopment()->list([]);
 ```
 
 ### Common Methods
@@ -352,7 +352,7 @@ Return the entity name.
 ## EventEntity
 
 ```php
-$event = $client->event();
+$event = $client->Event();
 ```
 
 ### Fields
@@ -376,7 +376,7 @@ $event = $client->event();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->event()->list([]);
+$results = $client->Event()->list([]);
 ```
 
 ### Common Methods
@@ -412,7 +412,7 @@ Return the entity name.
 ## JobEntity
 
 ```php
-$job = $client->job();
+$job = $client->Job();
 ```
 
 ### Fields
@@ -437,7 +437,7 @@ $job = $client->job();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->job()->list([]);
+$results = $client->Job()->list([]);
 ```
 
 ### Common Methods
@@ -473,7 +473,7 @@ Return the entity name.
 ## MeetingEntity
 
 ```php
-$meeting = $client->meeting();
+$meeting = $client->Meeting();
 ```
 
 ### Fields
@@ -496,7 +496,7 @@ $meeting = $client->meeting();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->meeting()->list([]);
+$results = $client->Meeting()->list([]);
 ```
 
 ### Common Methods
@@ -532,7 +532,7 @@ Return the entity name.
 ## NewEntity
 
 ```php
-$new = $client->new();
+$new = $client->New();
 ```
 
 ### Fields
@@ -555,7 +555,7 @@ $new = $client->new();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->new()->list([]);
+$results = $client->New()->list([]);
 ```
 
 ### Common Methods
@@ -591,7 +591,7 @@ Return the entity name.
 ## ParkEntity
 
 ```php
-$park = $client->park();
+$park = $client->Park();
 ```
 
 ### Fields
@@ -613,7 +613,7 @@ $park = $client->park();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->park()->list([]);
+$results = $client->Park()->list([]);
 ```
 
 ### Common Methods
@@ -649,7 +649,7 @@ Return the entity name.
 ## PermitEntity
 
 ```php
-$permit = $client->permit();
+$permit = $client->Permit();
 ```
 
 ### Fields
@@ -672,7 +672,7 @@ $permit = $client->permit();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->permit()->list([]);
+$results = $client->Permit()->list([]);
 ```
 
 ### Common Methods
@@ -708,7 +708,7 @@ Return the entity name.
 ## PublicSafetyEntity
 
 ```php
-$public_safety = $client->public_safety();
+$public_safety = $client->PublicSafety();
 ```
 
 ### Fields
@@ -726,7 +726,7 @@ $public_safety = $client->public_safety();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->public_safety()->load(["id" => "public_safety_id"]);
+$result = $client->PublicSafety()->load(["id" => "public_safety_id"]);
 ```
 
 ### Common Methods

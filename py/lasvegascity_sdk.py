@@ -220,185 +220,75 @@ class LasVegasCitySDK:
         }
 
 
-    @property
-    def city_info(self):
-        """Idiomatic facade: client.city_info.list() / client.city_info.load({"id": ...})."""
-        from entity.city_info_entity import CityInfoEntity
-        cached = getattr(self, "_city_info", None)
-        if cached is None:
-            cached = CityInfoEntity(self, None)
-            self._city_info = cached
-        return cached
-
-    def CityInfo(self, data=None):
-        # Deprecated: use client.city_info instead.
+    def CityInfo(self, data=None) -> "CityInfoEntity":
+        """Entity factory: client.CityInfo().list({}) / client.CityInfo().load({"id": ...})."""
         from entity.city_info_entity import CityInfoEntity
         return CityInfoEntity(self, data)
 
 
-    @property
-    def council(self):
-        """Idiomatic facade: client.council.list() / client.council.load({"id": ...})."""
-        from entity.council_entity import CouncilEntity
-        cached = getattr(self, "_council", None)
-        if cached is None:
-            cached = CouncilEntity(self, None)
-            self._council = cached
-        return cached
-
-    def Council(self, data=None):
-        # Deprecated: use client.council instead.
+    def Council(self, data=None) -> "CouncilEntity":
+        """Entity factory: client.Council().list({}) / client.Council().load({"id": ...})."""
         from entity.council_entity import CouncilEntity
         return CouncilEntity(self, data)
 
 
-    @property
-    def department(self):
-        """Idiomatic facade: client.department.list() / client.department.load({"id": ...})."""
-        from entity.department_entity import DepartmentEntity
-        cached = getattr(self, "_department", None)
-        if cached is None:
-            cached = DepartmentEntity(self, None)
-            self._department = cached
-        return cached
-
-    def Department(self, data=None):
-        # Deprecated: use client.department instead.
+    def Department(self, data=None) -> "DepartmentEntity":
+        """Entity factory: client.Department().list({}) / client.Department().load({"id": ...})."""
         from entity.department_entity import DepartmentEntity
         return DepartmentEntity(self, data)
 
 
-    @property
-    def economic_development(self):
-        """Idiomatic facade: client.economic_development.list() / client.economic_development.load({"id": ...})."""
-        from entity.economic_development_entity import EconomicDevelopmentEntity
-        cached = getattr(self, "_economic_development", None)
-        if cached is None:
-            cached = EconomicDevelopmentEntity(self, None)
-            self._economic_development = cached
-        return cached
-
-    def EconomicDevelopment(self, data=None):
-        # Deprecated: use client.economic_development instead.
+    def EconomicDevelopment(self, data=None) -> "EconomicDevelopmentEntity":
+        """Entity factory: client.EconomicDevelopment().list({}) / client.EconomicDevelopment().load({"id": ...})."""
         from entity.economic_development_entity import EconomicDevelopmentEntity
         return EconomicDevelopmentEntity(self, data)
 
 
-    @property
-    def event(self):
-        """Idiomatic facade: client.event.list() / client.event.load({"id": ...})."""
-        from entity.event_entity import EventEntity
-        cached = getattr(self, "_event", None)
-        if cached is None:
-            cached = EventEntity(self, None)
-            self._event = cached
-        return cached
-
-    def Event(self, data=None):
-        # Deprecated: use client.event instead.
+    def Event(self, data=None) -> "EventEntity":
+        """Entity factory: client.Event().list({}) / client.Event().load({"id": ...})."""
         from entity.event_entity import EventEntity
         return EventEntity(self, data)
 
 
-    @property
-    def job(self):
-        """Idiomatic facade: client.job.list() / client.job.load({"id": ...})."""
-        from entity.job_entity import JobEntity
-        cached = getattr(self, "_job", None)
-        if cached is None:
-            cached = JobEntity(self, None)
-            self._job = cached
-        return cached
-
-    def Job(self, data=None):
-        # Deprecated: use client.job instead.
+    def Job(self, data=None) -> "JobEntity":
+        """Entity factory: client.Job().list({}) / client.Job().load({"id": ...})."""
         from entity.job_entity import JobEntity
         return JobEntity(self, data)
 
 
-    @property
-    def meeting(self):
-        """Idiomatic facade: client.meeting.list() / client.meeting.load({"id": ...})."""
-        from entity.meeting_entity import MeetingEntity
-        cached = getattr(self, "_meeting", None)
-        if cached is None:
-            cached = MeetingEntity(self, None)
-            self._meeting = cached
-        return cached
-
-    def Meeting(self, data=None):
-        # Deprecated: use client.meeting instead.
+    def Meeting(self, data=None) -> "MeetingEntity":
+        """Entity factory: client.Meeting().list({}) / client.Meeting().load({"id": ...})."""
         from entity.meeting_entity import MeetingEntity
         return MeetingEntity(self, data)
 
 
-    @property
-    def new(self):
-        """Idiomatic facade: client.new.list() / client.new.load({"id": ...})."""
-        from entity.new_entity import NewEntity
-        cached = getattr(self, "_new", None)
-        if cached is None:
-            cached = NewEntity(self, None)
-            self._new = cached
-        return cached
-
-    def New(self, data=None):
-        # Deprecated: use client.new instead.
+    def New(self, data=None) -> "NewEntity":
+        """Entity factory: client.New().list({}) / client.New().load({"id": ...})."""
         from entity.new_entity import NewEntity
         return NewEntity(self, data)
 
 
-    @property
-    def park(self):
-        """Idiomatic facade: client.park.list() / client.park.load({"id": ...})."""
-        from entity.park_entity import ParkEntity
-        cached = getattr(self, "_park", None)
-        if cached is None:
-            cached = ParkEntity(self, None)
-            self._park = cached
-        return cached
-
-    def Park(self, data=None):
-        # Deprecated: use client.park instead.
+    def Park(self, data=None) -> "ParkEntity":
+        """Entity factory: client.Park().list({}) / client.Park().load({"id": ...})."""
         from entity.park_entity import ParkEntity
         return ParkEntity(self, data)
 
 
-    @property
-    def permit(self):
-        """Idiomatic facade: client.permit.list() / client.permit.load({"id": ...})."""
-        from entity.permit_entity import PermitEntity
-        cached = getattr(self, "_permit", None)
-        if cached is None:
-            cached = PermitEntity(self, None)
-            self._permit = cached
-        return cached
-
-    def Permit(self, data=None):
-        # Deprecated: use client.permit instead.
+    def Permit(self, data=None) -> "PermitEntity":
+        """Entity factory: client.Permit().list({}) / client.Permit().load({"id": ...})."""
         from entity.permit_entity import PermitEntity
         return PermitEntity(self, data)
 
 
-    @property
-    def public_safety(self):
-        """Idiomatic facade: client.public_safety.list() / client.public_safety.load({"id": ...})."""
-        from entity.public_safety_entity import PublicSafetyEntity
-        cached = getattr(self, "_public_safety", None)
-        if cached is None:
-            cached = PublicSafetyEntity(self, None)
-            self._public_safety = cached
-        return cached
-
-    def PublicSafety(self, data=None):
-        # Deprecated: use client.public_safety instead.
+    def PublicSafety(self, data=None) -> "PublicSafetyEntity":
+        """Entity factory: client.PublicSafety().list({}) / client.PublicSafety().load({"id": ...})."""
         from entity.public_safety_entity import PublicSafetyEntity
         return PublicSafetyEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "LasVegasCitySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -418,3 +308,19 @@ class LasVegasCitySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.city_info_entity import CityInfoEntity
+    from entity.council_entity import CouncilEntity
+    from entity.department_entity import DepartmentEntity
+    from entity.economic_development_entity import EconomicDevelopmentEntity
+    from entity.event_entity import EventEntity
+    from entity.job_entity import JobEntity
+    from entity.meeting_entity import MeetingEntity
+    from entity.new_entity import NewEntity
+    from entity.park_entity import ParkEntity
+    from entity.permit_entity import PermitEntity
+    from entity.public_safety_entity import PublicSafetyEntity

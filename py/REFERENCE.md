@@ -120,7 +120,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CityInfoEntity
 
 ```python
-city_info = client.city_info
+city_info = client.CityInfo()
 ```
 
 ### Fields
@@ -142,7 +142,7 @@ city_info = client.city_info
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.city_info.load({"id": "city_info_id"})
+result = client.CityInfo().load({"id": "city_info_id"})
 ```
 
 ### Common Methods
@@ -177,7 +177,7 @@ Return the entity name.
 ## CouncilEntity
 
 ```python
-council = client.council
+council = client.Council()
 ```
 
 ### Fields
@@ -199,7 +199,9 @@ council = client.council
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.council.list({})
+results = client.Council().list({})
+for council in results:
+    print(council)
 ```
 
 ### Common Methods
@@ -234,7 +236,7 @@ Return the entity name.
 ## DepartmentEntity
 
 ```python
-department = client.department
+department = client.Department()
 ```
 
 ### Fields
@@ -255,7 +257,9 @@ department = client.department
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.department.list({})
+results = client.Department().list({})
+for department in results:
+    print(department)
 ```
 
 ### Common Methods
@@ -290,7 +294,7 @@ Return the entity name.
 ## EconomicDevelopmentEntity
 
 ```python
-economic_development = client.economic_development
+economic_development = client.EconomicDevelopment()
 ```
 
 ### Fields
@@ -308,7 +312,9 @@ economic_development = client.economic_development
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.economic_development.list({})
+results = client.EconomicDevelopment().list({})
+for economic_development in results:
+    print(economic_development)
 ```
 
 ### Common Methods
@@ -343,7 +349,7 @@ Return the entity name.
 ## EventEntity
 
 ```python
-event = client.event
+event = client.Event()
 ```
 
 ### Fields
@@ -367,7 +373,9 @@ event = client.event
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.event.list({})
+results = client.Event().list({})
+for event in results:
+    print(event)
 ```
 
 ### Common Methods
@@ -402,7 +410,7 @@ Return the entity name.
 ## JobEntity
 
 ```python
-job = client.job
+job = client.Job()
 ```
 
 ### Fields
@@ -427,7 +435,9 @@ job = client.job
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.job.list({})
+results = client.Job().list({})
+for job in results:
+    print(job)
 ```
 
 ### Common Methods
@@ -462,7 +472,7 @@ Return the entity name.
 ## MeetingEntity
 
 ```python
-meeting = client.meeting
+meeting = client.Meeting()
 ```
 
 ### Fields
@@ -485,7 +495,9 @@ meeting = client.meeting
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.meeting.list({})
+results = client.Meeting().list({})
+for meeting in results:
+    print(meeting)
 ```
 
 ### Common Methods
@@ -520,7 +532,7 @@ Return the entity name.
 ## NewEntity
 
 ```python
-new = client.new
+new = client.New()
 ```
 
 ### Fields
@@ -543,7 +555,9 @@ new = client.new
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.new.list({})
+results = client.New().list({})
+for new in results:
+    print(new)
 ```
 
 ### Common Methods
@@ -578,7 +592,7 @@ Return the entity name.
 ## ParkEntity
 
 ```python
-park = client.park
+park = client.Park()
 ```
 
 ### Fields
@@ -600,7 +614,9 @@ park = client.park
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.park.list({})
+results = client.Park().list({})
+for park in results:
+    print(park)
 ```
 
 ### Common Methods
@@ -635,7 +651,7 @@ Return the entity name.
 ## PermitEntity
 
 ```python
-permit = client.permit
+permit = client.Permit()
 ```
 
 ### Fields
@@ -658,7 +674,9 @@ permit = client.permit
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.permit.list({})
+results = client.Permit().list({})
+for permit in results:
+    print(permit)
 ```
 
 ### Common Methods
@@ -693,7 +711,7 @@ Return the entity name.
 ## PublicSafetyEntity
 
 ```python
-public_safety = client.public_safety
+public_safety = client.PublicSafety()
 ```
 
 ### Fields
@@ -711,7 +729,7 @@ public_safety = client.public_safety
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.public_safety.load({"id": "public_safety_id"})
+result = client.PublicSafety().load({"id": "public_safety_id"})
 ```
 
 ### Common Methods

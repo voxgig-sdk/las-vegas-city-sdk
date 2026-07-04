@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/las-vegas-city-sdk/go=../las-vegas-ci
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/las-vegas-city-sdk/go"
-    "github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a cityinfo
-
-```go
-    result, err = client.CityInfo(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single cityinfo — the value is the loaded record.
+    cityinfo, err := client.CityInfo(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(cityinfo)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.CityInfo(nil).Load(
+cityinfo, err := client.CityInfo(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(cityinfo) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -193,8 +190,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `CityInfo` | `(data map[string]any) LasVegasCityEntity` | Create a CityInfo entity instance. |
 | `Council` | `(data map[string]any) LasVegasCityEntity` | Create a Council entity instance. |
 | `Department` | `(data map[string]any) LasVegasCityEntity` | Create a Department entity instance. |
-| `EconomicDevelopment` | `(data map[string]any) LasVegasCityEntity` | Create a EconomicDevelopment entity instance. |
-| `Event` | `(data map[string]any) LasVegasCityEntity` | Create a Event entity instance. |
+| `EconomicDevelopment` | `(data map[string]any) LasVegasCityEntity` | Create an EconomicDevelopment entity instance. |
+| `Event` | `(data map[string]any) LasVegasCityEntity` | Create an Event entity instance. |
 | `Job` | `(data map[string]any) LasVegasCityEntity` | Create a Job entity instance. |
 | `Meeting` | `(data map[string]any) LasVegasCityEntity` | Create a Meeting entity instance. |
 | `New` | `(data map[string]any) LasVegasCityEntity` | Create a New entity instance. |
@@ -220,17 +217,24 @@ All entities implement the `LasVegasCityEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    cityinfo, err := client.CityInfo(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // cityinfo is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -439,7 +443,11 @@ Create an instance: `city_info := client.CityInfo(nil)`
 #### Example: Load
 
 ```go
-result, err := client.CityInfo(nil).Load(map[string]any{"id": "city_info_id"}, nil)
+city_info, err := client.CityInfo(nil).Load(map[string]any{"id": "city_info_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(city_info) // the loaded record
 ```
 
 
@@ -468,7 +476,11 @@ Create an instance: `council := client.Council(nil)`
 #### Example: List
 
 ```go
-results, err := client.Council(nil).List(nil, nil)
+councils, err := client.Council(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(councils) // the array of records
 ```
 
 
@@ -496,7 +508,11 @@ Create an instance: `department := client.Department(nil)`
 #### Example: List
 
 ```go
-results, err := client.Department(nil).List(nil, nil)
+departments, err := client.Department(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(departments) // the array of records
 ```
 
 
@@ -521,7 +537,11 @@ Create an instance: `economic_development := client.EconomicDevelopment(nil)`
 #### Example: List
 
 ```go
-results, err := client.EconomicDevelopment(nil).List(nil, nil)
+economic_developments, err := client.EconomicDevelopment(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(economic_developments) // the array of records
 ```
 
 
@@ -552,7 +572,11 @@ Create an instance: `event := client.Event(nil)`
 #### Example: List
 
 ```go
-results, err := client.Event(nil).List(nil, nil)
+events, err := client.Event(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(events) // the array of records
 ```
 
 
@@ -584,7 +608,11 @@ Create an instance: `job := client.Job(nil)`
 #### Example: List
 
 ```go
-results, err := client.Job(nil).List(nil, nil)
+jobs, err := client.Job(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(jobs) // the array of records
 ```
 
 
@@ -614,7 +642,11 @@ Create an instance: `meeting := client.Meeting(nil)`
 #### Example: List
 
 ```go
-results, err := client.Meeting(nil).List(nil, nil)
+meetings, err := client.Meeting(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(meetings) // the array of records
 ```
 
 
@@ -644,7 +676,11 @@ Create an instance: `new := client.New(nil)`
 #### Example: List
 
 ```go
-results, err := client.New(nil).List(nil, nil)
+news, err := client.New(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(news) // the array of records
 ```
 
 
@@ -673,7 +709,11 @@ Create an instance: `park := client.Park(nil)`
 #### Example: List
 
 ```go
-results, err := client.Park(nil).List(nil, nil)
+parks, err := client.Park(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(parks) // the array of records
 ```
 
 
@@ -703,7 +743,11 @@ Create an instance: `permit := client.Permit(nil)`
 #### Example: List
 
 ```go
-results, err := client.Permit(nil).List(nil, nil)
+permits, err := client.Permit(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(permits) // the array of records
 ```
 
 
@@ -728,7 +772,11 @@ Create an instance: `public_safety := client.PublicSafety(nil)`
 #### Example: Load
 
 ```go
-result, err := client.PublicSafety(nil).Load(map[string]any{"id": "public_safety_id"}, nil)
+public_safety, err := client.PublicSafety(nil).Load(map[string]any{"id": "public_safety_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(public_safety) // the loaded record
 ```
 
 

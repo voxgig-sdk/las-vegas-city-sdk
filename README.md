@@ -26,9 +26,9 @@ import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city'
 
 const client = new LasVegasCitySDK()
 
-// Load cityinfo data
-const cityinfo = await client.cityinfo.load({})
-console.log(cityinfo.data)
+// Load cityinfo data (returns a CityInfo)
+const cityinfo = await client.CityInfo().load()
+console.log(cityinfo)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -94,8 +94,8 @@ from lasvegascity_sdk import LasVegasCitySDK
 client = LasVegasCitySDK()
 
 
-# Load a specific cityinfo
-cityinfo = client.cityinfo.load({"id": "example_id"})
+# Load a specific cityinfo (returns the record, raises on error)
+cityinfo = client.CityInfo().load({"id": "example_id"})
 print(cityinfo)
 ```
 
@@ -108,8 +108,8 @@ require_once 'lasvegascity_sdk.php';
 $client = new LasVegasCitySDK();
 
 
-// Load a specific cityinfo
-$cityinfo = $client->cityinfo()->load(["id" => "example_id"]);
+// Load a specific cityinfo (returns the bare record; throws on error)
+$cityinfo = $client->CityInfo()->load(["id" => "example_id"]);
 print_r($cityinfo);
 ```
 
@@ -133,8 +133,8 @@ require_relative "LasVegasCity_sdk"
 client = LasVegasCitySDK.new
 
 
-# Load a specific cityinfo
-cityinfo = client.cityinfo.load({ "id" => "example_id" })
+# Load a specific cityinfo (returns the bare record; raises on error)
+cityinfo = client.CityInfo.load({ "id" => "example_id" })
 puts cityinfo
 ```
 
@@ -147,7 +147,7 @@ local client = sdk.new()
 
 
 -- Load a specific cityinfo
-local cityinfo, err = client:cityinfo():load({ id = "example_id" })
+local cityinfo, err = client:CityInfo():load({ id = "example_id" })
 print(cityinfo)
 ```
 
@@ -160,22 +160,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = LasVegasCitySDK.test()
-const result = await client.cityinfo.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const cityinfo = await client.CityInfo().load({ id: 'test01' })
+// cityinfo is a bare CityInfo populated with mock data
+console.log(cityinfo)
 ```
 
 ### Python
 
 ```python
 client = LasVegasCitySDK.test()
-result = client.cityinfo.load({"id": "test01"})
+cityinfo = client.CityInfo().load({"id": "test01"})
+print(cityinfo)
 ```
 
 ### PHP
 
 ```php
-$client = LasVegasCitySDK::test();
-$result = $client->cityinfo()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = LasVegasCitySDK::test([
+    "entity" => ["cityinfo" => ["test01" => ["id" => "test01"]]],
+]);
+$cityinfo = $client->CityInfo()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -190,15 +195,18 @@ result, err := client.CityInfo(nil).Load(
 ### Ruby
 
 ```ruby
-client = LasVegasCitySDK.test
-result = client.cityinfo.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = LasVegasCitySDK.test({
+  "entity" => { "cityinfo" => { "test01" => { "id" => "test01" } } },
+})
+cityinfo = client.CityInfo.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:cityinfo():load({ id = "test01" })
+local result, err = client:CityInfo():load({ id = "test01" })
 ```
 
 ## How it works
@@ -246,6 +254,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

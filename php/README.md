@@ -33,9 +33,10 @@ $client = new LasVegasCitySDK();
 
 ```php
 try {
-    $result = $client->cityinfo()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare CityInfo record (throws on error).
+    $cityinfo = $client->CityInfo()->load(["id" => "example_id"]);
+    print_r($cityinfo);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = LasVegasCitySDK::test();
+$client = LasVegasCitySDK::test([
+    "entity" => ["cityinfo" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->cityinfo()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$cityinfo = $client->CityInfo()->load(["id" => "test01"]);
+print_r($cityinfo);
 ```
 
 ### Use a custom fetch function
@@ -169,8 +174,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `CityInfo` | `($data): CityInfoEntity` | Create a CityInfo entity instance. |
 | `Council` | `($data): CouncilEntity` | Create a Council entity instance. |
 | `Department` | `($data): DepartmentEntity` | Create a Department entity instance. |
-| `EconomicDevelopment` | `($data): EconomicDevelopmentEntity` | Create a EconomicDevelopment entity instance. |
-| `Event` | `($data): EventEntity` | Create a Event entity instance. |
+| `EconomicDevelopment` | `($data): EconomicDevelopmentEntity` | Create an EconomicDevelopment entity instance. |
+| `Event` | `($data): EventEntity` | Create an Event entity instance. |
 | `Job` | `($data): JobEntity` | Create a Job entity instance. |
 | `Meeting` | `($data): MeetingEntity` | Create a Meeting entity instance. |
 | `New` | `($data): NewEntity` | Create a New entity instance. |
@@ -398,7 +403,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.city_info`
+Create an instance: `$city_info = $client->CityInfo();`
 
 #### Operations
 
@@ -420,14 +425,15 @@ Create an instance: `const city_info = client.city_info`
 
 #### Example: Load
 
-```ts
-const city_info = await client.city_info.load({ id: 'city_info_id' })
+```php
+// load() returns the bare CityInfo record (throws on error).
+$city_info = $client->CityInfo()->load(["id" => "city_info_id"]);
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.council`
+Create an instance: `$council = $client->Council();`
 
 #### Operations
 
@@ -449,14 +455,15 @@ Create an instance: `const council = client.council`
 
 #### Example: List
 
-```ts
-const councils = await client.council.list()
+```php
+// list() returns an array of Council records (throws on error).
+$councils = $client->Council()->list();
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.department`
+Create an instance: `$department = $client->Department();`
 
 #### Operations
 
@@ -477,14 +484,15 @@ Create an instance: `const department = client.department`
 
 #### Example: List
 
-```ts
-const departments = await client.department.list()
+```php
+// list() returns an array of Department records (throws on error).
+$departments = $client->Department()->list();
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.economic_development`
+Create an instance: `$economic_development = $client->EconomicDevelopment();`
 
 #### Operations
 
@@ -502,14 +510,15 @@ Create an instance: `const economic_development = client.economic_development`
 
 #### Example: List
 
-```ts
-const economic_developments = await client.economic_development.list()
+```php
+// list() returns an array of EconomicDevelopment records (throws on error).
+$economic_developments = $client->EconomicDevelopment()->list();
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.event`
+Create an instance: `$event = $client->Event();`
 
 #### Operations
 
@@ -533,14 +542,15 @@ Create an instance: `const event = client.event`
 
 #### Example: List
 
-```ts
-const events = await client.event.list()
+```php
+// list() returns an array of Event records (throws on error).
+$events = $client->Event()->list();
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.job`
+Create an instance: `$job = $client->Job();`
 
 #### Operations
 
@@ -565,14 +575,15 @@ Create an instance: `const job = client.job`
 
 #### Example: List
 
-```ts
-const jobs = await client.job.list()
+```php
+// list() returns an array of Job records (throws on error).
+$jobs = $client->Job()->list();
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.meeting`
+Create an instance: `$meeting = $client->Meeting();`
 
 #### Operations
 
@@ -595,14 +606,15 @@ Create an instance: `const meeting = client.meeting`
 
 #### Example: List
 
-```ts
-const meetings = await client.meeting.list()
+```php
+// list() returns an array of Meeting records (throws on error).
+$meetings = $client->Meeting()->list();
 ```
 
 
 ### New
 
-Create an instance: `const new = client.new`
+Create an instance: `$new = $client->New();`
 
 #### Operations
 
@@ -625,14 +637,15 @@ Create an instance: `const new = client.new`
 
 #### Example: List
 
-```ts
-const news = await client.new.list()
+```php
+// list() returns an array of New records (throws on error).
+$news = $client->New()->list();
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.park`
+Create an instance: `$park = $client->Park();`
 
 #### Operations
 
@@ -654,14 +667,15 @@ Create an instance: `const park = client.park`
 
 #### Example: List
 
-```ts
-const parks = await client.park.list()
+```php
+// list() returns an array of Park records (throws on error).
+$parks = $client->Park()->list();
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.permit`
+Create an instance: `$permit = $client->Permit();`
 
 #### Operations
 
@@ -684,14 +698,15 @@ Create an instance: `const permit = client.permit`
 
 #### Example: List
 
-```ts
-const permits = await client.permit.list()
+```php
+// list() returns an array of Permit records (throws on error).
+$permits = $client->Permit()->list();
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.public_safety`
+Create an instance: `$public_safety = $client->PublicSafety();`
 
 #### Operations
 
@@ -709,8 +724,9 @@ Create an instance: `const public_safety = client.public_safety`
 
 #### Example: Load
 
-```ts
-const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
+```php
+// load() returns the bare PublicSafety record (throws on error).
+$public_safety = $client->PublicSafety()->load(["id" => "public_safety_id"]);
 ```
 
 
@@ -785,7 +801,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$cityinfo = $client->cityinfo();
+$cityinfo = $client->CityInfo();
 $cityinfo->load(["id" => "example_id"]);
 
 // $cityinfo->dataGet() now returns the loaded cityinfo data

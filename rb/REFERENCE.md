@@ -126,7 +126,7 @@ same parameters as `direct()`. Raises on error.
 ## CityInfoEntity
 
 ```ruby
-city_info = client.city_info
+city_info = client.CityInfo
 ```
 
 ### Fields
@@ -148,7 +148,7 @@ city_info = client.city_info
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.city_info.load({ "id" => "city_info_id" })
+result = client.CityInfo.load({ "id" => "city_info_id" })
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ Return the entity name.
 ## CouncilEntity
 
 ```ruby
-council = client.council
+council = client.Council
 ```
 
 ### Fields
@@ -206,7 +206,7 @@ council = client.council
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.council.list(nil)
+results = client.Council.list(nil)
 ```
 
 ### Common Methods
@@ -242,7 +242,7 @@ Return the entity name.
 ## DepartmentEntity
 
 ```ruby
-department = client.department
+department = client.Department
 ```
 
 ### Fields
@@ -263,7 +263,7 @@ department = client.department
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.department.list(nil)
+results = client.Department.list(nil)
 ```
 
 ### Common Methods
@@ -299,7 +299,7 @@ Return the entity name.
 ## EconomicDevelopmentEntity
 
 ```ruby
-economic_development = client.economic_development
+economic_development = client.EconomicDevelopment
 ```
 
 ### Fields
@@ -317,7 +317,7 @@ economic_development = client.economic_development
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.economic_development.list(nil)
+results = client.EconomicDevelopment.list(nil)
 ```
 
 ### Common Methods
@@ -353,7 +353,7 @@ Return the entity name.
 ## EventEntity
 
 ```ruby
-event = client.event
+event = client.Event
 ```
 
 ### Fields
@@ -377,7 +377,7 @@ event = client.event
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.event.list(nil)
+results = client.Event.list(nil)
 ```
 
 ### Common Methods
@@ -413,7 +413,7 @@ Return the entity name.
 ## JobEntity
 
 ```ruby
-job = client.job
+job = client.Job
 ```
 
 ### Fields
@@ -438,7 +438,7 @@ job = client.job
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.job.list(nil)
+results = client.Job.list(nil)
 ```
 
 ### Common Methods
@@ -474,7 +474,7 @@ Return the entity name.
 ## MeetingEntity
 
 ```ruby
-meeting = client.meeting
+meeting = client.Meeting
 ```
 
 ### Fields
@@ -497,7 +497,7 @@ meeting = client.meeting
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.meeting.list(nil)
+results = client.Meeting.list(nil)
 ```
 
 ### Common Methods
@@ -533,7 +533,7 @@ Return the entity name.
 ## NewEntity
 
 ```ruby
-new = client.new
+new = client.New
 ```
 
 ### Fields
@@ -556,7 +556,7 @@ new = client.new
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.new.list(nil)
+results = client.New.list(nil)
 ```
 
 ### Common Methods
@@ -592,7 +592,7 @@ Return the entity name.
 ## ParkEntity
 
 ```ruby
-park = client.park
+park = client.Park
 ```
 
 ### Fields
@@ -614,7 +614,7 @@ park = client.park
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.park.list(nil)
+results = client.Park.list(nil)
 ```
 
 ### Common Methods
@@ -650,7 +650,7 @@ Return the entity name.
 ## PermitEntity
 
 ```ruby
-permit = client.permit
+permit = client.Permit
 ```
 
 ### Fields
@@ -673,7 +673,7 @@ permit = client.permit
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.permit.list(nil)
+results = client.Permit.list(nil)
 ```
 
 ### Common Methods
@@ -709,7 +709,7 @@ Return the entity name.
 ## PublicSafetyEntity
 
 ```ruby
-public_safety = client.public_safety
+public_safety = client.PublicSafety
 ```
 
 ### Fields
@@ -727,7 +727,7 @@ public_safety = client.public_safety
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.public_safety.load({ "id" => "public_safety_id" })
+result = client.PublicSafety.load({ "id" => "public_safety_id" })
 ```
 
 ### Common Methods

@@ -9,9 +9,12 @@ The TypeScript SDK for the LasVegasCity API — a type-safe, entity-oriented cli
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/las-vegas-city
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/las-vegas-city-sdk/releases](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { LasVegasCitySDK } from 'las-vegas-city'
+import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city'
 
-const client = new LasVegasCitySDK({
-  apikey: process.env.LAS-VEGAS-CITY_APIKEY,
-})
+const client = new LasVegasCitySDK()
 ```
 
 ### 3. Load a cityinfo
 
 ```ts
-const result = await client.CityInfo().load({ id: 'example_id' })
+const result = await client.cityinfo.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = LasVegasCitySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.cityinfo.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new LasVegasCitySDK({ apikey: '...' })
+const client = new LasVegasCitySDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.cityinfo
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new LasVegasCitySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -133,8 +133,7 @@ const client = new LasVegasCitySDK({
 Create a `.env.local` file at the project root:
 
 ```
-LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
+LAS_VEGAS_CITY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new LasVegasCitySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new LasVegasCitySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -441,7 +438,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.CityInfo()`
+Create an instance: `const city_info = client.city_info`
 
 #### Operations
 
@@ -464,13 +461,13 @@ Create an instance: `const city_info = client.CityInfo()`
 #### Example: Load
 
 ```ts
-const city_info = await client.CityInfo().load({ id: 'city_info_id' })
+const city_info = await client.city_info.load({ id: 'city_info_id' })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.Council()`
+Create an instance: `const council = client.council`
 
 #### Operations
 
@@ -493,13 +490,13 @@ Create an instance: `const council = client.Council()`
 #### Example: List
 
 ```ts
-const councils = await client.Council().list()
+const councils = await client.council.list()
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.Department()`
+Create an instance: `const department = client.department`
 
 #### Operations
 
@@ -521,13 +518,13 @@ Create an instance: `const department = client.Department()`
 #### Example: List
 
 ```ts
-const departments = await client.Department().list()
+const departments = await client.department.list()
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.EconomicDevelopment()`
+Create an instance: `const economic_development = client.economic_development`
 
 #### Operations
 
@@ -546,13 +543,13 @@ Create an instance: `const economic_development = client.EconomicDevelopment()`
 #### Example: List
 
 ```ts
-const economic_developments = await client.EconomicDevelopment().list()
+const economic_developments = await client.economic_development.list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.Event()`
+Create an instance: `const event = client.event`
 
 #### Operations
 
@@ -577,13 +574,13 @@ Create an instance: `const event = client.Event()`
 #### Example: List
 
 ```ts
-const events = await client.Event().list()
+const events = await client.event.list()
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.Job()`
+Create an instance: `const job = client.job`
 
 #### Operations
 
@@ -609,13 +606,13 @@ Create an instance: `const job = client.Job()`
 #### Example: List
 
 ```ts
-const jobs = await client.Job().list()
+const jobs = await client.job.list()
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.Meeting()`
+Create an instance: `const meeting = client.meeting`
 
 #### Operations
 
@@ -639,13 +636,13 @@ Create an instance: `const meeting = client.Meeting()`
 #### Example: List
 
 ```ts
-const meetings = await client.Meeting().list()
+const meetings = await client.meeting.list()
 ```
 
 
 ### New
 
-Create an instance: `const new = client.New()`
+Create an instance: `const new = client.new`
 
 #### Operations
 
@@ -669,13 +666,13 @@ Create an instance: `const new = client.New()`
 #### Example: List
 
 ```ts
-const news = await client.New().list()
+const news = await client.new.list()
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.Park()`
+Create an instance: `const park = client.park`
 
 #### Operations
 
@@ -698,13 +695,13 @@ Create an instance: `const park = client.Park()`
 #### Example: List
 
 ```ts
-const parks = await client.Park().list()
+const parks = await client.park.list()
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.Permit()`
+Create an instance: `const permit = client.permit`
 
 #### Operations
 
@@ -728,13 +725,13 @@ Create an instance: `const permit = client.Permit()`
 #### Example: List
 
 ```ts
-const permits = await client.Permit().list()
+const permits = await client.permit.list()
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.PublicSafety()`
+Create an instance: `const public_safety = client.public_safety`
 
 #### Operations
 
@@ -753,7 +750,7 @@ Create an instance: `const public_safety = client.PublicSafety()`
 #### Example: Load
 
 ```ts
-const public_safety = await client.PublicSafety().load({ id: 'public_safety_id' })
+const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
 ```
 
 
@@ -814,7 +811,7 @@ las-vegas-city/
 Import the SDK from the package root:
 
 ```ts
-import { LasVegasCitySDK } from 'las-vegas-city'
+import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city'
 ```
 
 ### Entity state
@@ -824,11 +821,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const cityinfo = client.cityinfo
+await cityinfo.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// cityinfo.data() now returns the loaded cityinfo data
+// cityinfo.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

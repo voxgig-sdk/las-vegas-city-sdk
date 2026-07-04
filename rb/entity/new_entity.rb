@@ -45,6 +45,7 @@ class NewEntity
     end
   end
 
+  # @return [New, Hash] the current New data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class NewEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of New fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class NewEntity
   
 
   
+  # List New items matching the given filter.
+  #
+  # @param reqmatch [NewListMatch, Hash, nil] match filter (any subset of New fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<New>, Array] the matching New items; raises LasVegasCityError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

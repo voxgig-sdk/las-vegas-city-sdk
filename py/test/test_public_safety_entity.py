@@ -49,8 +49,7 @@ class TestPublicSafetyEntity:
         # LOAD
         public_safety_ref01_ent = client.PublicSafety(None)
         public_safety_ref01_match_dt0 = {}
-        public_safety_ref01_data_dt0_loaded, err = public_safety_ref01_ent.load(public_safety_ref01_match_dt0, None)
-        assert err is None
+        public_safety_ref01_data_dt0_loaded = public_safety_ref01_ent.load(public_safety_ref01_match_dt0, None)
         assert public_safety_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _public_safety_basic_setup(extra):
         "LASVEGASCITY_TEST_PUBLIC_SAFETY_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _public_safety_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

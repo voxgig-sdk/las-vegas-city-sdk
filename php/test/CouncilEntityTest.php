@@ -50,8 +50,7 @@ class CouncilEntityTest extends TestCase
         $council_ref01_ent = $client->Council(null);
         $council_ref01_match = [];
 
-        [$council_ref01_list_result, $err] = $council_ref01_ent->list($council_ref01_match, null);
-        $this->assertNull($err);
+        $council_ref01_list_result = $council_ref01_ent->list($council_ref01_match, null);
         $this->assertIsArray($council_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function council_basic_setup($extra)
         "LASVEGASCITY_TEST_COUNCIL_ENTID" => $idmap,
         "LASVEGASCITY_TEST_LIVE" => "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-        "LASVEGASCITY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function council_basic_setup($extra)
     if ($env["LASVEGASCITY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["LASVEGASCITY_APIKEY"],
             ],
             $extra ?? [],
         ]);

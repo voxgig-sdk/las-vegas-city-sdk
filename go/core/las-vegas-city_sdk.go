@@ -245,56 +245,89 @@ func (sdk *LasVegasCitySDK) Direct(fetchargs map[string]any) (map[string]any, er
 }
 
 
+// CityInfo returns a CityInfo entity bound to this client.
+// Idiomatic usage: client.CityInfo(nil).List(nil, nil) or
+// client.CityInfo(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) CityInfo(data map[string]any) LasVegasCityEntity {
 	return NewCityInfoEntityFunc(sdk, data)
 }
 
 
+// Council returns a Council entity bound to this client.
+// Idiomatic usage: client.Council(nil).List(nil, nil) or
+// client.Council(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Council(data map[string]any) LasVegasCityEntity {
 	return NewCouncilEntityFunc(sdk, data)
 }
 
 
+// Department returns a Department entity bound to this client.
+// Idiomatic usage: client.Department(nil).List(nil, nil) or
+// client.Department(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Department(data map[string]any) LasVegasCityEntity {
 	return NewDepartmentEntityFunc(sdk, data)
 }
 
 
+// EconomicDevelopment returns a EconomicDevelopment entity bound to this client.
+// Idiomatic usage: client.EconomicDevelopment(nil).List(nil, nil) or
+// client.EconomicDevelopment(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) EconomicDevelopment(data map[string]any) LasVegasCityEntity {
 	return NewEconomicDevelopmentEntityFunc(sdk, data)
 }
 
 
+// Event returns a Event entity bound to this client.
+// Idiomatic usage: client.Event(nil).List(nil, nil) or
+// client.Event(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Event(data map[string]any) LasVegasCityEntity {
 	return NewEventEntityFunc(sdk, data)
 }
 
 
+// Job returns a Job entity bound to this client.
+// Idiomatic usage: client.Job(nil).List(nil, nil) or
+// client.Job(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Job(data map[string]any) LasVegasCityEntity {
 	return NewJobEntityFunc(sdk, data)
 }
 
 
+// Meeting returns a Meeting entity bound to this client.
+// Idiomatic usage: client.Meeting(nil).List(nil, nil) or
+// client.Meeting(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Meeting(data map[string]any) LasVegasCityEntity {
 	return NewMeetingEntityFunc(sdk, data)
 }
 
 
+// New returns a New entity bound to this client.
+// Idiomatic usage: client.New(nil).List(nil, nil) or
+// client.New(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) New(data map[string]any) LasVegasCityEntity {
 	return NewNewEntityFunc(sdk, data)
 }
 
 
+// Park returns a Park entity bound to this client.
+// Idiomatic usage: client.Park(nil).List(nil, nil) or
+// client.Park(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Park(data map[string]any) LasVegasCityEntity {
 	return NewParkEntityFunc(sdk, data)
 }
 
 
+// Permit returns a Permit entity bound to this client.
+// Idiomatic usage: client.Permit(nil).List(nil, nil) or
+// client.Permit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) Permit(data map[string]any) LasVegasCityEntity {
 	return NewPermitEntityFunc(sdk, data)
 }
 
 
+// PublicSafety returns a PublicSafety entity bound to this client.
+// Idiomatic usage: client.PublicSafety(nil).List(nil, nil) or
+// client.PublicSafety(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *LasVegasCitySDK) PublicSafety(data map[string]any) LasVegasCityEntity {
 	return NewPublicSafetyEntityFunc(sdk, data)
 }

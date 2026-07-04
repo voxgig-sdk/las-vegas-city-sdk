@@ -9,9 +9,10 @@ The PHP SDK for the LasVegasCity API — an entity-oriented client using PHP con
 
 
 ## Install
-```bash
-composer require voxgig-sdk/las-vegas-city
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/las-vegas-city-sdk/releases](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'lasvegascity_sdk.php';
 
-$client = new LasVegasCitySDK([
-    "apikey" => getenv("LAS-VEGAS-CITY_APIKEY"),
-]);
+$client = new LasVegasCitySDK();
 ```
 
 ### 3. Load a cityinfo
 
 ```php
-[$result, $err] = $client->CityInfo()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->cityinfo()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = LasVegasCitySDK::test();
 
-[$result, $err] = $client->LasVegasCity()->load(["id" => "test01"]);
+$result = $client->cityinfo()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -115,8 +120,7 @@ $client = new LasVegasCitySDK([
 Create a `.env.local` file at the project root:
 
 ```
-LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
+LAS_VEGAS_CITY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -195,8 +198,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -391,7 +398,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.CityInfo()`
+Create an instance: `const city_info = client.city_info`
 
 #### Operations
 
@@ -414,13 +421,13 @@ Create an instance: `const city_info = client.CityInfo()`
 #### Example: Load
 
 ```ts
-const city_info = await client.CityInfo().load({ id: 'city_info_id' })
+const city_info = await client.city_info.load({ id: 'city_info_id' })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.Council()`
+Create an instance: `const council = client.council`
 
 #### Operations
 
@@ -443,13 +450,13 @@ Create an instance: `const council = client.Council()`
 #### Example: List
 
 ```ts
-const councils = await client.Council().list()
+const councils = await client.council.list()
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.Department()`
+Create an instance: `const department = client.department`
 
 #### Operations
 
@@ -471,13 +478,13 @@ Create an instance: `const department = client.Department()`
 #### Example: List
 
 ```ts
-const departments = await client.Department().list()
+const departments = await client.department.list()
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.EconomicDevelopment()`
+Create an instance: `const economic_development = client.economic_development`
 
 #### Operations
 
@@ -496,13 +503,13 @@ Create an instance: `const economic_development = client.EconomicDevelopment()`
 #### Example: List
 
 ```ts
-const economic_developments = await client.EconomicDevelopment().list()
+const economic_developments = await client.economic_development.list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.Event()`
+Create an instance: `const event = client.event`
 
 #### Operations
 
@@ -527,13 +534,13 @@ Create an instance: `const event = client.Event()`
 #### Example: List
 
 ```ts
-const events = await client.Event().list()
+const events = await client.event.list()
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.Job()`
+Create an instance: `const job = client.job`
 
 #### Operations
 
@@ -559,13 +566,13 @@ Create an instance: `const job = client.Job()`
 #### Example: List
 
 ```ts
-const jobs = await client.Job().list()
+const jobs = await client.job.list()
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.Meeting()`
+Create an instance: `const meeting = client.meeting`
 
 #### Operations
 
@@ -589,13 +596,13 @@ Create an instance: `const meeting = client.Meeting()`
 #### Example: List
 
 ```ts
-const meetings = await client.Meeting().list()
+const meetings = await client.meeting.list()
 ```
 
 
 ### New
 
-Create an instance: `const new = client.New()`
+Create an instance: `const new = client.new`
 
 #### Operations
 
@@ -619,13 +626,13 @@ Create an instance: `const new = client.New()`
 #### Example: List
 
 ```ts
-const news = await client.New().list()
+const news = await client.new.list()
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.Park()`
+Create an instance: `const park = client.park`
 
 #### Operations
 
@@ -648,13 +655,13 @@ Create an instance: `const park = client.Park()`
 #### Example: List
 
 ```ts
-const parks = await client.Park().list()
+const parks = await client.park.list()
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.Permit()`
+Create an instance: `const permit = client.permit`
 
 #### Operations
 
@@ -678,13 +685,13 @@ Create an instance: `const permit = client.Permit()`
 #### Example: List
 
 ```ts
-const permits = await client.Permit().list()
+const permits = await client.permit.list()
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.PublicSafety()`
+Create an instance: `const public_safety = client.public_safety`
 
 #### Operations
 
@@ -703,7 +710,7 @@ Create an instance: `const public_safety = client.PublicSafety()`
 #### Example: Load
 
 ```ts
-const public_safety = await client.PublicSafety().load({ id: 'public_safety_id' })
+const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
 ```
 
 
@@ -778,11 +785,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$cityinfo = $client->cityinfo();
+$cityinfo->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $cityinfo->dataGet() now returns the loaded cityinfo data
+// $cityinfo->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

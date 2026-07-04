@@ -50,8 +50,7 @@ class TestEconomicDevelopmentEntity:
         economic_development_ref01_ent = client.EconomicDevelopment(None)
         economic_development_ref01_match = {}
 
-        economic_development_ref01_list_result, err = economic_development_ref01_ent.list(economic_development_ref01_match, None)
-        assert err is None
+        economic_development_ref01_list_result = economic_development_ref01_ent.list(economic_development_ref01_match, None)
         assert isinstance(economic_development_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _economic_development_basic_setup(extra):
         "LASVEGASCITY_TEST_ECONOMIC_DEVELOPMENT_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _economic_development_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

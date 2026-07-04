@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CouncilListMatch
+---@param ctrl? table
+---@return Council[]
+---@return string? err
 function CouncilEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

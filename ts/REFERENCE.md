@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -230,7 +229,7 @@ Alias for `LasVegasCitySDK.test()`.
 ## CityInfoEntity
 
 ```ts
-const city_info = client.CityInfo()
+const city_info = client.city_info
 ```
 
 ### Fields
@@ -252,7 +251,7 @@ const city_info = client.CityInfo()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CityInfo().load({ id: 'city_info_id' })
+const result = await client.city_info.load({ id: 'city_info_id' })
 ```
 
 ### Common Methods
@@ -286,7 +285,7 @@ Return a copy of the entity options.
 ## CouncilEntity
 
 ```ts
-const council = client.Council()
+const council = client.council
 ```
 
 ### Fields
@@ -308,7 +307,7 @@ const council = client.Council()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Council().list()
+const results = await client.council.list()
 ```
 
 ### Common Methods
@@ -342,7 +341,7 @@ Return a copy of the entity options.
 ## DepartmentEntity
 
 ```ts
-const department = client.Department()
+const department = client.department
 ```
 
 ### Fields
@@ -363,7 +362,7 @@ const department = client.Department()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Department().list()
+const results = await client.department.list()
 ```
 
 ### Common Methods
@@ -397,7 +396,7 @@ Return a copy of the entity options.
 ## EconomicDevelopmentEntity
 
 ```ts
-const economic_development = client.EconomicDevelopment()
+const economic_development = client.economic_development
 ```
 
 ### Fields
@@ -415,7 +414,7 @@ const economic_development = client.EconomicDevelopment()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.EconomicDevelopment().list()
+const results = await client.economic_development.list()
 ```
 
 ### Common Methods
@@ -449,7 +448,7 @@ Return a copy of the entity options.
 ## EventEntity
 
 ```ts
-const event = client.Event()
+const event = client.event
 ```
 
 ### Fields
@@ -473,7 +472,7 @@ const event = client.Event()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Event().list()
+const results = await client.event.list()
 ```
 
 ### Common Methods
@@ -507,7 +506,7 @@ Return a copy of the entity options.
 ## JobEntity
 
 ```ts
-const job = client.Job()
+const job = client.job
 ```
 
 ### Fields
@@ -532,7 +531,7 @@ const job = client.Job()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Job().list()
+const results = await client.job.list()
 ```
 
 ### Common Methods
@@ -566,7 +565,7 @@ Return a copy of the entity options.
 ## MeetingEntity
 
 ```ts
-const meeting = client.Meeting()
+const meeting = client.meeting
 ```
 
 ### Fields
@@ -589,7 +588,7 @@ const meeting = client.Meeting()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Meeting().list()
+const results = await client.meeting.list()
 ```
 
 ### Common Methods
@@ -623,7 +622,7 @@ Return a copy of the entity options.
 ## NewEntity
 
 ```ts
-const new = client.New()
+const new = client.new
 ```
 
 ### Fields
@@ -646,7 +645,7 @@ const new = client.New()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.New().list()
+const results = await client.new.list()
 ```
 
 ### Common Methods
@@ -680,7 +679,7 @@ Return a copy of the entity options.
 ## ParkEntity
 
 ```ts
-const park = client.Park()
+const park = client.park
 ```
 
 ### Fields
@@ -702,7 +701,7 @@ const park = client.Park()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Park().list()
+const results = await client.park.list()
 ```
 
 ### Common Methods
@@ -736,7 +735,7 @@ Return a copy of the entity options.
 ## PermitEntity
 
 ```ts
-const permit = client.Permit()
+const permit = client.permit
 ```
 
 ### Fields
@@ -759,7 +758,7 @@ const permit = client.Permit()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Permit().list()
+const results = await client.permit.list()
 ```
 
 ### Common Methods
@@ -793,7 +792,7 @@ Return a copy of the entity options.
 ## PublicSafetyEntity
 
 ```ts
-const public_safety = client.PublicSafety()
+const public_safety = client.public_safety
 ```
 
 ### Fields
@@ -811,7 +810,7 @@ const public_safety = client.PublicSafety()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PublicSafety().load({ id: 'public_safety_id' })
+const result = await client.public_safety.load({ id: 'public_safety_id' })
 ```
 
 ### Common Methods

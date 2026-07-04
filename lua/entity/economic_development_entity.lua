@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch EconomicDevelopmentListMatch
+---@param ctrl? table
+---@return EconomicDevelopment[]
+---@return string? err
 function EconomicDevelopmentEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

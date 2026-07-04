@@ -50,8 +50,7 @@ class TestPermitEntity:
         permit_ref01_ent = client.Permit(None)
         permit_ref01_match = {}
 
-        permit_ref01_list_result, err = permit_ref01_ent.list(permit_ref01_match, None)
-        assert err is None
+        permit_ref01_list_result = permit_ref01_ent.list(permit_ref01_match, None)
         assert isinstance(permit_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _permit_basic_setup(extra):
         "LASVEGASCITY_TEST_PERMIT_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _permit_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch DepartmentListMatch
+---@param ctrl? table
+---@return Department[]
+---@return string? err
 function DepartmentEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

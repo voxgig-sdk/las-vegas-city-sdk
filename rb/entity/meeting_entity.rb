@@ -45,6 +45,7 @@ class MeetingEntity
     end
   end
 
+  # @return [Meeting, Hash] the current Meeting data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class MeetingEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Meeting fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class MeetingEntity
   
 
   
+  # List Meeting items matching the given filter.
+  #
+  # @param reqmatch [MeetingListMatch, Hash, nil] match filter (any subset of Meeting fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Meeting>, Array] the matching Meeting items; raises LasVegasCityError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

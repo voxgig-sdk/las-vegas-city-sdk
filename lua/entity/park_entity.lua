@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch ParkListMatch
+---@param ctrl? table
+---@return Park[]
+---@return string? err
 function ParkEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

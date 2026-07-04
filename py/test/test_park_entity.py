@@ -50,8 +50,7 @@ class TestParkEntity:
         park_ref01_ent = client.Park(None)
         park_ref01_match = {}
 
-        park_ref01_list_result, err = park_ref01_ent.list(park_ref01_match, None)
-        assert err is None
+        park_ref01_list_result = park_ref01_ent.list(park_ref01_match, None)
         assert isinstance(park_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _park_basic_setup(extra):
         "LASVEGASCITY_TEST_PARK_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _park_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

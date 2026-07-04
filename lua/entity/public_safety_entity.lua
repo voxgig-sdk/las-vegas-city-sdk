@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PublicSafetyLoadMatch
+---@param ctrl? table
+---@return PublicSafety
+---@return string? err
 function PublicSafetyEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

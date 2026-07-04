@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  PublicSafety,
+  PublicSafetyLoadMatch,
+} from '../LasVegasCityTypes'
 
 // TODO: needs Entity superclass
-class PublicSafetyEntity extends LasVegasCityEntityBase {
+class PublicSafetyEntity extends LasVegasCityEntityBase<PublicSafety> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class PublicSafetyEntity extends LasVegasCityEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: PublicSafetyLoadMatch, ctrl?: Control): Promise<PublicSafety> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class PublicSafetyEntity extends LasVegasCityEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<PublicSafety> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

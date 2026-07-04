@@ -9,12 +9,9 @@ The Lua SDK for the LasVegasCity API — an entity-oriented client using Lua con
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-las-vegas-city
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("las-vegas-city_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("LAS-VEGAS-CITY_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a cityinfo
 
 ```lua
-local result, err = client:CityInfo():load({ id = "example_id" })
+local result, err = client:cityinfo():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:LasVegasCity():load({ id = "test01" })
+local result, err = client:cityinfo():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -120,8 +115,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-LAS-VEGAS-CITY_TEST_LIVE=TRUE
-LAS-VEGAS-CITY_APIKEY=<your-key>
+LAS_VEGAS_CITY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -396,7 +389,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `const city_info = client.CityInfo()`
+Create an instance: `const city_info = client.city_info`
 
 #### Operations
 
@@ -419,13 +412,13 @@ Create an instance: `const city_info = client.CityInfo()`
 #### Example: Load
 
 ```ts
-const city_info = await client.CityInfo().load({ id: 'city_info_id' })
+const city_info = await client.city_info.load({ id: 'city_info_id' })
 ```
 
 
 ### Council
 
-Create an instance: `const council = client.Council()`
+Create an instance: `const council = client.council`
 
 #### Operations
 
@@ -448,13 +441,13 @@ Create an instance: `const council = client.Council()`
 #### Example: List
 
 ```ts
-const councils = await client.Council().list()
+const councils = await client.council.list()
 ```
 
 
 ### Department
 
-Create an instance: `const department = client.Department()`
+Create an instance: `const department = client.department`
 
 #### Operations
 
@@ -476,13 +469,13 @@ Create an instance: `const department = client.Department()`
 #### Example: List
 
 ```ts
-const departments = await client.Department().list()
+const departments = await client.department.list()
 ```
 
 
 ### EconomicDevelopment
 
-Create an instance: `const economic_development = client.EconomicDevelopment()`
+Create an instance: `const economic_development = client.economic_development`
 
 #### Operations
 
@@ -501,13 +494,13 @@ Create an instance: `const economic_development = client.EconomicDevelopment()`
 #### Example: List
 
 ```ts
-const economic_developments = await client.EconomicDevelopment().list()
+const economic_developments = await client.economic_development.list()
 ```
 
 
 ### Event
 
-Create an instance: `const event = client.Event()`
+Create an instance: `const event = client.event`
 
 #### Operations
 
@@ -532,13 +525,13 @@ Create an instance: `const event = client.Event()`
 #### Example: List
 
 ```ts
-const events = await client.Event().list()
+const events = await client.event.list()
 ```
 
 
 ### Job
 
-Create an instance: `const job = client.Job()`
+Create an instance: `const job = client.job`
 
 #### Operations
 
@@ -564,13 +557,13 @@ Create an instance: `const job = client.Job()`
 #### Example: List
 
 ```ts
-const jobs = await client.Job().list()
+const jobs = await client.job.list()
 ```
 
 
 ### Meeting
 
-Create an instance: `const meeting = client.Meeting()`
+Create an instance: `const meeting = client.meeting`
 
 #### Operations
 
@@ -594,13 +587,13 @@ Create an instance: `const meeting = client.Meeting()`
 #### Example: List
 
 ```ts
-const meetings = await client.Meeting().list()
+const meetings = await client.meeting.list()
 ```
 
 
 ### New
 
-Create an instance: `const new = client.New()`
+Create an instance: `const new = client.new`
 
 #### Operations
 
@@ -624,13 +617,13 @@ Create an instance: `const new = client.New()`
 #### Example: List
 
 ```ts
-const news = await client.New().list()
+const news = await client.new.list()
 ```
 
 
 ### Park
 
-Create an instance: `const park = client.Park()`
+Create an instance: `const park = client.park`
 
 #### Operations
 
@@ -653,13 +646,13 @@ Create an instance: `const park = client.Park()`
 #### Example: List
 
 ```ts
-const parks = await client.Park().list()
+const parks = await client.park.list()
 ```
 
 
 ### Permit
 
-Create an instance: `const permit = client.Permit()`
+Create an instance: `const permit = client.permit`
 
 #### Operations
 
@@ -683,13 +676,13 @@ Create an instance: `const permit = client.Permit()`
 #### Example: List
 
 ```ts
-const permits = await client.Permit().list()
+const permits = await client.permit.list()
 ```
 
 
 ### PublicSafety
 
-Create an instance: `const public_safety = client.PublicSafety()`
+Create an instance: `const public_safety = client.public_safety`
 
 #### Operations
 
@@ -708,7 +701,7 @@ Create an instance: `const public_safety = client.PublicSafety()`
 #### Example: Load
 
 ```ts
-const public_safety = await client.PublicSafety().load({ id: 'public_safety_id' })
+const public_safety = await client.public_safety.load({ id: 'public_safety_id' })
 ```
 
 
@@ -783,11 +776,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local cityinfo = client:cityinfo()
+cityinfo:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- cityinfo:data_get() now returns the loaded cityinfo data
+-- cityinfo:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -244,66 +244,209 @@ end
 
 
 
+-- Idiomatic facade: client:city_info():list() / client:city_info():load({ id = ... })
+function LasVegasCitySDK:city_info(data)
+  local EntityMod = require("entity.city_info_entity")
+  if data == nil then
+    if self._city_info == nil then
+      self._city_info = EntityMod.new(self, nil)
+    end
+    return self._city_info
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:city_info() instead.
 function LasVegasCitySDK:CityInfo(data)
   local EntityMod = require("entity.city_info_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:council():list() / client:council():load({ id = ... })
+function LasVegasCitySDK:council(data)
+  local EntityMod = require("entity.council_entity")
+  if data == nil then
+    if self._council == nil then
+      self._council = EntityMod.new(self, nil)
+    end
+    return self._council
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:council() instead.
 function LasVegasCitySDK:Council(data)
   local EntityMod = require("entity.council_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:department():list() / client:department():load({ id = ... })
+function LasVegasCitySDK:department(data)
+  local EntityMod = require("entity.department_entity")
+  if data == nil then
+    if self._department == nil then
+      self._department = EntityMod.new(self, nil)
+    end
+    return self._department
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:department() instead.
 function LasVegasCitySDK:Department(data)
   local EntityMod = require("entity.department_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:economic_development():list() / client:economic_development():load({ id = ... })
+function LasVegasCitySDK:economic_development(data)
+  local EntityMod = require("entity.economic_development_entity")
+  if data == nil then
+    if self._economic_development == nil then
+      self._economic_development = EntityMod.new(self, nil)
+    end
+    return self._economic_development
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:economic_development() instead.
 function LasVegasCitySDK:EconomicDevelopment(data)
   local EntityMod = require("entity.economic_development_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:event():list() / client:event():load({ id = ... })
+function LasVegasCitySDK:event(data)
+  local EntityMod = require("entity.event_entity")
+  if data == nil then
+    if self._event == nil then
+      self._event = EntityMod.new(self, nil)
+    end
+    return self._event
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:event() instead.
 function LasVegasCitySDK:Event(data)
   local EntityMod = require("entity.event_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:job():list() / client:job():load({ id = ... })
+function LasVegasCitySDK:job(data)
+  local EntityMod = require("entity.job_entity")
+  if data == nil then
+    if self._job == nil then
+      self._job = EntityMod.new(self, nil)
+    end
+    return self._job
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:job() instead.
 function LasVegasCitySDK:Job(data)
   local EntityMod = require("entity.job_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:meeting():list() / client:meeting():load({ id = ... })
+function LasVegasCitySDK:meeting(data)
+  local EntityMod = require("entity.meeting_entity")
+  if data == nil then
+    if self._meeting == nil then
+      self._meeting = EntityMod.new(self, nil)
+    end
+    return self._meeting
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:meeting() instead.
 function LasVegasCitySDK:Meeting(data)
   local EntityMod = require("entity.meeting_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:new():list() / client:new():load({ id = ... })
+function LasVegasCitySDK:new(data)
+  local EntityMod = require("entity.new_entity")
+  if data == nil then
+    if self._new == nil then
+      self._new = EntityMod.new(self, nil)
+    end
+    return self._new
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:new() instead.
 function LasVegasCitySDK:New(data)
   local EntityMod = require("entity.new_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:park():list() / client:park():load({ id = ... })
+function LasVegasCitySDK:park(data)
+  local EntityMod = require("entity.park_entity")
+  if data == nil then
+    if self._park == nil then
+      self._park = EntityMod.new(self, nil)
+    end
+    return self._park
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:park() instead.
 function LasVegasCitySDK:Park(data)
   local EntityMod = require("entity.park_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:permit():list() / client:permit():load({ id = ... })
+function LasVegasCitySDK:permit(data)
+  local EntityMod = require("entity.permit_entity")
+  if data == nil then
+    if self._permit == nil then
+      self._permit = EntityMod.new(self, nil)
+    end
+    return self._permit
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:permit() instead.
 function LasVegasCitySDK:Permit(data)
   local EntityMod = require("entity.permit_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:public_safety():list() / client:public_safety():load({ id = ... })
+function LasVegasCitySDK:public_safety(data)
+  local EntityMod = require("entity.public_safety_entity")
+  if data == nil then
+    if self._public_safety == nil then
+      self._public_safety = EntityMod.new(self, nil)
+    end
+    return self._public_safety
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:public_safety() instead.
 function LasVegasCitySDK:PublicSafety(data)
   local EntityMod = require("entity.public_safety_entity")
   return EntityMod.new(self, data)

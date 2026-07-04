@@ -43,8 +43,7 @@ class CouncilEntityTest < Minitest::Test
     council_ref01_ent = client.Council(nil)
     council_ref01_match = {}
 
-    council_ref01_list_result, err = council_ref01_ent.list(council_ref01_match, nil)
-    assert_nil err
+    council_ref01_list_result = council_ref01_ent.list(council_ref01_match, nil)
     assert council_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def council_basic_setup(extra)
     "LASVEGASCITY_TEST_COUNCIL_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def council_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

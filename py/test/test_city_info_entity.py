@@ -49,8 +49,7 @@ class TestCityInfoEntity:
         # LOAD
         city_info_ref01_ent = client.CityInfo(None)
         city_info_ref01_match_dt0 = {}
-        city_info_ref01_data_dt0_loaded, err = city_info_ref01_ent.load(city_info_ref01_match_dt0, None)
-        assert err is None
+        city_info_ref01_data_dt0_loaded = city_info_ref01_ent.load(city_info_ref01_match_dt0, None)
         assert city_info_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _city_info_basic_setup(extra):
         "LASVEGASCITY_TEST_CITY_INFO_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _city_info_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

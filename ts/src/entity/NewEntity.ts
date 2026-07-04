@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  New,
+  NewListMatch,
+} from '../LasVegasCityTypes'
 
 // TODO: needs Entity superclass
-class NewEntity extends LasVegasCityEntityBase {
+class NewEntity extends LasVegasCityEntityBase<New> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class NewEntity extends LasVegasCityEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: NewListMatch, ctrl?: Control): Promise<New[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class NewEntity extends LasVegasCityEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<New[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

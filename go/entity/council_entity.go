@@ -85,6 +85,27 @@ func (e *CouncilEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Council; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CouncilEntity) DataTyped(data ...Council) Council {
+	if len(data) > 0 {
+		return typedFrom[Council](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Council](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Council (all fields
+// optional at the wire level).
+func (e *CouncilEntity) MatchTyped(match ...Council) Council {
+	if len(match) > 0 {
+		return typedFrom[Council](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Council](e.Match())
+}
+
 func (e *CouncilEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *CouncilEntity) List(reqmatch map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// CouncilListMatch and returns []Council. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *CouncilEntity) ListTyped(reqmatch CouncilListMatch, ctrl map[string]any) ([]Council, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Council](res), nil
 }
 
 

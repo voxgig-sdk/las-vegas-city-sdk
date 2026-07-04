@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch NewListMatch
+---@param ctrl? table
+---@return New[]
+---@return string? err
 function NewEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -50,8 +50,7 @@ class ParkEntityTest extends TestCase
         $park_ref01_ent = $client->Park(null);
         $park_ref01_match = [];
 
-        [$park_ref01_list_result, $err] = $park_ref01_ent->list($park_ref01_match, null);
-        $this->assertNull($err);
+        $park_ref01_list_result = $park_ref01_ent->list($park_ref01_match, null);
         $this->assertIsArray($park_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function park_basic_setup($extra)
         "LASVEGASCITY_TEST_PARK_ENTID" => $idmap,
         "LASVEGASCITY_TEST_LIVE" => "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-        "LASVEGASCITY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function park_basic_setup($extra)
     if ($env["LASVEGASCITY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["LASVEGASCITY_APIKEY"],
             ],
             $extra ?? [],
         ]);

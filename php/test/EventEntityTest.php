@@ -50,8 +50,7 @@ class EventEntityTest extends TestCase
         $event_ref01_ent = $client->Event(null);
         $event_ref01_match = [];
 
-        [$event_ref01_list_result, $err] = $event_ref01_ent->list($event_ref01_match, null);
-        $this->assertNull($err);
+        $event_ref01_list_result = $event_ref01_ent->list($event_ref01_match, null);
         $this->assertIsArray($event_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function event_basic_setup($extra)
         "LASVEGASCITY_TEST_EVENT_ENTID" => $idmap,
         "LASVEGASCITY_TEST_LIVE" => "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-        "LASVEGASCITY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function event_basic_setup($extra)
     if ($env["LASVEGASCITY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["LASVEGASCITY_APIKEY"],
             ],
             $extra ?? [],
         ]);

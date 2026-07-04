@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch MeetingListMatch
+---@param ctrl? table
+---@return Meeting[]
+---@return string? err
 function MeetingEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

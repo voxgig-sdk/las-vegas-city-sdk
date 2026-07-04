@@ -12,6 +12,8 @@ import { ParkEntity } from './entity/ParkEntity'
 import { PermitEntity } from './entity/PermitEntity'
 import { PublicSafetyEntity } from './entity/PublicSafetyEntity'
 
+export type * from './LasVegasCityTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -212,66 +214,154 @@ class LasVegasCitySDK {
 
 
 
+  _city_info?: CityInfoEntity
+
+  // Idiomatic facade: `client.city_info.list()` / `client.city_info.load({ id })`.
+  get city_info(): CityInfoEntity {
+    return (this._city_info ??= new CityInfoEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.city_info` instead. */
   CityInfo(data?: any) {
     const self = this
     return new CityInfoEntity(self,data)
   }
 
 
+  _council?: CouncilEntity
+
+  // Idiomatic facade: `client.council.list()` / `client.council.load({ id })`.
+  get council(): CouncilEntity {
+    return (this._council ??= new CouncilEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.council` instead. */
   Council(data?: any) {
     const self = this
     return new CouncilEntity(self,data)
   }
 
 
+  _department?: DepartmentEntity
+
+  // Idiomatic facade: `client.department.list()` / `client.department.load({ id })`.
+  get department(): DepartmentEntity {
+    return (this._department ??= new DepartmentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.department` instead. */
   Department(data?: any) {
     const self = this
     return new DepartmentEntity(self,data)
   }
 
 
+  _economic_development?: EconomicDevelopmentEntity
+
+  // Idiomatic facade: `client.economic_development.list()` / `client.economic_development.load({ id })`.
+  get economic_development(): EconomicDevelopmentEntity {
+    return (this._economic_development ??= new EconomicDevelopmentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.economic_development` instead. */
   EconomicDevelopment(data?: any) {
     const self = this
     return new EconomicDevelopmentEntity(self,data)
   }
 
 
+  _event?: EventEntity
+
+  // Idiomatic facade: `client.event.list()` / `client.event.load({ id })`.
+  get event(): EventEntity {
+    return (this._event ??= new EventEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.event` instead. */
   Event(data?: any) {
     const self = this
     return new EventEntity(self,data)
   }
 
 
+  _job?: JobEntity
+
+  // Idiomatic facade: `client.job.list()` / `client.job.load({ id })`.
+  get job(): JobEntity {
+    return (this._job ??= new JobEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.job` instead. */
   Job(data?: any) {
     const self = this
     return new JobEntity(self,data)
   }
 
 
+  _meeting?: MeetingEntity
+
+  // Idiomatic facade: `client.meeting.list()` / `client.meeting.load({ id })`.
+  get meeting(): MeetingEntity {
+    return (this._meeting ??= new MeetingEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.meeting` instead. */
   Meeting(data?: any) {
     const self = this
     return new MeetingEntity(self,data)
   }
 
 
+  _new?: NewEntity
+
+  // Idiomatic facade: `client.new.list()` / `client.new.load({ id })`.
+  get new(): NewEntity {
+    return (this._new ??= new NewEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.new` instead. */
   New(data?: any) {
     const self = this
     return new NewEntity(self,data)
   }
 
 
+  _park?: ParkEntity
+
+  // Idiomatic facade: `client.park.list()` / `client.park.load({ id })`.
+  get park(): ParkEntity {
+    return (this._park ??= new ParkEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.park` instead. */
   Park(data?: any) {
     const self = this
     return new ParkEntity(self,data)
   }
 
 
+  _permit?: PermitEntity
+
+  // Idiomatic facade: `client.permit.list()` / `client.permit.load({ id })`.
+  get permit(): PermitEntity {
+    return (this._permit ??= new PermitEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.permit` instead. */
   Permit(data?: any) {
     const self = this
     return new PermitEntity(self,data)
   }
 
 
+  _public_safety?: PublicSafetyEntity
+
+  // Idiomatic facade: `client.public_safety.list()` / `client.public_safety.load({ id })`.
+  get public_safety(): PublicSafetyEntity {
+    return (this._public_safety ??= new PublicSafetyEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.public_safety` instead. */
   PublicSafety(data?: any) {
     const self = this
     return new PublicSafetyEntity(self,data)

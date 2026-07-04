@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'LASVEGASCITY_TEST_DEPARTMENT_ENTID': {},
     'LASVEGASCITY_TEST_LIVE': 'FALSE',
-    'LASVEGASCITY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.LASVEGASCITY_TEST_LIVE
 
   if (live) {
     const client = new LasVegasCitySDK({
-      apikey: env.LASVEGASCITY_APIKEY,
     })
 
     let idmap: any = env['LASVEGASCITY_TEST_DEPARTMENT_ENTID']

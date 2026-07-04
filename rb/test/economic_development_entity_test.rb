@@ -43,8 +43,7 @@ class EconomicDevelopmentEntityTest < Minitest::Test
     economic_development_ref01_ent = client.EconomicDevelopment(nil)
     economic_development_ref01_match = {}
 
-    economic_development_ref01_list_result, err = economic_development_ref01_ent.list(economic_development_ref01_match, nil)
-    assert_nil err
+    economic_development_ref01_list_result = economic_development_ref01_ent.list(economic_development_ref01_match, nil)
     assert economic_development_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def economic_development_basic_setup(extra)
     "LASVEGASCITY_TEST_ECONOMIC_DEVELOPMENT_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def economic_development_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

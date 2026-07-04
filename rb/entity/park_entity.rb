@@ -45,6 +45,7 @@ class ParkEntity
     end
   end
 
+  # @return [Park, Hash] the current Park data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ParkEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Park fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ParkEntity
   
 
   
+  # List Park items matching the given filter.
+  #
+  # @param reqmatch [ParkListMatch, Hash, nil] match filter (any subset of Park fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Park>, Array] the matching Park items; raises LasVegasCityError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

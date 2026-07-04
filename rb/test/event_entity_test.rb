@@ -43,8 +43,7 @@ class EventEntityTest < Minitest::Test
     event_ref01_ent = client.Event(nil)
     event_ref01_match = {}
 
-    event_ref01_list_result, err = event_ref01_ent.list(event_ref01_match, nil)
-    assert_nil err
+    event_ref01_list_result = event_ref01_ent.list(event_ref01_match, nil)
     assert event_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def event_basic_setup(extra)
     "LASVEGASCITY_TEST_EVENT_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def event_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

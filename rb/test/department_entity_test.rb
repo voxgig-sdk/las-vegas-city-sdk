@@ -43,8 +43,7 @@ class DepartmentEntityTest < Minitest::Test
     department_ref01_ent = client.Department(nil)
     department_ref01_match = {}
 
-    department_ref01_list_result, err = department_ref01_ent.list(department_ref01_match, nil)
-    assert_nil err
+    department_ref01_list_result = department_ref01_ent.list(department_ref01_match, nil)
     assert department_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def department_basic_setup(extra)
     "LASVEGASCITY_TEST_DEPARTMENT_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def department_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

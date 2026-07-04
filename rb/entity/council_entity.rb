@@ -45,6 +45,7 @@ class CouncilEntity
     end
   end
 
+  # @return [Council, Hash] the current Council data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CouncilEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Council fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CouncilEntity
   
 
   
+  # List Council items matching the given filter.
+  #
+  # @param reqmatch [CouncilListMatch, Hash, nil] match filter (any subset of Council fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Council>, Array] the matching Council items; raises LasVegasCityError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

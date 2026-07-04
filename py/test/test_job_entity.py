@@ -50,8 +50,7 @@ class TestJobEntity:
         job_ref01_ent = client.Job(None)
         job_ref01_match = {}
 
-        job_ref01_list_result, err = job_ref01_ent.list(job_ref01_match, None)
-        assert err is None
+        job_ref01_list_result = job_ref01_ent.list(job_ref01_match, None)
         assert isinstance(job_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _job_basic_setup(extra):
         "LASVEGASCITY_TEST_JOB_ENTID": idmap,
         "LASVEGASCITY_TEST_LIVE": "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN": "FALSE",
-        "LASVEGASCITY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _job_basic_setup(extra):
     if env.get("LASVEGASCITY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("LASVEGASCITY_APIKEY"),
             },
             extra or {},
         ])

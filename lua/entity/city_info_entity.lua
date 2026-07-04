@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CityInfoLoadMatch
+---@param ctrl? table
+---@return CityInfo
+---@return string? err
 function CityInfoEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

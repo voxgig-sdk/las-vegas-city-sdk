@@ -43,8 +43,7 @@ class ParkEntityTest < Minitest::Test
     park_ref01_ent = client.Park(nil)
     park_ref01_match = {}
 
-    park_ref01_list_result, err = park_ref01_ent.list(park_ref01_match, nil)
-    assert_nil err
+    park_ref01_list_result = park_ref01_ent.list(park_ref01_match, nil)
     assert park_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def park_basic_setup(extra)
     "LASVEGASCITY_TEST_PARK_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def park_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

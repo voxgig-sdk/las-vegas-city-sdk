@@ -50,8 +50,7 @@ class PermitEntityTest extends TestCase
         $permit_ref01_ent = $client->Permit(null);
         $permit_ref01_match = [];
 
-        [$permit_ref01_list_result, $err] = $permit_ref01_ent->list($permit_ref01_match, null);
-        $this->assertNull($err);
+        $permit_ref01_list_result = $permit_ref01_ent->list($permit_ref01_match, null);
         $this->assertIsArray($permit_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function permit_basic_setup($extra)
         "LASVEGASCITY_TEST_PERMIT_ENTID" => $idmap,
         "LASVEGASCITY_TEST_LIVE" => "FALSE",
         "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-        "LASVEGASCITY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function permit_basic_setup($extra)
     if ($env["LASVEGASCITY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["LASVEGASCITY_APIKEY"],
             ],
             $extra ?? [],
         ]);

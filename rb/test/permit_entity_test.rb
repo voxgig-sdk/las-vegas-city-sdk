@@ -43,8 +43,7 @@ class PermitEntityTest < Minitest::Test
     permit_ref01_ent = client.Permit(nil)
     permit_ref01_match = {}
 
-    permit_ref01_list_result, err = permit_ref01_ent.list(permit_ref01_match, nil)
-    assert_nil err
+    permit_ref01_list_result = permit_ref01_ent.list(permit_ref01_match, nil)
     assert permit_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def permit_basic_setup(extra)
     "LASVEGASCITY_TEST_PERMIT_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def permit_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

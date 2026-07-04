@@ -42,8 +42,7 @@ class PublicSafetyEntityTest < Minitest::Test
     # LOAD
     public_safety_ref01_ent = client.PublicSafety(nil)
     public_safety_ref01_match_dt0 = {}
-    public_safety_ref01_data_dt0_loaded, err = public_safety_ref01_ent.load(public_safety_ref01_match_dt0, nil)
-    assert_nil err
+    public_safety_ref01_data_dt0_loaded = public_safety_ref01_ent.load(public_safety_ref01_match_dt0, nil)
     assert !public_safety_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def public_safety_basic_setup(extra)
     "LASVEGASCITY_TEST_PUBLIC_SAFETY_ENTID" => idmap,
     "LASVEGASCITY_TEST_LIVE" => "FALSE",
     "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
-    "LASVEGASCITY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def public_safety_basic_setup(extra)
   if env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["LASVEGASCITY_APIKEY"],
       },
       extra || {},
     ])

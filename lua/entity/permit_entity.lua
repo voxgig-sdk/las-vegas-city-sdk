@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch PermitListMatch
+---@param ctrl? table
+---@return Permit[]
+---@return string? err
 function PermitEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

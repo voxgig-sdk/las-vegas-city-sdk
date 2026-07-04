@@ -45,6 +45,7 @@ class DepartmentEntity
     end
   end
 
+  # @return [Department, Hash] the current Department data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class DepartmentEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Department fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class DepartmentEntity
   
 
   
+  # List Department items matching the given filter.
+  #
+  # @param reqmatch [DepartmentListMatch, Hash, nil] match filter (any subset of Department fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Department>, Array] the matching Department items; raises LasVegasCityError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

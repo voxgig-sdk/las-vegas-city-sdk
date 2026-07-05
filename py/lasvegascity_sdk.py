@@ -221,67 +221,67 @@ class LasVegasCitySDK:
 
 
     def CityInfo(self, data=None) -> "CityInfoEntity":
-        """Entity factory: client.CityInfo().list({}) / client.CityInfo().load({"id": ...})."""
+        """Entity factory: client.CityInfo().list() / client.CityInfo().load({"id": ...})."""
         from entity.city_info_entity import CityInfoEntity
         return CityInfoEntity(self, data)
 
 
     def Council(self, data=None) -> "CouncilEntity":
-        """Entity factory: client.Council().list({}) / client.Council().load({"id": ...})."""
+        """Entity factory: client.Council().list() / client.Council().load({"id": ...})."""
         from entity.council_entity import CouncilEntity
         return CouncilEntity(self, data)
 
 
     def Department(self, data=None) -> "DepartmentEntity":
-        """Entity factory: client.Department().list({}) / client.Department().load({"id": ...})."""
+        """Entity factory: client.Department().list() / client.Department().load({"id": ...})."""
         from entity.department_entity import DepartmentEntity
         return DepartmentEntity(self, data)
 
 
     def EconomicDevelopment(self, data=None) -> "EconomicDevelopmentEntity":
-        """Entity factory: client.EconomicDevelopment().list({}) / client.EconomicDevelopment().load({"id": ...})."""
+        """Entity factory: client.EconomicDevelopment().list() / client.EconomicDevelopment().load({"id": ...})."""
         from entity.economic_development_entity import EconomicDevelopmentEntity
         return EconomicDevelopmentEntity(self, data)
 
 
     def Event(self, data=None) -> "EventEntity":
-        """Entity factory: client.Event().list({}) / client.Event().load({"id": ...})."""
+        """Entity factory: client.Event().list() / client.Event().load({"id": ...})."""
         from entity.event_entity import EventEntity
         return EventEntity(self, data)
 
 
     def Job(self, data=None) -> "JobEntity":
-        """Entity factory: client.Job().list({}) / client.Job().load({"id": ...})."""
+        """Entity factory: client.Job().list() / client.Job().load({"id": ...})."""
         from entity.job_entity import JobEntity
         return JobEntity(self, data)
 
 
     def Meeting(self, data=None) -> "MeetingEntity":
-        """Entity factory: client.Meeting().list({}) / client.Meeting().load({"id": ...})."""
+        """Entity factory: client.Meeting().list() / client.Meeting().load({"id": ...})."""
         from entity.meeting_entity import MeetingEntity
         return MeetingEntity(self, data)
 
 
     def New(self, data=None) -> "NewEntity":
-        """Entity factory: client.New().list({}) / client.New().load({"id": ...})."""
+        """Entity factory: client.New().list() / client.New().load({"id": ...})."""
         from entity.new_entity import NewEntity
         return NewEntity(self, data)
 
 
     def Park(self, data=None) -> "ParkEntity":
-        """Entity factory: client.Park().list({}) / client.Park().load({"id": ...})."""
+        """Entity factory: client.Park().list() / client.Park().load({"id": ...})."""
         from entity.park_entity import ParkEntity
         return ParkEntity(self, data)
 
 
     def Permit(self, data=None) -> "PermitEntity":
-        """Entity factory: client.Permit().list({}) / client.Permit().load({"id": ...})."""
+        """Entity factory: client.Permit().list() / client.Permit().load({"id": ...})."""
         from entity.permit_entity import PermitEntity
         return PermitEntity(self, data)
 
 
     def PublicSafety(self, data=None) -> "PublicSafetyEntity":
-        """Entity factory: client.PublicSafety().list({}) / client.PublicSafety().load({"id": ...})."""
+        """Entity factory: client.PublicSafety().list() / client.PublicSafety().load({"id": ...})."""
         from entity.public_safety_entity import PublicSafetyEntity
         return PublicSafetyEntity(self, data)
 

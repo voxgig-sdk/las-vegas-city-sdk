@@ -4,6 +4,8 @@
 
 The Lua SDK for the LasVegasCity API — an entity-oriented client using Lua conventions.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client:CityInfo()` — each with the same small set of operations (`list`, `load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,9 +36,31 @@ local client = sdk.new()
 ### 3. Load a cityinfo
 
 ```lua
-local cityinfo, err = client:CityInfo():load({ id = "example_id" })
+local cityinfo, err = client:CityInfo():load()
 if err then error(err) end
 print(cityinfo)
+```
+
+
+## Error handling
+
+Entity operations return `(value, err)`. Check `err` before using
+the value:
+
+```lua
+local cityinfo, err = client:CityInfo():load()
+if err then error(err) end
+```
+
+`direct` follows the same `(value, err)` convention:
+
+```lua
+local result, err = client:direct({
+  path = "/api/resource/{id}",
+  method = "GET",
+  params = { id = "example_id" },
+})
+if err then error(err) end
 ```
 
 
@@ -82,8 +106,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CityInfo():load({ id = "test01" })
--- result is the loaded data; err is set on failure
+local result, err = client:CityInfo():load()
+-- result is the returned data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -181,9 +205,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any, err` | Load a single entity by match criteria. |
 | `list` | `(reqmatch, ctrl) -> any, err` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> any, err` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> any, err` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> any, err` | Remove an entity. |
 | `data_get` | `() -> table` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> table` | Get entity match criteria. |
@@ -198,12 +219,12 @@ data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `load` | the entity record (a `table`) |
 | `list` | an array (`table`) of entity records |
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local city_info, err = client:CityInfo():load({ id = "example_id" })
+    local city_info, err = client:CityInfo():load()
     if err then error(err) end
     -- city_info is the loaded record
 
@@ -406,18 +427,18 @@ Create an instance: `local city_info = client:CityInfo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `annual_visitor` | ``$NUMBER`` |  |
-| `established` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `number_of_park` | ``$INTEGER`` |  |
-| `phone` | ``$STRING`` |  |
-| `square_mile` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `annual_visitor` | `number` |  |
+| `established` | `number` |  |
+| `name` | `string` |  |
+| `number_of_park` | `number` |  |
+| `phone` | `string` |  |
+| `square_mile` | `number` |  |
 
 #### Example: Load
 
 ```lua
-local city_info, err = client:CityInfo():load({ id = "city_info_id" })
+local city_info, err = client:CityInfo():load()
 ```
 
 
@@ -435,13 +456,13 @@ Create an instance: `local council = client:Council(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `ward` | ``$STRING`` |  |
+| `bio` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `title` | `string` |  |
+| `ward` | `string` |  |
 
 #### Example: List
 
@@ -464,12 +485,12 @@ Create an instance: `local department = client:Department(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `service` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `contact` | `table` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `service` | `table` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -492,9 +513,9 @@ Create an instance: `local economic_development = client:EconomicDevelopment(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | ``$ARRAY`` |  |
-| `initiatif` | ``$ARRAY`` |  |
-| `resource` | ``$ARRAY`` |  |
+| `industry` | `table` |  |
+| `initiatif` | `table` |  |
+| `resource` | `table` |  |
 
 #### Example: List
 
@@ -517,15 +538,15 @@ Create an instance: `local event = client:Event(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `end_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `location` | ``$STRING`` |  |
-| `start_date` | ``$STRING`` |  |
-| `ticket_url` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `description` | `string` |  |
+| `end_date` | `string` |  |
+| `id` | `string` |  |
+| `is_free` | `boolean` |  |
+| `location` | `string` |  |
+| `start_date` | `string` |  |
+| `ticket_url` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -548,16 +569,16 @@ Create an instance: `local job = client:Job(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `close_date` | ``$STRING`` |  |
-| `department` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `post_date` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `salary_range` | ``$OBJECT`` |  |
-| `title` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `category` | `string` |  |
+| `close_date` | `string` |  |
+| `department` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `post_date` | `string` |  |
+| `requirement` | `table` |  |
+| `salary_range` | `table` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -580,14 +601,14 @@ Create an instance: `local meeting = client:Meeting(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$STRING`` |  |
-| `minutes_url` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `agenda_url` | `string` |  |
+| `date` | `string` |  |
+| `id` | `string` |  |
+| `location` | `string` |  |
+| `minutes_url` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -610,14 +631,14 @@ Create an instance: `local new = client:New(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `content` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publish_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `author` | `string` |  |
+| `category` | `string` |  |
+| `content` | `string` |  |
+| `id` | `string` |  |
+| `publish_date` | `string` |  |
+| `summary` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -640,13 +661,13 @@ Create an instance: `local park = client:Park(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `amenity` | ``$ARRAY`` |  |
-| `hour` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `amenity` | `table` |  |
+| `hour` | `table` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -669,14 +690,14 @@ Create an instance: `local permit = client:Permit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `fee` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `processing_time` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `description` | `string` |  |
+| `fee` | `number` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `processing_time` | `string` |  |
+| `requirement` | `table` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -699,23 +720,27 @@ Create an instance: `local public_safety = client:PublicSafety(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `fire` | ``$OBJECT`` |  |
-| `medical` | ``$OBJECT`` |  |
-| `police` | ``$OBJECT`` |  |
+| `fire` | `table` |  |
+| `medical` | `table` |  |
+| `police` | `table` |  |
 
 #### Example: Load
 
 ```lua
-local public_safety, err = client:PublicSafety():load({ id = "public_safety_id" })
+local public_safety, err = client:PublicSafety():load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -732,8 +757,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -782,9 +808,9 @@ stores the returned data and match criteria internally.
 
 ```lua
 local cityinfo = client:CityInfo()
-cityinfo:load({ id = "example_id" })
+cityinfo:load()
 
--- cityinfo:data_get() now returns the loaded cityinfo data
+-- cityinfo:data_get() now returns the cityinfo data from the last load
 -- cityinfo:match_get() returns the last match criteria
 ```
 

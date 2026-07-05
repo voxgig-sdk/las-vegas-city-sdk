@@ -8,7 +8,7 @@ Complete API reference for the LasVegasCity Python SDK.
 ### Constructor
 
 ```python
-from las-vegas-city_sdk import LasVegasCitySDK
+from lasvegascity_sdk import LasVegasCitySDK
 
 client = LasVegasCitySDK(options)
 ```
@@ -127,13 +127,13 @@ city_info = client.CityInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `annual_visitor` | ``$NUMBER`` | No |  |
-| `established` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number_of_park` | ``$INTEGER`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `square_mile` | ``$NUMBER`` | No |  |
+| `address` | `str` | No |  |
+| `annual_visitor` | `float` | No |  |
+| `established` | `int` | No |  |
+| `name` | `str` | No |  |
+| `number_of_park` | `int` | No |  |
+| `phone` | `str` | No |  |
+| `square_mile` | `float` | No |  |
 
 ### Operations
 
@@ -142,7 +142,7 @@ city_info = client.CityInfo()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.CityInfo().load({"id": "city_info_id"})
+result = client.CityInfo().load()
 ```
 
 ### Common Methods
@@ -184,22 +184,22 @@ council = client.Council()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ward` | ``$STRING`` | No |  |
+| `bio` | `str` | No |  |
+| `email` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `phone` | `str` | No |  |
+| `title` | `str` | No |  |
+| `ward` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Council().list({})
+results = client.Council().list()
 for council in results:
     print(council)
 ```
@@ -243,21 +243,21 @@ department = client.Department()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `contact` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `service` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `contact` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `service` | `list` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Department().list({})
+results = client.Department().list()
 for department in results:
     print(department)
 ```
@@ -301,18 +301,18 @@ economic_development = client.EconomicDevelopment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | ``$ARRAY`` | No |  |
-| `initiatif` | ``$ARRAY`` | No |  |
-| `resource` | ``$ARRAY`` | No |  |
+| `industry` | `list` | No |  |
+| `initiatif` | `list` | No |  |
+| `resource` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.EconomicDevelopment().list({})
+results = client.EconomicDevelopment().list()
 for economic_development in results:
     print(economic_development)
 ```
@@ -356,24 +356,24 @@ event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `ticket_url` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `category` | `str` | No |  |
+| `description` | `str` | No |  |
+| `end_date` | `str` | No |  |
+| `id` | `str` | No |  |
+| `is_free` | `bool` | No |  |
+| `location` | `str` | No |  |
+| `start_date` | `str` | No |  |
+| `ticket_url` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Event().list({})
+results = client.Event().list()
 for event in results:
     print(event)
 ```
@@ -417,25 +417,25 @@ job = client.Job()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `close_date` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `post_date` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `salary_range` | ``$OBJECT`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `application_url` | `str` | No |  |
+| `category` | `str` | No |  |
+| `close_date` | `str` | No |  |
+| `department` | `str` | No |  |
+| `description` | `str` | No |  |
+| `id` | `str` | No |  |
+| `post_date` | `str` | No |  |
+| `requirement` | `list` | No |  |
+| `salary_range` | `dict` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Job().list({})
+results = client.Job().list()
 for job in results:
     print(job)
 ```
@@ -479,23 +479,23 @@ meeting = client.Meeting()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `minutes_url` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `agenda_url` | `str` | No |  |
+| `date` | `str` | No |  |
+| `id` | `str` | No |  |
+| `location` | `str` | No |  |
+| `minutes_url` | `str` | No |  |
+| `status` | `str` | No |  |
+| `title` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Meeting().list({})
+results = client.Meeting().list()
 for meeting in results:
     print(meeting)
 ```
@@ -539,23 +539,23 @@ new = client.New()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publish_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `author` | `str` | No |  |
+| `category` | `str` | No |  |
+| `content` | `str` | No |  |
+| `id` | `str` | No |  |
+| `publish_date` | `str` | No |  |
+| `summary` | `str` | No |  |
+| `title` | `str` | No |  |
+| `url` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.New().list({})
+results = client.New().list()
 for new in results:
     print(new)
 ```
@@ -599,22 +599,22 @@ park = client.Park()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `amenity` | ``$ARRAY`` | No |  |
-| `hour` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `amenity` | `list` | No |  |
+| `hour` | `dict` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `phone` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Park().list({})
+results = client.Park().list()
 for park in results:
     print(park)
 ```
@@ -658,23 +658,23 @@ permit = client.Permit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `fee` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `processing_time` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `application_url` | `str` | No |  |
+| `description` | `str` | No |  |
+| `fee` | `float` | No |  |
+| `id` | `str` | No |  |
+| `name` | `str` | No |  |
+| `processing_time` | `str` | No |  |
+| `requirement` | `list` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Permit().list({})
+results = client.Permit().list()
 for permit in results:
     print(permit)
 ```
@@ -718,9 +718,9 @@ public_safety = client.PublicSafety()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fire` | ``$OBJECT`` | No |  |
-| `medical` | ``$OBJECT`` | No |  |
-| `police` | ``$OBJECT`` | No |  |
+| `fire` | `dict` | No |  |
+| `medical` | `dict` | No |  |
+| `police` | `dict` | No |  |
 
 ### Operations
 
@@ -729,7 +729,7 @@ public_safety = client.PublicSafety()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PublicSafety().load({"id": "public_safety_id"})
+result = client.PublicSafety().load()
 ```
 
 ### Common Methods

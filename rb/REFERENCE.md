@@ -8,7 +8,7 @@ Complete API reference for the LasVegasCity Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'las-vegas-city_sdk'
+require_relative 'LasVegasCity_sdk'
 
 client = LasVegasCitySDK.new(options)
 ```
@@ -133,13 +133,13 @@ city_info = client.CityInfo
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `annual_visitor` | ``$NUMBER`` | No |  |
-| `established` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number_of_park` | ``$INTEGER`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `square_mile` | ``$NUMBER`` | No |  |
+| `address` | `String` | No |  |
+| `annual_visitor` | `Float` | No |  |
+| `established` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `number_of_park` | `Integer` | No |  |
+| `phone` | `String` | No |  |
+| `square_mile` | `Float` | No |  |
 
 ### Operations
 
@@ -148,7 +148,7 @@ city_info = client.CityInfo
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.CityInfo.load({ "id" => "city_info_id" })
+result = client.CityInfo.load()
 ```
 
 ### Common Methods
@@ -191,22 +191,22 @@ council = client.Council
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ward` | ``$STRING`` | No |  |
+| `bio` | `String` | No |  |
+| `email` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `phone` | `String` | No |  |
+| `title` | `String` | No |  |
+| `ward` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Council.list(nil)
+results = client.Council.list
 ```
 
 ### Common Methods
@@ -249,21 +249,21 @@ department = client.Department
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `contact` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `service` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `contact` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `service` | `Array` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Department.list(nil)
+results = client.Department.list
 ```
 
 ### Common Methods
@@ -306,18 +306,18 @@ economic_development = client.EconomicDevelopment
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | ``$ARRAY`` | No |  |
-| `initiatif` | ``$ARRAY`` | No |  |
-| `resource` | ``$ARRAY`` | No |  |
+| `industry` | `Array` | No |  |
+| `initiatif` | `Array` | No |  |
+| `resource` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.EconomicDevelopment.list(nil)
+results = client.EconomicDevelopment.list
 ```
 
 ### Common Methods
@@ -360,24 +360,24 @@ event = client.Event
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `ticket_url` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `category` | `String` | No |  |
+| `description` | `String` | No |  |
+| `end_date` | `String` | No |  |
+| `id` | `String` | No |  |
+| `is_free` | `Boolean` | No |  |
+| `location` | `String` | No |  |
+| `start_date` | `String` | No |  |
+| `ticket_url` | `String` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Event.list(nil)
+results = client.Event.list
 ```
 
 ### Common Methods
@@ -420,25 +420,25 @@ job = client.Job
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `close_date` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `post_date` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `salary_range` | ``$OBJECT`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `application_url` | `String` | No |  |
+| `category` | `String` | No |  |
+| `close_date` | `String` | No |  |
+| `department` | `String` | No |  |
+| `description` | `String` | No |  |
+| `id` | `String` | No |  |
+| `post_date` | `String` | No |  |
+| `requirement` | `Array` | No |  |
+| `salary_range` | `Hash` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Job.list(nil)
+results = client.Job.list
 ```
 
 ### Common Methods
@@ -481,23 +481,23 @@ meeting = client.Meeting
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `minutes_url` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `agenda_url` | `String` | No |  |
+| `date` | `String` | No |  |
+| `id` | `String` | No |  |
+| `location` | `String` | No |  |
+| `minutes_url` | `String` | No |  |
+| `status` | `String` | No |  |
+| `title` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Meeting.list(nil)
+results = client.Meeting.list
 ```
 
 ### Common Methods
@@ -540,23 +540,23 @@ new = client.New
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publish_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `author` | `String` | No |  |
+| `category` | `String` | No |  |
+| `content` | `String` | No |  |
+| `id` | `String` | No |  |
+| `publish_date` | `String` | No |  |
+| `summary` | `String` | No |  |
+| `title` | `String` | No |  |
+| `url` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.New.list(nil)
+results = client.New.list
 ```
 
 ### Common Methods
@@ -599,22 +599,22 @@ park = client.Park
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `amenity` | ``$ARRAY`` | No |  |
-| `hour` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `amenity` | `Array` | No |  |
+| `hour` | `Hash` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `phone` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Park.list(nil)
+results = client.Park.list
 ```
 
 ### Common Methods
@@ -657,23 +657,23 @@ permit = client.Permit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `fee` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `processing_time` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `application_url` | `String` | No |  |
+| `description` | `String` | No |  |
+| `fee` | `Float` | No |  |
+| `id` | `String` | No |  |
+| `name` | `String` | No |  |
+| `processing_time` | `String` | No |  |
+| `requirement` | `Array` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Permit.list(nil)
+results = client.Permit.list
 ```
 
 ### Common Methods
@@ -716,9 +716,9 @@ public_safety = client.PublicSafety
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fire` | ``$OBJECT`` | No |  |
-| `medical` | ``$OBJECT`` | No |  |
-| `police` | ``$OBJECT`` | No |  |
+| `fire` | `Hash` | No |  |
+| `medical` | `Hash` | No |  |
+| `police` | `Hash` | No |  |
 
 ### Operations
 
@@ -727,7 +727,7 @@ public_safety = client.PublicSafety
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PublicSafety.load({ "id" => "public_safety_id" })
+result = client.PublicSafety.load()
 ```
 
 ### Common Methods

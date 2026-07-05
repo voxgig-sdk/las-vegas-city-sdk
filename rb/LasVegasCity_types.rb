@@ -41,7 +41,7 @@ CityInfo = Struct.new(
   keyword_init: true
 )
 
-# Match filter for CityInfo#load (any subset of CityInfo fields).
+# Request payload for CityInfo#load.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -107,7 +107,7 @@ Council = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Council#list (any subset of Council fields).
+# Request payload for Council#list.
 #
 # @!attribute [rw] bio
 #   @return [String, nil]
@@ -169,7 +169,7 @@ Department = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Department#list (any subset of Department fields).
+# Request payload for Department#list.
 #
 # @!attribute [rw] contact
 #   @return [Hash, nil]
@@ -215,7 +215,7 @@ EconomicDevelopment = Struct.new(
   keyword_init: true
 )
 
-# Match filter for EconomicDevelopment#list (any subset of EconomicDevelopment fields).
+# Request payload for EconomicDevelopment#list.
 #
 # @!attribute [rw] industry
 #   @return [Array, nil]
@@ -273,7 +273,7 @@ Event = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Event#list (any subset of Event fields).
+# Request payload for Event#list.
 #
 # @!attribute [rw] category
 #   @return [String, nil]
@@ -359,7 +359,7 @@ Job = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Job#list (any subset of Job fields).
+# Request payload for Job#list.
 #
 # @!attribute [rw] application_url
 #   @return [String, nil]
@@ -441,7 +441,7 @@ Meeting = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Meeting#list (any subset of Meeting fields).
+# Request payload for Meeting#list.
 #
 # @!attribute [rw] agenda_url
 #   @return [String, nil]
@@ -515,7 +515,7 @@ New = Struct.new(
   keyword_init: true
 )
 
-# Match filter for New#list (any subset of New fields).
+# Request payload for New#list.
 #
 # @!attribute [rw] author
 #   @return [String, nil]
@@ -585,7 +585,7 @@ Park = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Park#list (any subset of Park fields).
+# Request payload for Park#list.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -655,7 +655,7 @@ Permit = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Permit#list (any subset of Permit fields).
+# Request payload for Permit#list.
 #
 # @!attribute [rw] application_url
 #   @return [String, nil]
@@ -709,7 +709,7 @@ PublicSafety = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PublicSafety#load (any subset of PublicSafety fields).
+# Request payload for PublicSafety#load.
 #
 # @!attribute [rw] fire
 #   @return [Hash, nil]

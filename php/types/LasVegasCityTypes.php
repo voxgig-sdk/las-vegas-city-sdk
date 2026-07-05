@@ -24,7 +24,7 @@ class CityInfo
     public ?float $square_mile = null;
 }
 
-/** Match filter for CityInfo#load (any subset of CityInfo fields). */
+/** Request payload for CityInfo#load. */
 class CityInfoLoadMatch
 {
     public ?string $address = null;
@@ -48,7 +48,7 @@ class Council
     public ?string $ward = null;
 }
 
-/** Match filter for Council#list (any subset of Council fields). */
+/** Request payload for Council#list. */
 class CouncilListMatch
 {
     public ?string $bio = null;
@@ -71,7 +71,7 @@ class Department
     public ?string $url = null;
 }
 
-/** Match filter for Department#list (any subset of Department fields). */
+/** Request payload for Department#list. */
 class DepartmentListMatch
 {
     public ?array $contact = null;
@@ -90,7 +90,7 @@ class EconomicDevelopment
     public ?array $resource = null;
 }
 
-/** Match filter for EconomicDevelopment#list (any subset of EconomicDevelopment fields). */
+/** Request payload for EconomicDevelopment#list. */
 class EconomicDevelopmentListMatch
 {
     public ?array $industry = null;
@@ -112,7 +112,7 @@ class Event
     public ?string $title = null;
 }
 
-/** Match filter for Event#list (any subset of Event fields). */
+/** Request payload for Event#list. */
 class EventListMatch
 {
     public ?string $category = null;
@@ -141,7 +141,7 @@ class Job
     public ?string $title = null;
 }
 
-/** Match filter for Job#list (any subset of Job fields). */
+/** Request payload for Job#list. */
 class JobListMatch
 {
     public ?string $application_url = null;
@@ -169,7 +169,7 @@ class Meeting
     public ?string $type = null;
 }
 
-/** Match filter for Meeting#list (any subset of Meeting fields). */
+/** Request payload for Meeting#list. */
 class MeetingListMatch
 {
     public ?string $agenda_url = null;
@@ -195,7 +195,7 @@ class New
     public ?string $url = null;
 }
 
-/** Match filter for New#list (any subset of New fields). */
+/** Request payload for New#list. */
 class NewListMatch
 {
     public ?string $author = null;
@@ -220,7 +220,7 @@ class Park
     public ?string $type = null;
 }
 
-/** Match filter for Park#list (any subset of Park fields). */
+/** Request payload for Park#list. */
 class ParkListMatch
 {
     public ?string $address = null;
@@ -245,7 +245,7 @@ class Permit
     public ?string $type = null;
 }
 
-/** Match filter for Permit#list (any subset of Permit fields). */
+/** Request payload for Permit#list. */
 class PermitListMatch
 {
     public ?string $application_url = null;
@@ -266,7 +266,7 @@ class PublicSafety
     public ?array $police = null;
 }
 
-/** Match filter for PublicSafety#load (any subset of PublicSafety fields). */
+/** Request payload for PublicSafety#load. */
 class PublicSafetyLoadMatch
 {
     public ?array $fire = null;

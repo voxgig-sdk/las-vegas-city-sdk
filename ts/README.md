@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the LasVegasCity API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.CityInfo()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,10 +39,39 @@ const client = new LasVegasCitySDK()
 
 ```ts
 try {
-  const cityinfo = await client.CityInfo().load({ id: 'example_id' })
+  const cityinfo = await client.CityInfo().load()
   console.log(cityinfo)
 } catch (err) {
   console.error('load failed:', err)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const cityinfo = await client.CityInfo().load()
+  console.log(cityinfo)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -86,7 +120,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = LasVegasCitySDK.test()
 
-const cityinfo = await client.CityInfo().load({ id: 'test01' })
+const cityinfo = await client.CityInfo().load()
 // cityinfo is a bare entity populated with mock response data
 console.log(cityinfo)
 ```
@@ -105,12 +139,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.CityInfo()
 
-// First call sets internal match
-await entity.load({ id: 'example' })
+// First call runs the operation and stores its result
+await entity.load()
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -210,11 +244,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): LasVegasCitySDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -224,10 +255,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -457,18 +487,18 @@ Create an instance: `const city_info = client.CityInfo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `annual_visitor` | ``$NUMBER`` |  |
-| `established` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `number_of_park` | ``$INTEGER`` |  |
-| `phone` | ``$STRING`` |  |
-| `square_mile` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `annual_visitor` | `number` |  |
+| `established` | `number` |  |
+| `name` | `string` |  |
+| `number_of_park` | `number` |  |
+| `phone` | `string` |  |
+| `square_mile` | `number` |  |
 
 #### Example: Load
 
 ```ts
-const city_info = await client.CityInfo().load({ id: 'city_info_id' })
+const city_info = await client.CityInfo().load()
 ```
 
 
@@ -486,13 +516,13 @@ Create an instance: `const council = client.Council()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `ward` | ``$STRING`` |  |
+| `bio` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `title` | `string` |  |
+| `ward` | `string` |  |
 
 #### Example: List
 
@@ -515,12 +545,12 @@ Create an instance: `const department = client.Department()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `service` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `contact` | `Record<string, any>` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `service` | `any[]` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -543,9 +573,9 @@ Create an instance: `const economic_development = client.EconomicDevelopment()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | ``$ARRAY`` |  |
-| `initiatif` | ``$ARRAY`` |  |
-| `resource` | ``$ARRAY`` |  |
+| `industry` | `any[]` |  |
+| `initiatif` | `any[]` |  |
+| `resource` | `any[]` |  |
 
 #### Example: List
 
@@ -568,15 +598,15 @@ Create an instance: `const event = client.Event()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `end_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `location` | ``$STRING`` |  |
-| `start_date` | ``$STRING`` |  |
-| `ticket_url` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `description` | `string` |  |
+| `end_date` | `string` |  |
+| `id` | `string` |  |
+| `is_free` | `boolean` |  |
+| `location` | `string` |  |
+| `start_date` | `string` |  |
+| `ticket_url` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -599,16 +629,16 @@ Create an instance: `const job = client.Job()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `close_date` | ``$STRING`` |  |
-| `department` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `post_date` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `salary_range` | ``$OBJECT`` |  |
-| `title` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `category` | `string` |  |
+| `close_date` | `string` |  |
+| `department` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `post_date` | `string` |  |
+| `requirement` | `any[]` |  |
+| `salary_range` | `Record<string, any>` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -631,14 +661,14 @@ Create an instance: `const meeting = client.Meeting()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$STRING`` |  |
-| `minutes_url` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `agenda_url` | `string` |  |
+| `date` | `string` |  |
+| `id` | `string` |  |
+| `location` | `string` |  |
+| `minutes_url` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -649,7 +679,7 @@ const meetings = await client.Meeting().list()
 
 ### New
 
-Create an instance: `const new = client.New()`
+Create an instance: `const new_ = client.New()`
 
 #### Operations
 
@@ -661,19 +691,19 @@ Create an instance: `const new = client.New()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `content` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publish_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `author` | `string` |  |
+| `category` | `string` |  |
+| `content` | `string` |  |
+| `id` | `string` |  |
+| `publish_date` | `string` |  |
+| `summary` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
 ```ts
-const news = await client.New().list()
+const new_s = await client.New().list()
 ```
 
 
@@ -691,13 +721,13 @@ Create an instance: `const park = client.Park()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `amenity` | ``$ARRAY`` |  |
-| `hour` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `amenity` | `any[]` |  |
+| `hour` | `Record<string, any>` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -720,14 +750,14 @@ Create an instance: `const permit = client.Permit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `fee` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `processing_time` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `description` | `string` |  |
+| `fee` | `number` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `processing_time` | `string` |  |
+| `requirement` | `any[]` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -750,23 +780,27 @@ Create an instance: `const public_safety = client.PublicSafety()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `fire` | ``$OBJECT`` |  |
-| `medical` | ``$OBJECT`` |  |
-| `police` | ``$OBJECT`` |  |
+| `fire` | `Record<string, any>` |  |
+| `medical` | `Record<string, any>` |  |
+| `police` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
-const public_safety = await client.PublicSafety().load({ id: 'public_safety_id' })
+const public_safety = await client.PublicSafety().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -783,11 +817,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -829,10 +861,10 @@ calls on the same instance can rely on this state.
 
 ```ts
 const cityinfo = client.CityInfo()
-await cityinfo.load({ id: "example_id" })
+await cityinfo.load()
 
-// cityinfo.data() now returns the loaded cityinfo data
-// cityinfo.match() returns { id: "example_id" }
+// cityinfo.data() now returns the cityinfo data from the last `load`
+// cityinfo.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

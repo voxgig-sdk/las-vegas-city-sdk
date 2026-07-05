@@ -15,7 +15,15 @@ export interface CityInfo {
   square_mile?: number
 }
 
-export type CityInfoLoadMatch = Partial<CityInfo>
+export interface CityInfoLoadMatch {
+  address?: string
+  annual_visitor?: number
+  established?: number
+  name?: string
+  number_of_park?: number
+  phone?: string
+  square_mile?: number
+}
 
 export interface Council {
   bio?: string
@@ -27,7 +35,15 @@ export interface Council {
   ward?: string
 }
 
-export type CouncilListMatch = Partial<Council>
+export interface CouncilListMatch {
+  bio?: string
+  email?: string
+  id?: string
+  name?: string
+  phone?: string
+  title?: string
+  ward?: string
+}
 
 export interface Department {
   contact?: Record<string, any>
@@ -38,7 +54,14 @@ export interface Department {
   url?: string
 }
 
-export type DepartmentListMatch = Partial<Department>
+export interface DepartmentListMatch {
+  contact?: Record<string, any>
+  description?: string
+  id?: string
+  name?: string
+  service?: any[]
+  url?: string
+}
 
 export interface EconomicDevelopment {
   industry?: any[]
@@ -46,7 +69,11 @@ export interface EconomicDevelopment {
   resource?: any[]
 }
 
-export type EconomicDevelopmentListMatch = Partial<EconomicDevelopment>
+export interface EconomicDevelopmentListMatch {
+  industry?: any[]
+  initiatif?: any[]
+  resource?: any[]
+}
 
 export interface Event {
   category?: string
@@ -60,7 +87,17 @@ export interface Event {
   title?: string
 }
 
-export type EventListMatch = Partial<Event>
+export interface EventListMatch {
+  category?: string
+  description?: string
+  end_date?: string
+  id?: string
+  is_free?: boolean
+  location?: string
+  start_date?: string
+  ticket_url?: string
+  title?: string
+}
 
 export interface Job {
   application_url?: string
@@ -75,7 +112,18 @@ export interface Job {
   title?: string
 }
 
-export type JobListMatch = Partial<Job>
+export interface JobListMatch {
+  application_url?: string
+  category?: string
+  close_date?: string
+  department?: string
+  description?: string
+  id?: string
+  post_date?: string
+  requirement?: any[]
+  salary_range?: Record<string, any>
+  title?: string
+}
 
 export interface Meeting {
   agenda_url?: string
@@ -88,7 +136,16 @@ export interface Meeting {
   type?: string
 }
 
-export type MeetingListMatch = Partial<Meeting>
+export interface MeetingListMatch {
+  agenda_url?: string
+  date?: string
+  id?: string
+  location?: string
+  minutes_url?: string
+  status?: string
+  title?: string
+  type?: string
+}
 
 export interface New {
   author?: string
@@ -101,7 +158,16 @@ export interface New {
   url?: string
 }
 
-export type NewListMatch = Partial<New>
+export interface NewListMatch {
+  author?: string
+  category?: string
+  content?: string
+  id?: string
+  publish_date?: string
+  summary?: string
+  title?: string
+  url?: string
+}
 
 export interface Park {
   address?: string
@@ -113,7 +179,15 @@ export interface Park {
   type?: string
 }
 
-export type ParkListMatch = Partial<Park>
+export interface ParkListMatch {
+  address?: string
+  amenity?: any[]
+  hour?: Record<string, any>
+  id?: string
+  name?: string
+  phone?: string
+  type?: string
+}
 
 export interface Permit {
   application_url?: string
@@ -126,7 +200,16 @@ export interface Permit {
   type?: string
 }
 
-export type PermitListMatch = Partial<Permit>
+export interface PermitListMatch {
+  application_url?: string
+  description?: string
+  fee?: number
+  id?: string
+  name?: string
+  processing_time?: string
+  requirement?: any[]
+  type?: string
+}
 
 export interface PublicSafety {
   fire?: Record<string, any>
@@ -134,5 +217,9 @@ export interface PublicSafety {
   police?: Record<string, any>
 }
 
-export type PublicSafetyLoadMatch = Partial<PublicSafety>
+export interface PublicSafetyLoadMatch {
+  fire?: Record<string, any>
+  medical?: Record<string, any>
+  police?: Record<string, any>
+}
 

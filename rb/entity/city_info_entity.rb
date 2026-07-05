@@ -67,10 +67,12 @@ class CityInfoEntity
   
   # Load a single CityInfo.
   #
-  # @param reqmatch [CityInfoLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [CityInfoLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.CityInfo.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [CityInfo, Hash] the loaded CityInfo; raises LasVegasCityError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

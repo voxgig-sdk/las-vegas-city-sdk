@@ -66,8 +66,12 @@ class PermitEntity:
     
 
     
-    def list(self, reqmatch: PermitListMatch, ctrl=None) -> list[Permit]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Permit]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Permit().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

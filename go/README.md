@@ -4,6 +4,8 @@
 
 The Golang SDK for the LasVegasCity API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.CityInfo(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -49,12 +51,41 @@ func main() {
     client := sdk.New()
 
     // Load a single cityinfo — the value is the loaded record.
-    cityinfo, err := client.CityInfo(nil).Load(map[string]any{"id": "example_id"}, nil)
+    cityinfo, err := client.CityInfo(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
     fmt.Println(cityinfo)
 }
+```
+
+
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+cityinfo, err := client.CityInfo(nil).Load(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = cityinfo
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
 ```
 
 
@@ -105,12 +136,12 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 cityinfo, err := client.CityInfo(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(cityinfo) // the loaded mock data
+fmt.Println(cityinfo) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -207,9 +238,6 @@ All entities implement the `LasVegasCityEntity` interface.
 | --- | --- | --- |
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
-| `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
-| `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -222,16 +250,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    cityinfo, err := client.CityInfo(nil).Load(map[string]any{"id": "example_id"}, nil)
+    cityinfo, err := client.CityInfo(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // cityinfo is the loaded record
+    // cityinfo is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -432,18 +460,18 @@ Create an instance: `city_info := client.CityInfo(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `annual_visitor` | ``$NUMBER`` |  |
-| `established` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `number_of_park` | ``$INTEGER`` |  |
-| `phone` | ``$STRING`` |  |
-| `square_mile` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `annual_visitor` | `float64` |  |
+| `established` | `int` |  |
+| `name` | `string` |  |
+| `number_of_park` | `int` |  |
+| `phone` | `string` |  |
+| `square_mile` | `float64` |  |
 
 #### Example: Load
 
 ```go
-city_info, err := client.CityInfo(nil).Load(map[string]any{"id": "city_info_id"}, nil)
+city_info, err := client.CityInfo(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -465,13 +493,13 @@ Create an instance: `council := client.Council(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `ward` | ``$STRING`` |  |
+| `bio` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `title` | `string` |  |
+| `ward` | `string` |  |
 
 #### Example: List
 
@@ -498,12 +526,12 @@ Create an instance: `department := client.Department(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `service` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `contact` | `map[string]any` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `service` | `[]any` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -530,9 +558,9 @@ Create an instance: `economic_development := client.EconomicDevelopment(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | ``$ARRAY`` |  |
-| `initiatif` | ``$ARRAY`` |  |
-| `resource` | ``$ARRAY`` |  |
+| `industry` | `[]any` |  |
+| `initiatif` | `[]any` |  |
+| `resource` | `[]any` |  |
 
 #### Example: List
 
@@ -559,15 +587,15 @@ Create an instance: `event := client.Event(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `end_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `location` | ``$STRING`` |  |
-| `start_date` | ``$STRING`` |  |
-| `ticket_url` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `description` | `string` |  |
+| `end_date` | `string` |  |
+| `id` | `string` |  |
+| `is_free` | `bool` |  |
+| `location` | `string` |  |
+| `start_date` | `string` |  |
+| `ticket_url` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -594,16 +622,16 @@ Create an instance: `job := client.Job(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `close_date` | ``$STRING`` |  |
-| `department` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `post_date` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `salary_range` | ``$OBJECT`` |  |
-| `title` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `category` | `string` |  |
+| `close_date` | `string` |  |
+| `department` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `post_date` | `string` |  |
+| `requirement` | `[]any` |  |
+| `salary_range` | `map[string]any` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -630,14 +658,14 @@ Create an instance: `meeting := client.Meeting(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$STRING`` |  |
-| `minutes_url` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `agenda_url` | `string` |  |
+| `date` | `string` |  |
+| `id` | `string` |  |
+| `location` | `string` |  |
+| `minutes_url` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -664,14 +692,14 @@ Create an instance: `new := client.New(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `content` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publish_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `author` | `string` |  |
+| `category` | `string` |  |
+| `content` | `string` |  |
+| `id` | `string` |  |
+| `publish_date` | `string` |  |
+| `summary` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -698,13 +726,13 @@ Create an instance: `park := client.Park(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `amenity` | ``$ARRAY`` |  |
-| `hour` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `amenity` | `[]any` |  |
+| `hour` | `map[string]any` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -731,14 +759,14 @@ Create an instance: `permit := client.Permit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `fee` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `processing_time` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `description` | `string` |  |
+| `fee` | `float64` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `processing_time` | `string` |  |
+| `requirement` | `[]any` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -765,14 +793,14 @@ Create an instance: `public_safety := client.PublicSafety(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `fire` | ``$OBJECT`` |  |
-| `medical` | ``$OBJECT`` |  |
-| `police` | ``$OBJECT`` |  |
+| `fire` | `map[string]any` |  |
+| `medical` | `map[string]any` |  |
+| `police` | `map[string]any` |  |
 
 #### Example: Load
 
 ```go
-public_safety, err := client.PublicSafety(nil).Load(map[string]any{"id": "public_safety_id"}, nil)
+public_safety, err := client.PublicSafety(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -780,12 +808,16 @@ fmt.Println(public_safety) // the loaded record
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -802,9 +834,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -850,9 +882,9 @@ stores the returned data and match criteria internally.
 
 ```go
 cityinfo := client.CityInfo(nil)
-cityinfo.Load(map[string]any{"id": "example_id"}, nil)
+cityinfo.Load(nil, nil)
 
-// cityinfo.Data() now returns the loaded cityinfo data
+// cityinfo.Data() now returns the cityinfo data from the last load
 // cityinfo.Match() returns the last match criteria
 ```
 

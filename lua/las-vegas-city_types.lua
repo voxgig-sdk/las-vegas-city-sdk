@@ -16,6 +16,13 @@
 ---@field square_mile? number
 
 ---@class CityInfoLoadMatch
+---@field address? string
+---@field annual_visitor? number
+---@field established? number
+---@field name? string
+---@field number_of_park? number
+---@field phone? string
+---@field square_mile? number
 
 ---@class Council
 ---@field bio? string
@@ -27,6 +34,13 @@
 ---@field ward? string
 
 ---@class CouncilListMatch
+---@field bio? string
+---@field email? string
+---@field id? string
+---@field name? string
+---@field phone? string
+---@field title? string
+---@field ward? string
 
 ---@class Department
 ---@field contact? table
@@ -37,6 +51,12 @@
 ---@field url? string
 
 ---@class DepartmentListMatch
+---@field contact? table
+---@field description? string
+---@field id? string
+---@field name? string
+---@field service? table
+---@field url? string
 
 ---@class EconomicDevelopment
 ---@field industry? table
@@ -44,6 +64,9 @@
 ---@field resource? table
 
 ---@class EconomicDevelopmentListMatch
+---@field industry? table
+---@field initiatif? table
+---@field resource? table
 
 ---@class Event
 ---@field category? string
@@ -57,6 +80,15 @@
 ---@field title? string
 
 ---@class EventListMatch
+---@field category? string
+---@field description? string
+---@field end_date? string
+---@field id? string
+---@field is_free? boolean
+---@field location? string
+---@field start_date? string
+---@field ticket_url? string
+---@field title? string
 
 ---@class Job
 ---@field application_url? string
@@ -71,6 +103,16 @@
 ---@field title? string
 
 ---@class JobListMatch
+---@field application_url? string
+---@field category? string
+---@field close_date? string
+---@field department? string
+---@field description? string
+---@field id? string
+---@field post_date? string
+---@field requirement? table
+---@field salary_range? table
+---@field title? string
 
 ---@class Meeting
 ---@field agenda_url? string
@@ -83,6 +125,14 @@
 ---@field type? string
 
 ---@class MeetingListMatch
+---@field agenda_url? string
+---@field date? string
+---@field id? string
+---@field location? string
+---@field minutes_url? string
+---@field status? string
+---@field title? string
+---@field type? string
 
 ---@class New
 ---@field author? string
@@ -95,6 +145,14 @@
 ---@field url? string
 
 ---@class NewListMatch
+---@field author? string
+---@field category? string
+---@field content? string
+---@field id? string
+---@field publish_date? string
+---@field summary? string
+---@field title? string
+---@field url? string
 
 ---@class Park
 ---@field address? string
@@ -106,6 +164,13 @@
 ---@field type? string
 
 ---@class ParkListMatch
+---@field address? string
+---@field amenity? table
+---@field hour? table
+---@field id? string
+---@field name? string
+---@field phone? string
+---@field type? string
 
 ---@class Permit
 ---@field application_url? string
@@ -118,6 +183,14 @@
 ---@field type? string
 
 ---@class PermitListMatch
+---@field application_url? string
+---@field description? string
+---@field fee? number
+---@field id? string
+---@field name? string
+---@field processing_time? string
+---@field requirement? table
+---@field type? string
 
 ---@class PublicSafety
 ---@field fire? table
@@ -125,6 +198,9 @@
 ---@field police? table
 
 ---@class PublicSafetyLoadMatch
+---@field fire? table
+---@field medical? table
+---@field police? table
 
 local M = {}
 

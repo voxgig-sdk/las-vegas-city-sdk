@@ -19,8 +19,7 @@ type CityInfo struct {
 	SquareMile *float64 `json:"square_mile,omitempty"`
 }
 
-// CityInfoLoadMatch mirrors the city_info fields as an all-optional match
-// filter (Go analog of Partial<CityInfo>).
+// CityInfoLoadMatch is the typed request payload for CityInfo.LoadTyped.
 type CityInfoLoadMatch struct {
 	Address *string `json:"address,omitempty"`
 	AnnualVisitor *float64 `json:"annual_visitor,omitempty"`
@@ -42,8 +41,7 @@ type Council struct {
 	Ward *string `json:"ward,omitempty"`
 }
 
-// CouncilListMatch mirrors the council fields as an all-optional match
-// filter (Go analog of Partial<Council>).
+// CouncilListMatch is the typed request payload for Council.ListTyped.
 type CouncilListMatch struct {
 	Bio *string `json:"bio,omitempty"`
 	Email *string `json:"email,omitempty"`
@@ -64,8 +62,7 @@ type Department struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// DepartmentListMatch mirrors the department fields as an all-optional match
-// filter (Go analog of Partial<Department>).
+// DepartmentListMatch is the typed request payload for Department.ListTyped.
 type DepartmentListMatch struct {
 	Contact *map[string]any `json:"contact,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -82,8 +79,7 @@ type EconomicDevelopment struct {
 	Resource *[]any `json:"resource,omitempty"`
 }
 
-// EconomicDevelopmentListMatch mirrors the economic_development fields as an all-optional match
-// filter (Go analog of Partial<EconomicDevelopment>).
+// EconomicDevelopmentListMatch is the typed request payload for EconomicDevelopment.ListTyped.
 type EconomicDevelopmentListMatch struct {
 	Industry *[]any `json:"industry,omitempty"`
 	Initiatif *[]any `json:"initiatif,omitempty"`
@@ -103,8 +99,7 @@ type Event struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// EventListMatch mirrors the event fields as an all-optional match
-// filter (Go analog of Partial<Event>).
+// EventListMatch is the typed request payload for Event.ListTyped.
 type EventListMatch struct {
 	Category *string `json:"category,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -131,8 +126,7 @@ type Job struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// JobListMatch mirrors the job fields as an all-optional match
-// filter (Go analog of Partial<Job>).
+// JobListMatch is the typed request payload for Job.ListTyped.
 type JobListMatch struct {
 	ApplicationUrl *string `json:"application_url,omitempty"`
 	Category *string `json:"category,omitempty"`
@@ -158,8 +152,7 @@ type Meeting struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// MeetingListMatch mirrors the meeting fields as an all-optional match
-// filter (Go analog of Partial<Meeting>).
+// MeetingListMatch is the typed request payload for Meeting.ListTyped.
 type MeetingListMatch struct {
 	AgendaUrl *string `json:"agenda_url,omitempty"`
 	Date *string `json:"date,omitempty"`
@@ -183,8 +176,7 @@ type New struct {
 	Url *string `json:"url,omitempty"`
 }
 
-// NewListMatch mirrors the new fields as an all-optional match
-// filter (Go analog of Partial<New>).
+// NewListMatch is the typed request payload for New.ListTyped.
 type NewListMatch struct {
 	Author *string `json:"author,omitempty"`
 	Category *string `json:"category,omitempty"`
@@ -207,8 +199,7 @@ type Park struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// ParkListMatch mirrors the park fields as an all-optional match
-// filter (Go analog of Partial<Park>).
+// ParkListMatch is the typed request payload for Park.ListTyped.
 type ParkListMatch struct {
 	Address *string `json:"address,omitempty"`
 	Amenity *[]any `json:"amenity,omitempty"`
@@ -231,8 +222,7 @@ type Permit struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// PermitListMatch mirrors the permit fields as an all-optional match
-// filter (Go analog of Partial<Permit>).
+// PermitListMatch is the typed request payload for Permit.ListTyped.
 type PermitListMatch struct {
 	ApplicationUrl *string `json:"application_url,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -251,8 +241,7 @@ type PublicSafety struct {
 	Police *map[string]any `json:"police,omitempty"`
 }
 
-// PublicSafetyLoadMatch mirrors the public_safety fields as an all-optional match
-// filter (Go analog of Partial<PublicSafety>).
+// PublicSafetyLoadMatch is the typed request payload for PublicSafety.LoadTyped.
 type PublicSafetyLoadMatch struct {
 	Fire *map[string]any `json:"fire,omitempty"`
 	Medical *map[string]any `json:"medical,omitempty"`

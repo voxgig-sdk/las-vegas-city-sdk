@@ -4,6 +4,11 @@
 
 The Python SDK for the LasVegasCity API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.CityInfo()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,10 +42,38 @@ client = LasVegasCitySDK()
 
 ```python
 try:
-    cityinfo = client.CityInfo().load({"id": "example_id"})
+    cityinfo = client.CityInfo().load()
     print(cityinfo)
 except Exception as err:
     print(f"load failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    cityinfo = client.CityInfo().load()
+    print(cityinfo)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -61,7 +94,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -87,7 +123,7 @@ Create a mock client for unit testing — no server required:
 client = LasVegasCitySDK.test()
 
 # Entity ops return the bare record and raise on error.
-cityinfo = client.CityInfo().load({"id": "test01"})
+cityinfo = client.CityInfo().load()
 # cityinfo contains the mock response record
 ```
 
@@ -184,9 +220,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -408,18 +441,18 @@ Create an instance: `city_info = client.CityInfo()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `annual_visitor` | ``$NUMBER`` |  |
-| `established` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `number_of_park` | ``$INTEGER`` |  |
-| `phone` | ``$STRING`` |  |
-| `square_mile` | ``$NUMBER`` |  |
+| `address` | `str` |  |
+| `annual_visitor` | `float` |  |
+| `established` | `int` |  |
+| `name` | `str` |  |
+| `number_of_park` | `int` |  |
+| `phone` | `str` |  |
+| `square_mile` | `float` |  |
 
 #### Example: Load
 
 ```python
-city_info = client.CityInfo().load({"id": "city_info_id"})
+city_info = client.CityInfo().load()
 ```
 
 
@@ -431,24 +464,24 @@ Create an instance: `council = client.Council()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `ward` | ``$STRING`` |  |
+| `bio` | `str` |  |
+| `email` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `phone` | `str` |  |
+| `title` | `str` |  |
+| `ward` | `str` |  |
 
 #### Example: List
 
 ```python
-councils = client.Council().list({})
+councils = client.Council().list()
 ```
 
 
@@ -460,23 +493,23 @@ Create an instance: `department = client.Department()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `service` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `contact` | `dict` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `service` | `list` |  |
+| `url` | `str` |  |
 
 #### Example: List
 
 ```python
-departments = client.Department().list({})
+departments = client.Department().list()
 ```
 
 
@@ -488,20 +521,20 @@ Create an instance: `economic_development = client.EconomicDevelopment()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | ``$ARRAY`` |  |
-| `initiatif` | ``$ARRAY`` |  |
-| `resource` | ``$ARRAY`` |  |
+| `industry` | `list` |  |
+| `initiatif` | `list` |  |
+| `resource` | `list` |  |
 
 #### Example: List
 
 ```python
-economic_developments = client.EconomicDevelopment().list({})
+economic_developments = client.EconomicDevelopment().list()
 ```
 
 
@@ -513,26 +546,26 @@ Create an instance: `event = client.Event()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `end_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `location` | ``$STRING`` |  |
-| `start_date` | ``$STRING`` |  |
-| `ticket_url` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `category` | `str` |  |
+| `description` | `str` |  |
+| `end_date` | `str` |  |
+| `id` | `str` |  |
+| `is_free` | `bool` |  |
+| `location` | `str` |  |
+| `start_date` | `str` |  |
+| `ticket_url` | `str` |  |
+| `title` | `str` |  |
 
 #### Example: List
 
 ```python
-events = client.Event().list({})
+events = client.Event().list()
 ```
 
 
@@ -544,27 +577,27 @@ Create an instance: `job = client.Job()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `close_date` | ``$STRING`` |  |
-| `department` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `post_date` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `salary_range` | ``$OBJECT`` |  |
-| `title` | ``$STRING`` |  |
+| `application_url` | `str` |  |
+| `category` | `str` |  |
+| `close_date` | `str` |  |
+| `department` | `str` |  |
+| `description` | `str` |  |
+| `id` | `str` |  |
+| `post_date` | `str` |  |
+| `requirement` | `list` |  |
+| `salary_range` | `dict` |  |
+| `title` | `str` |  |
 
 #### Example: List
 
 ```python
-jobs = client.Job().list({})
+jobs = client.Job().list()
 ```
 
 
@@ -576,25 +609,25 @@ Create an instance: `meeting = client.Meeting()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$STRING`` |  |
-| `minutes_url` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `agenda_url` | `str` |  |
+| `date` | `str` |  |
+| `id` | `str` |  |
+| `location` | `str` |  |
+| `minutes_url` | `str` |  |
+| `status` | `str` |  |
+| `title` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-meetings = client.Meeting().list({})
+meetings = client.Meeting().list()
 ```
 
 
@@ -606,25 +639,25 @@ Create an instance: `new = client.New()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `content` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publish_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `author` | `str` |  |
+| `category` | `str` |  |
+| `content` | `str` |  |
+| `id` | `str` |  |
+| `publish_date` | `str` |  |
+| `summary` | `str` |  |
+| `title` | `str` |  |
+| `url` | `str` |  |
 
 #### Example: List
 
 ```python
-news = client.New().list({})
+news = client.New().list()
 ```
 
 
@@ -636,24 +669,24 @@ Create an instance: `park = client.Park()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `amenity` | ``$ARRAY`` |  |
-| `hour` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `str` |  |
+| `amenity` | `list` |  |
+| `hour` | `dict` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `phone` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-parks = client.Park().list({})
+parks = client.Park().list()
 ```
 
 
@@ -665,25 +698,25 @@ Create an instance: `permit = client.Permit()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `fee` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `processing_time` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `application_url` | `str` |  |
+| `description` | `str` |  |
+| `fee` | `float` |  |
+| `id` | `str` |  |
+| `name` | `str` |  |
+| `processing_time` | `str` |  |
+| `requirement` | `list` |  |
+| `type` | `str` |  |
 
 #### Example: List
 
 ```python
-permits = client.Permit().list({})
+permits = client.Permit().list()
 ```
 
 
@@ -701,23 +734,27 @@ Create an instance: `public_safety = client.PublicSafety()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `fire` | ``$OBJECT`` |  |
-| `medical` | ``$OBJECT`` |  |
-| `police` | ``$OBJECT`` |  |
+| `fire` | `dict` |  |
+| `medical` | `dict` |  |
+| `police` | `dict` |  |
 
 #### Example: Load
 
 ```python
-public_safety = client.PublicSafety().load({"id": "public_safety_id"})
+public_safety = client.PublicSafety().load()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -734,8 +771,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -783,9 +821,9 @@ stores the returned data and match criteria internally.
 
 ```python
 cityinfo = client.CityInfo()
-cityinfo.load({"id": "example_id"})
+cityinfo.load()
 
-# cityinfo.data_get() now returns the loaded cityinfo data
+# cityinfo.data_get() now returns the cityinfo data from the last load
 # cityinfo.match_get() returns the last match criteria
 ```
 

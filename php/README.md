@@ -4,6 +4,8 @@
 
 The PHP SDK for the LasVegasCity API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->CityInfo()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -34,10 +36,41 @@ $client = new LasVegasCitySDK();
 ```php
 try {
     // load() returns the bare CityInfo record (throws on error).
-    $cityinfo = $client->CityInfo()->load(["id" => "example_id"]);
+    $cityinfo = $client->CityInfo()->load();
     print_r($cityinfo);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
+}
+```
+
+
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $cityinfo = $client->CityInfo()->load();
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -61,7 +94,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -82,16 +118,13 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = LasVegasCitySDK::test([
-    "entity" => ["cityinfo" => ["test01" => ["id" => "test01"]]],
-]);
+$client = LasVegasCitySDK::test();
 
-// load() returns the bare mock record (throws on error).
-$cityinfo = $client->CityInfo()->load(["id" => "test01"]);
+// Entity ops return the bare mock record (throws on error).
+$cityinfo = $client->CityInfo()->load();
 print_r($cityinfo);
 ```
 
@@ -190,10 +223,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -415,19 +445,19 @@ Create an instance: `$city_info = $client->CityInfo();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `annual_visitor` | ``$NUMBER`` |  |
-| `established` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
-| `number_of_park` | ``$INTEGER`` |  |
-| `phone` | ``$STRING`` |  |
-| `square_mile` | ``$NUMBER`` |  |
+| `address` | `string` |  |
+| `annual_visitor` | `float` |  |
+| `established` | `int` |  |
+| `name` | `string` |  |
+| `number_of_park` | `int` |  |
+| `phone` | `string` |  |
+| `square_mile` | `float` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare CityInfo record (throws on error).
-$city_info = $client->CityInfo()->load(["id" => "city_info_id"]);
+$city_info = $client->CityInfo()->load();
 ```
 
 
@@ -445,13 +475,13 @@ Create an instance: `$council = $client->Council();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `bio` | ``$STRING`` |  |
-| `email` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `ward` | ``$STRING`` |  |
+| `bio` | `string` |  |
+| `email` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `title` | `string` |  |
+| `ward` | `string` |  |
 
 #### Example: List
 
@@ -475,12 +505,12 @@ Create an instance: `$department = $client->Department();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `contact` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `service` | ``$ARRAY`` |  |
-| `url` | ``$STRING`` |  |
+| `contact` | `array` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `service` | `array` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -504,9 +534,9 @@ Create an instance: `$economic_development = $client->EconomicDevelopment();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | ``$ARRAY`` |  |
-| `initiatif` | ``$ARRAY`` |  |
-| `resource` | ``$ARRAY`` |  |
+| `industry` | `array` |  |
+| `initiatif` | `array` |  |
+| `resource` | `array` |  |
 
 #### Example: List
 
@@ -530,15 +560,15 @@ Create an instance: `$event = $client->Event();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `end_date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `is_free` | ``$BOOLEAN`` |  |
-| `location` | ``$STRING`` |  |
-| `start_date` | ``$STRING`` |  |
-| `ticket_url` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `description` | `string` |  |
+| `end_date` | `string` |  |
+| `id` | `string` |  |
+| `is_free` | `bool` |  |
+| `location` | `string` |  |
+| `start_date` | `string` |  |
+| `ticket_url` | `string` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -562,16 +592,16 @@ Create an instance: `$job = $client->Job();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `close_date` | ``$STRING`` |  |
-| `department` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `post_date` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `salary_range` | ``$OBJECT`` |  |
-| `title` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `category` | `string` |  |
+| `close_date` | `string` |  |
+| `department` | `string` |  |
+| `description` | `string` |  |
+| `id` | `string` |  |
+| `post_date` | `string` |  |
+| `requirement` | `array` |  |
+| `salary_range` | `array` |  |
+| `title` | `string` |  |
 
 #### Example: List
 
@@ -595,14 +625,14 @@ Create an instance: `$meeting = $client->Meeting();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | ``$STRING`` |  |
-| `date` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `location` | ``$STRING`` |  |
-| `minutes_url` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `agenda_url` | `string` |  |
+| `date` | `string` |  |
+| `id` | `string` |  |
+| `location` | `string` |  |
+| `minutes_url` | `string` |  |
+| `status` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -626,14 +656,14 @@ Create an instance: `$new = $client->New();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `author` | ``$STRING`` |  |
-| `category` | ``$STRING`` |  |
-| `content` | ``$STRING`` |  |
-| `id` | ``$STRING`` |  |
-| `publish_date` | ``$STRING`` |  |
-| `summary` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-| `url` | ``$STRING`` |  |
+| `author` | `string` |  |
+| `category` | `string` |  |
+| `content` | `string` |  |
+| `id` | `string` |  |
+| `publish_date` | `string` |  |
+| `summary` | `string` |  |
+| `title` | `string` |  |
+| `url` | `string` |  |
 
 #### Example: List
 
@@ -657,13 +687,13 @@ Create an instance: `$park = $client->Park();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `amenity` | ``$ARRAY`` |  |
-| `hour` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `phone` | ``$STRING`` |  |
-| `type` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `amenity` | `array` |  |
+| `hour` | `array` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `phone` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -687,14 +717,14 @@ Create an instance: `$permit = $client->Permit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `fee` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `name` | ``$STRING`` |  |
-| `processing_time` | ``$STRING`` |  |
-| `requirement` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `application_url` | `string` |  |
+| `description` | `string` |  |
+| `fee` | `float` |  |
+| `id` | `string` |  |
+| `name` | `string` |  |
+| `processing_time` | `string` |  |
+| `requirement` | `array` |  |
+| `type` | `string` |  |
 
 #### Example: List
 
@@ -718,24 +748,28 @@ Create an instance: `$public_safety = $client->PublicSafety();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `fire` | ``$OBJECT`` |  |
-| `medical` | ``$OBJECT`` |  |
-| `police` | ``$OBJECT`` |  |
+| `fire` | `array` |  |
+| `medical` | `array` |  |
+| `police` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare PublicSafety record (throws on error).
-$public_safety = $client->PublicSafety()->load(["id" => "public_safety_id"]);
+$public_safety = $client->PublicSafety()->load();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -752,8 +786,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -802,10 +837,10 @@ stores the returned data and match criteria internally.
 
 ```php
 $cityinfo = $client->CityInfo();
-$cityinfo->load(["id" => "example_id"]);
+$cityinfo->load();
 
-// $cityinfo->dataGet() now returns the loaded cityinfo data
-// $cityinfo->matchGet() returns the last match criteria
+// $cityinfo->data_get() now returns the cityinfo data from the last load
+// $cityinfo->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

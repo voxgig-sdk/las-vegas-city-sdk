@@ -236,13 +236,13 @@ const city_info = client.CityInfo()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `annual_visitor` | ``$NUMBER`` | No |  |
-| `established` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number_of_park` | ``$INTEGER`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `square_mile` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `annual_visitor` | `number` | No |  |
+| `established` | `number` | No |  |
+| `name` | `string` | No |  |
+| `number_of_park` | `number` | No |  |
+| `phone` | `string` | No |  |
+| `square_mile` | `number` | No |  |
 
 ### Operations
 
@@ -251,7 +251,7 @@ const city_info = client.CityInfo()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.CityInfo().load({ id: 'city_info_id' })
+const result = await client.CityInfo().load()
 ```
 
 ### Common Methods
@@ -292,13 +292,13 @@ const council = client.Council()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ward` | ``$STRING`` | No |  |
+| `bio` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `title` | `string` | No |  |
+| `ward` | `string` | No |  |
 
 ### Operations
 
@@ -348,12 +348,12 @@ const department = client.Department()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `contact` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `service` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `contact` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `service` | `any[]` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -403,9 +403,9 @@ const economic_development = client.EconomicDevelopment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | ``$ARRAY`` | No |  |
-| `initiatif` | ``$ARRAY`` | No |  |
-| `resource` | ``$ARRAY`` | No |  |
+| `industry` | `any[]` | No |  |
+| `initiatif` | `any[]` | No |  |
+| `resource` | `any[]` | No |  |
 
 ### Operations
 
@@ -455,15 +455,15 @@ const event = client.Event()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `ticket_url` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `description` | `string` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `is_free` | `boolean` | No |  |
+| `location` | `string` | No |  |
+| `start_date` | `string` | No |  |
+| `ticket_url` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -513,16 +513,16 @@ const job = client.Job()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `close_date` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `post_date` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `salary_range` | ``$OBJECT`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `application_url` | `string` | No |  |
+| `category` | `string` | No |  |
+| `close_date` | `string` | No |  |
+| `department` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `post_date` | `string` | No |  |
+| `requirement` | `any[]` | No |  |
+| `salary_range` | `Record<string, any>` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -572,14 +572,14 @@ const meeting = client.Meeting()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `minutes_url` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `agenda_url` | `string` | No |  |
+| `date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `location` | `string` | No |  |
+| `minutes_url` | `string` | No |  |
+| `status` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -622,21 +622,21 @@ Return a copy of the entity options.
 ## NewEntity
 
 ```ts
-const new = client.New()
+const new_ = client.New()
 ```
 
 ### Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publish_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `category` | `string` | No |  |
+| `content` | `string` | No |  |
+| `id` | `string` | No |  |
+| `publish_date` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -686,13 +686,13 @@ const park = client.Park()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `amenity` | ``$ARRAY`` | No |  |
-| `hour` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `amenity` | `any[]` | No |  |
+| `hour` | `Record<string, any>` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -742,14 +742,14 @@ const permit = client.Permit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `fee` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `processing_time` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `application_url` | `string` | No |  |
+| `description` | `string` | No |  |
+| `fee` | `number` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `processing_time` | `string` | No |  |
+| `requirement` | `any[]` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -799,9 +799,9 @@ const public_safety = client.PublicSafety()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fire` | ``$OBJECT`` | No |  |
-| `medical` | ``$OBJECT`` | No |  |
-| `police` | ``$OBJECT`` | No |  |
+| `fire` | `Record<string, any>` | No |  |
+| `medical` | `Record<string, any>` | No |  |
+| `police` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -810,7 +810,7 @@ const public_safety = client.PublicSafety()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PublicSafety().load({ id: 'public_safety_id' })
+const result = await client.PublicSafety().load()
 ```
 
 ### Common Methods

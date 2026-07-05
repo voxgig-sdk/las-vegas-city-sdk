@@ -137,13 +137,13 @@ city_info := client.CityInfo(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `annual_visitor` | ``$NUMBER`` | No |  |
-| `established` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `number_of_park` | ``$INTEGER`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `square_mile` | ``$NUMBER`` | No |  |
+| `address` | `string` | No |  |
+| `annual_visitor` | `float64` | No |  |
+| `established` | `int` | No |  |
+| `name` | `string` | No |  |
+| `number_of_park` | `int` | No |  |
+| `phone` | `string` | No |  |
+| `square_mile` | `float64` | No |  |
 
 ### Operations
 
@@ -152,7 +152,7 @@ city_info := client.CityInfo(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.CityInfo(nil).Load(map[string]any{"id": "city_info_id"}, nil)
+result, err := client.CityInfo(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -189,13 +189,13 @@ council := client.Council(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `bio` | ``$STRING`` | No |  |
-| `email` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `ward` | ``$STRING`` | No |  |
+| `bio` | `string` | No |  |
+| `email` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `title` | `string` | No |  |
+| `ward` | `string` | No |  |
 
 ### Operations
 
@@ -241,12 +241,12 @@ department := client.Department(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `contact` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `service` | ``$ARRAY`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `contact` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `service` | `[]any` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -292,9 +292,9 @@ economic_development := client.EconomicDevelopment(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | ``$ARRAY`` | No |  |
-| `initiatif` | ``$ARRAY`` | No |  |
-| `resource` | ``$ARRAY`` | No |  |
+| `industry` | `[]any` | No |  |
+| `initiatif` | `[]any` | No |  |
+| `resource` | `[]any` | No |  |
 
 ### Operations
 
@@ -340,15 +340,15 @@ event := client.Event(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `is_free` | ``$BOOLEAN`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `ticket_url` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `description` | `string` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `is_free` | `bool` | No |  |
+| `location` | `string` | No |  |
+| `start_date` | `string` | No |  |
+| `ticket_url` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -394,16 +394,16 @@ job := client.Job(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `close_date` | ``$STRING`` | No |  |
-| `department` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `post_date` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `salary_range` | ``$OBJECT`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `application_url` | `string` | No |  |
+| `category` | `string` | No |  |
+| `close_date` | `string` | No |  |
+| `department` | `string` | No |  |
+| `description` | `string` | No |  |
+| `id` | `string` | No |  |
+| `post_date` | `string` | No |  |
+| `requirement` | `[]any` | No |  |
+| `salary_range` | `map[string]any` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -449,14 +449,14 @@ meeting := client.Meeting(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | ``$STRING`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `minutes_url` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `agenda_url` | `string` | No |  |
+| `date` | `string` | No |  |
+| `id` | `string` | No |  |
+| `location` | `string` | No |  |
+| `minutes_url` | `string` | No |  |
+| `status` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -502,14 +502,14 @@ new := client.New(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `author` | ``$STRING`` | No |  |
-| `category` | ``$STRING`` | No |  |
-| `content` | ``$STRING`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `publish_date` | ``$STRING`` | No |  |
-| `summary` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-| `url` | ``$STRING`` | No |  |
+| `author` | `string` | No |  |
+| `category` | `string` | No |  |
+| `content` | `string` | No |  |
+| `id` | `string` | No |  |
+| `publish_date` | `string` | No |  |
+| `summary` | `string` | No |  |
+| `title` | `string` | No |  |
+| `url` | `string` | No |  |
 
 ### Operations
 
@@ -555,13 +555,13 @@ park := client.Park(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `amenity` | ``$ARRAY`` | No |  |
-| `hour` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `phone` | ``$STRING`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `amenity` | `[]any` | No |  |
+| `hour` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `phone` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -607,14 +607,14 @@ permit := client.Permit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `fee` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `processing_time` | ``$STRING`` | No |  |
-| `requirement` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `application_url` | `string` | No |  |
+| `description` | `string` | No |  |
+| `fee` | `float64` | No |  |
+| `id` | `string` | No |  |
+| `name` | `string` | No |  |
+| `processing_time` | `string` | No |  |
+| `requirement` | `[]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -660,9 +660,9 @@ public_safety := client.PublicSafety(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fire` | ``$OBJECT`` | No |  |
-| `medical` | ``$OBJECT`` | No |  |
-| `police` | ``$OBJECT`` | No |  |
+| `fire` | `map[string]any` | No |  |
+| `medical` | `map[string]any` | No |  |
+| `police` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -671,7 +671,7 @@ public_safety := client.PublicSafety(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PublicSafety(nil).Load(map[string]any{"id": "public_safety_id"}, nil)
+result, err := client.PublicSafety(nil).Load(nil, nil)
 ```
 
 ### Common Methods

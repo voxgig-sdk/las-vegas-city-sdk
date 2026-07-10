@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single cityinfo — the value is the loaded record.
-    cityinfo, err := client.CityInfo(nil).Load(nil, nil)
+    // Load a single cityInfo — the value is the loaded record.
+    cityInfo, err := client.CityInfo(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(cityinfo)
+    fmt.Println(cityInfo)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-cityinfo, err := client.CityInfo(nil).Load(
+cityInfo, err := client.CityInfo(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(cityinfo) // the returned mock data
+fmt.Println(cityInfo) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -257,9 +257,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    cityinfo, err := client.CityInfo(nil).Load(nil, nil)
+    cityInfo, err := client.CityInfo(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // cityinfo is the returned record
+    // cityInfo is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -448,7 +448,7 @@ API path: `/public-safety`
 
 ### CityInfo
 
-Create an instance: `city_info := client.CityInfo(nil)`
+Create an instance: `cityInfo := client.CityInfo(nil)`
 
 #### Operations
 
@@ -471,11 +471,11 @@ Create an instance: `city_info := client.CityInfo(nil)`
 #### Example: Load
 
 ```go
-city_info, err := client.CityInfo(nil).Load(nil, nil)
+cityInfo, err := client.CityInfo(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(city_info) // the loaded record
+fmt.Println(cityInfo) // the loaded record
 ```
 
 
@@ -546,7 +546,7 @@ fmt.Println(departments) // the array of records
 
 ### EconomicDevelopment
 
-Create an instance: `economic_development := client.EconomicDevelopment(nil)`
+Create an instance: `economicDevelopment := client.EconomicDevelopment(nil)`
 
 #### Operations
 
@@ -565,11 +565,11 @@ Create an instance: `economic_development := client.EconomicDevelopment(nil)`
 #### Example: List
 
 ```go
-economic_developments, err := client.EconomicDevelopment(nil).List(nil, nil)
+economicDevelopments, err := client.EconomicDevelopment(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(economic_developments) // the array of records
+fmt.Println(economicDevelopments) // the array of records
 ```
 
 
@@ -781,7 +781,7 @@ fmt.Println(permits) // the array of records
 
 ### PublicSafety
 
-Create an instance: `public_safety := client.PublicSafety(nil)`
+Create an instance: `publicSafety := client.PublicSafety(nil)`
 
 #### Operations
 
@@ -800,11 +800,11 @@ Create an instance: `public_safety := client.PublicSafety(nil)`
 #### Example: Load
 
 ```go
-public_safety, err := client.PublicSafety(nil).Load(nil, nil)
+publicSafety, err := client.PublicSafety(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(public_safety) // the loaded record
+fmt.Println(publicSafety) // the loaded record
 ```
 
 

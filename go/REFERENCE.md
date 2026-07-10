@@ -130,7 +130,8 @@ same parameters as `Direct()`.
 ## CityInfoEntity
 
 ```go
-city_info := client.CityInfo(nil)
+cityInfo := client.CityInfo(nil)
+fmt.Println(cityInfo.GetName()) // "city_info"
 ```
 
 ### Fields
@@ -153,6 +154,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.CityInfo(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -183,6 +188,7 @@ Return the entity name.
 
 ```go
 council := client.Council(nil)
+fmt.Println(council.GetName()) // "council"
 ```
 
 ### Fields
@@ -205,6 +211,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Council(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -235,6 +245,7 @@ Return the entity name.
 
 ```go
 department := client.Department(nil)
+fmt.Println(department.GetName()) // "department"
 ```
 
 ### Fields
@@ -256,6 +267,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Department(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -285,7 +300,8 @@ Return the entity name.
 ## EconomicDevelopmentEntity
 
 ```go
-economic_development := client.EconomicDevelopment(nil)
+economicDevelopment := client.EconomicDevelopment(nil)
+fmt.Println(economicDevelopment.GetName()) // "economic_development"
 ```
 
 ### Fields
@@ -304,6 +320,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.EconomicDevelopment(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -334,6 +354,7 @@ Return the entity name.
 
 ```go
 event := client.Event(nil)
+fmt.Println(event.GetName()) // "event"
 ```
 
 ### Fields
@@ -358,6 +379,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Event(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -388,6 +413,7 @@ Return the entity name.
 
 ```go
 job := client.Job(nil)
+fmt.Println(job.GetName()) // "job"
 ```
 
 ### Fields
@@ -413,6 +439,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Job(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -443,6 +473,7 @@ Return the entity name.
 
 ```go
 meeting := client.Meeting(nil)
+fmt.Println(meeting.GetName()) // "meeting"
 ```
 
 ### Fields
@@ -466,6 +497,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Meeting(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -496,6 +531,7 @@ Return the entity name.
 
 ```go
 new := client.New(nil)
+fmt.Println(new.GetName()) // "new"
 ```
 
 ### Fields
@@ -519,6 +555,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.New(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -549,6 +589,7 @@ Return the entity name.
 
 ```go
 park := client.Park(nil)
+fmt.Println(park.GetName()) // "park"
 ```
 
 ### Fields
@@ -571,6 +612,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Park(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -601,6 +646,7 @@ Return the entity name.
 
 ```go
 permit := client.Permit(nil)
+fmt.Println(permit.GetName()) // "permit"
 ```
 
 ### Fields
@@ -624,6 +670,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Permit(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -653,7 +703,8 @@ Return the entity name.
 ## PublicSafetyEntity
 
 ```go
-public_safety := client.PublicSafety(nil)
+publicSafety := client.PublicSafety(nil)
+fmt.Println(publicSafety.GetName()) // "public_safety"
 ```
 
 ### Fields
@@ -672,6 +723,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.PublicSafety(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

@@ -1,0 +1,13 @@
+# Entity Models
+
+@"city_info.aontu"
+@"council.aontu"
+@"department.aontu"
+@"economic_development.aontu"
+@"event.aontu"
+@"job.aontu"
+@"meeting.aontu"
+@"new.aontu"
+@"park.aontu"
+@"permit.aontu"
+@"public_safety.aontu"

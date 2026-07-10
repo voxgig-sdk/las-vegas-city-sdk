@@ -16,9 +16,9 @@ main: {
           url: "https://www.lasvegasnevada.gov/api"
         }
       ]
+      summary: "This API provides access to various city services, resources, and information for residents, visitors, and businesses in Las Vegas."
       title: "Las Vegas City API"
       version: "1.0.0"
+      website: "https://lasvegasnevada.gov"
     }
   }
-}
-

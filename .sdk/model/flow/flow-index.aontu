@@ -1,0 +1,13 @@
+# Flows
+
+@"BasicCityInfoFlow.aontu"
+@"BasicCouncilFlow.aontu"
+@"BasicDepartmentFlow.aontu"
+@"BasicEconomicDevelopmentFlow.aontu"
+@"BasicEventFlow.aontu"
+@"BasicJobFlow.aontu"
+@"BasicMeetingFlow.aontu"
+@"BasicNewFlow.aontu"
+@"BasicParkFlow.aontu"
+@"BasicPermitFlow.aontu"
+@"BasicPublicSafetyFlow.aontu"

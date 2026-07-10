@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1427,14 +1424,17 @@
           "url": "https://www.lasvegasnevada.gov/"
         },
         "description": "This API provides access to various city services, resources, and information for residents, visitors, and businesses in Las Vegas. Users can retrieve data about city events, government initiatives, public safety services, and more.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Las Vegas City API Server",
             "url": "https://www.lasvegasnevada.gov/api"
           }
         ],
+        "summary": "This API provides access to various city services, resources, and information for residents, visitors, and businesses in Las Vegas.",
         "title": "Las Vegas City API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://lasvegasnevada.gov"
       },
       "option": {},
       "target": {
@@ -1487,6 +1487,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1537,6 +1540,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

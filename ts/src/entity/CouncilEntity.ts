@@ -37,7 +37,7 @@ class CouncilEntity extends LasVegasCityEntityBase<Council> {
 
 
 
-  async list(this: any, reqmatch?: CouncilListMatch, ctrl?: Control): Promise<Council[]> {
+  async list(this: any, reqmatch?: CouncilListMatch, ctrl?: Control): Promise<CouncilEntity[]> {
 
     const utility = this._utility
 

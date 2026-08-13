@@ -23,8 +23,8 @@ module LasVegasCityTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("LASVEGASCITY_TEST_LIVE")
-    override = getenv("LASVEGASCITY_TEST_OVERRIDE")
+    live = getenv("LAS_VEGAS_CITY_TEST_LIVE")
+    override = getenv("LAS_VEGAS_CITY_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module LasVegasCityTestRunner
       end
     end
 
-    explain = getenv("LASVEGASCITY_TEST_EXPLAIN")
-    m["LASVEGASCITY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("LAS_VEGAS_CITY_TEST_EXPLAIN")
+    m["LAS_VEGAS_CITY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

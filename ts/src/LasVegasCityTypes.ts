@@ -7,22 +7,22 @@
 
 export interface CityInfo {
   address?: string
-  annual_visitor?: number
+  annualVisitors?: number
   established?: number
   name?: string
-  number_of_park?: number
+  numberOfParks?: number
   phone?: string
-  square_mile?: number
+  squareMiles?: number
 }
 
 export interface CityInfoLoadMatch {
   address?: string
-  annual_visitor?: number
+  annualVisitors?: number
   established?: number
   name?: string
-  number_of_park?: number
+  numberOfParks?: number
   phone?: string
-  square_mile?: number
+  squareMiles?: number
 }
 
 export interface Council {
@@ -50,7 +50,7 @@ export interface Department {
   description?: string
   id?: string
   name?: string
-  service?: any[]
+  services?: any[]
   url?: string
 }
 
@@ -59,89 +59,89 @@ export interface DepartmentListMatch {
   description?: string
   id?: string
   name?: string
-  service?: any[]
+  services?: any[]
   url?: string
 }
 
 export interface EconomicDevelopment {
-  industry?: any[]
-  initiatif?: any[]
-  resource?: any[]
+  industries?: any[]
+  initiatives?: any[]
+  resources?: any[]
 }
 
 export interface EconomicDevelopmentListMatch {
-  industry?: any[]
-  initiatif?: any[]
-  resource?: any[]
+  industries?: any[]
+  initiatives?: any[]
+  resources?: any[]
 }
 
 export interface Event {
   category?: string
   description?: string
-  end_date?: string
+  endDate?: string
   id?: string
-  is_free?: boolean
+  isFree?: boolean
   location?: string
-  start_date?: string
-  ticket_url?: string
+  startDate?: string
+  ticketUrl?: string
   title?: string
 }
 
 export interface EventListMatch {
   category?: string
   description?: string
-  end_date?: string
+  endDate?: string
   id?: string
-  is_free?: boolean
+  isFree?: boolean
   location?: string
-  start_date?: string
-  ticket_url?: string
+  startDate?: string
+  ticketUrl?: string
   title?: string
 }
 
 export interface Job {
-  application_url?: string
+  applicationUrl?: string
   category?: string
-  close_date?: string
+  closeDate?: string
   department?: string
   description?: string
   id?: string
-  post_date?: string
-  requirement?: any[]
-  salary_range?: Record<string, any>
+  postDate?: string
+  requirements?: any[]
+  salaryRange?: Record<string, any>
   title?: string
 }
 
 export interface JobListMatch {
-  application_url?: string
+  applicationUrl?: string
   category?: string
-  close_date?: string
+  closeDate?: string
   department?: string
   description?: string
   id?: string
-  post_date?: string
-  requirement?: any[]
-  salary_range?: Record<string, any>
+  postDate?: string
+  requirements?: any[]
+  salaryRange?: Record<string, any>
   title?: string
 }
 
 export interface Meeting {
-  agenda_url?: string
+  agendaUrl?: string
   date?: string
   id?: string
   location?: string
-  minutes_url?: string
+  minutesUrl?: string
   status?: string
   title?: string
   type?: string
 }
 
 export interface MeetingListMatch {
-  agenda_url?: string
+  agendaUrl?: string
   date?: string
   id?: string
   location?: string
-  minutes_url?: string
+  minutesUrl?: string
   status?: string
   title?: string
   type?: string
@@ -152,7 +152,7 @@ export interface New {
   category?: string
   content?: string
   id?: string
-  publish_date?: string
+  publishDate?: string
   summary?: string
   title?: string
   url?: string
@@ -163,7 +163,7 @@ export interface NewListMatch {
   category?: string
   content?: string
   id?: string
-  publish_date?: string
+  publishDate?: string
   summary?: string
   title?: string
   url?: string
@@ -171,8 +171,8 @@ export interface NewListMatch {
 
 export interface Park {
   address?: string
-  amenity?: any[]
-  hour?: Record<string, any>
+  amenities?: any[]
+  hours?: Record<string, any>
   id?: string
   name?: string
   phone?: string
@@ -181,8 +181,8 @@ export interface Park {
 
 export interface ParkListMatch {
   address?: string
-  amenity?: any[]
-  hour?: Record<string, any>
+  amenities?: any[]
+  hours?: Record<string, any>
   id?: string
   name?: string
   phone?: string
@@ -190,24 +190,24 @@ export interface ParkListMatch {
 }
 
 export interface Permit {
-  application_url?: string
+  applicationUrl?: string
   description?: string
   fee?: number
   id?: string
   name?: string
-  processing_time?: string
-  requirement?: any[]
+  processingTime?: string
+  requirements?: any[]
   type?: string
 }
 
 export interface PermitListMatch {
-  application_url?: string
+  applicationUrl?: string
   description?: string
   fee?: number
   id?: string
   name?: string
-  processing_time?: string
-  requirement?: any[]
+  processingTime?: string
+  requirements?: any[]
   type?: string
 }
 

@@ -156,8 +156,29 @@ class LasVegasCitySDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('LasVegasCitySDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -218,80 +239,156 @@ class LasVegasCitySDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('LasVegasCitySDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('LasVegasCitySDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.CityInfo().list()` / `client.CityInfo().load({ id })`.
-  CityInfo(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  CityInfo(entopts?: Record<string, any>) {
     const self = this
-    return new CityInfoEntity(self,data)
+    return new CityInfoEntity(self, entopts)
   }
 
 
   // Entity access: `client.Council().list()` / `client.Council().load({ id })`.
-  Council(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Council(entopts?: Record<string, any>) {
     const self = this
-    return new CouncilEntity(self,data)
+    return new CouncilEntity(self, entopts)
   }
 
 
   // Entity access: `client.Department().list()` / `client.Department().load({ id })`.
-  Department(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Department(entopts?: Record<string, any>) {
     const self = this
-    return new DepartmentEntity(self,data)
+    return new DepartmentEntity(self, entopts)
   }
 
 
   // Entity access: `client.EconomicDevelopment().list()` / `client.EconomicDevelopment().load({ id })`.
-  EconomicDevelopment(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EconomicDevelopment(entopts?: Record<string, any>) {
     const self = this
-    return new EconomicDevelopmentEntity(self,data)
+    return new EconomicDevelopmentEntity(self, entopts)
   }
 
 
   // Entity access: `client.Event().list()` / `client.Event().load({ id })`.
-  Event(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Event(entopts?: Record<string, any>) {
     const self = this
-    return new EventEntity(self,data)
+    return new EventEntity(self, entopts)
   }
 
 
   // Entity access: `client.Job().list()` / `client.Job().load({ id })`.
-  Job(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Job(entopts?: Record<string, any>) {
     const self = this
-    return new JobEntity(self,data)
+    return new JobEntity(self, entopts)
   }
 
 
   // Entity access: `client.Meeting().list()` / `client.Meeting().load({ id })`.
-  Meeting(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Meeting(entopts?: Record<string, any>) {
     const self = this
-    return new MeetingEntity(self,data)
+    return new MeetingEntity(self, entopts)
   }
 
 
   // Entity access: `client.New().list()` / `client.New().load({ id })`.
-  New(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  New(entopts?: Record<string, any>) {
     const self = this
-    return new NewEntity(self,data)
+    return new NewEntity(self, entopts)
   }
 
 
   // Entity access: `client.Park().list()` / `client.Park().load({ id })`.
-  Park(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Park(entopts?: Record<string, any>) {
     const self = this
-    return new ParkEntity(self,data)
+    return new ParkEntity(self, entopts)
   }
 
 
   // Entity access: `client.Permit().list()` / `client.Permit().load({ id })`.
-  Permit(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Permit(entopts?: Record<string, any>) {
     const self = this
-    return new PermitEntity(self,data)
+    return new PermitEntity(self, entopts)
   }
 
 
   // Entity access: `client.PublicSafety().list()` / `client.PublicSafety().load({ id })`.
-  PublicSafety(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PublicSafety(entopts?: Record<string, any>) {
     const self = this
-    return new PublicSafetyEntity(self,data)
+    return new PublicSafetyEntity(self, entopts)
   }
 
 

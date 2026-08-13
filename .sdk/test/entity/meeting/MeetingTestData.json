@@ -2,31 +2,31 @@
   "existing": {
     "meeting": {
       "MEETING00": {
-        "agenda_url": "s50",
+        "agendaUrl": "s50",
         "date": "s51",
         "id": "MEETING00",
         "location": "s53",
-        "minutes_url": "s54",
+        "minutesUrl": "s54",
         "status": "s55",
         "title": "s56",
         "type": "s57"
       },
       "MEETING01": {
-        "agenda_url": "sa0",
+        "agendaUrl": "sa0",
         "date": "sa1",
         "id": "MEETING01",
         "location": "sa3",
-        "minutes_url": "sa4",
+        "minutesUrl": "sa4",
         "status": "sa5",
         "title": "sa6",
         "type": "sa7"
       },
       "MEETING02": {
-        "agenda_url": "sf0",
+        "agendaUrl": "sf0",
         "date": "sf1",
         "id": "MEETING02",
         "location": "sf3",
-        "minutes_url": "sf4",
+        "minutesUrl": "sf4",
         "status": "sf5",
         "title": "sf6",
         "type": "sf7"
@@ -36,10 +36,10 @@
   "new": {
     "meeting": {
       "meeting_ref01": {
-        "agenda_url": "s140",
+        "agendaUrl": "s140",
         "date": "s141",
         "location": "s143",
-        "minutes_url": "s144",
+        "minutesUrl": "s144",
         "status": "s145",
         "title": "s146",
         "type": "s147"

@@ -6,7 +6,7 @@ main: kit: entity: permit: {
 
   fields: [
     {
-      name: "application_url"
+      name: "applicationUrl"
       req: false
       type: "`$STRING`"
     }
@@ -31,12 +31,12 @@ main: kit: entity: permit: {
       type: "`$STRING`"
     }
     {
-      name: "processing_time"
+      name: "processingTime"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "requirement"
+      name: "requirements"
       req: false
       type: "`$ARRAY`"
     }

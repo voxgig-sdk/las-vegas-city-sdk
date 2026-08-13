@@ -6,7 +6,7 @@ main: kit: entity: meeting: {
 
   fields: [
     {
-      name: "agenda_url"
+      name: "agendaUrl"
       req: false
       type: "`$STRING`"
     }
@@ -26,7 +26,7 @@ main: kit: entity: meeting: {
       type: "`$STRING`"
     }
     {
-      name: "minutes_url"
+      name: "minutesUrl"
       req: false
       type: "`$STRING`"
     }

@@ -139,12 +139,12 @@ fmt.Println(cityInfo.GetName()) // "city_info"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `annual_visitor` | `float64` | No |  |
+| `annualVisitors` | `float64` | No |  |
 | `established` | `int` | No |  |
 | `name` | `string` | No |  |
-| `number_of_park` | `int` | No |  |
+| `numberOfParks` | `int` | No |  |
 | `phone` | `string` | No |  |
-| `square_mile` | `float64` | No |  |
+| `squareMiles` | `float64` | No |  |
 
 ### Operations
 
@@ -256,7 +256,7 @@ fmt.Println(department.GetName()) // "department"
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `service` | `[]any` | No |  |
+| `services` | `[]any` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -308,9 +308,9 @@ fmt.Println(economicDevelopment.GetName()) // "economic_development"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `[]any` | No |  |
-| `initiatif` | `[]any` | No |  |
-| `resource` | `[]any` | No |  |
+| `industries` | `[]any` | No |  |
+| `initiatives` | `[]any` | No |  |
+| `resources` | `[]any` | No |  |
 
 ### Operations
 
@@ -363,12 +363,12 @@ fmt.Println(event.GetName()) // "event"
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `description` | `string` | No |  |
-| `end_date` | `string` | No |  |
+| `endDate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `is_free` | `bool` | No |  |
+| `isFree` | `bool` | No |  |
 | `location` | `string` | No |  |
-| `start_date` | `string` | No |  |
-| `ticket_url` | `string` | No |  |
+| `startDate` | `string` | No |  |
+| `ticketUrl` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -420,15 +420,15 @@ fmt.Println(job.GetName()) // "job"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `category` | `string` | No |  |
-| `close_date` | `string` | No |  |
+| `closeDate` | `string` | No |  |
 | `department` | `string` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `post_date` | `string` | No |  |
-| `requirement` | `[]any` | No |  |
-| `salary_range` | `map[string]any` | No |  |
+| `postDate` | `string` | No |  |
+| `requirements` | `[]any` | No |  |
+| `salaryRange` | `map[string]any` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -480,11 +480,11 @@ fmt.Println(meeting.GetName()) // "meeting"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `string` | No |  |
+| `agendaUrl` | `string` | No |  |
 | `date` | `string` | No |  |
 | `id` | `string` | No |  |
 | `location` | `string` | No |  |
-| `minutes_url` | `string` | No |  |
+| `minutesUrl` | `string` | No |  |
 | `status` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -542,7 +542,7 @@ fmt.Println(new.GetName()) // "new"
 | `category` | `string` | No |  |
 | `content` | `string` | No |  |
 | `id` | `string` | No |  |
-| `publish_date` | `string` | No |  |
+| `publishDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -597,8 +597,8 @@ fmt.Println(park.GetName()) // "park"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `amenity` | `[]any` | No |  |
-| `hour` | `map[string]any` | No |  |
+| `amenities` | `[]any` | No |  |
+| `hours` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 | `phone` | `string` | No |  |
@@ -653,13 +653,13 @@ fmt.Println(permit.GetName()) // "permit"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `description` | `string` | No |  |
 | `fee` | `float64` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `processing_time` | `string` | No |  |
-| `requirement` | `[]any` | No |  |
+| `processingTime` | `string` | No |  |
+| `requirements` | `[]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

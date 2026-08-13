@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# LasVegasCity SDK exists test
 
 import pytest
 from lasvegascity_sdk import LasVegasCitySDK

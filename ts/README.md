@@ -53,10 +53,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const cityinfo = await client.CityInfo().load()
-  console.log(cityinfo)
+  const councils = await client.Council().list()
+  console.log(councils)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = LasVegasCitySDK.test()
 
-const cityinfo = await client.CityInfo().load()
-// cityinfo is a bare entity populated with mock response data
-console.log(cityinfo)
+const council = await client.Council().list()
+// council is the entity, populated with mock response data
+// — call council.data() for the record itself
+console.log(council)
 ```
 
 You can also use the instance method:
@@ -137,14 +138,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.CityInfo()
+const entity = client.Council()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -298,12 +299,12 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `annual_visitor` |  |
+| `annualVisitors` |  |
 | `established` |  |
 | `name` |  |
-| `number_of_park` |  |
+| `numberOfParks` |  |
 | `phone` |  |
-| `square_mile` |  |
+| `squareMiles` |  |
 
 Operations: load.
 
@@ -333,7 +334,7 @@ API path: `/council`
 | `description` |  |
 | `id` |  |
 | `name` |  |
-| `service` |  |
+| `services` |  |
 | `url` |  |
 
 Operations: list.
@@ -344,9 +345,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `industry` |  |
-| `initiatif` |  |
-| `resource` |  |
+| `industries` |  |
+| `initiatives` |  |
+| `resources` |  |
 
 Operations: list.
 
@@ -358,12 +359,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `category` |  |
 | `description` |  |
-| `end_date` |  |
+| `endDate` |  |
 | `id` |  |
-| `is_free` |  |
+| `isFree` |  |
 | `location` |  |
-| `start_date` |  |
-| `ticket_url` |  |
+| `startDate` |  |
+| `ticketUrl` |  |
 | `title` |  |
 
 Operations: list.
@@ -374,15 +375,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `category` |  |
-| `close_date` |  |
+| `closeDate` |  |
 | `department` |  |
 | `description` |  |
 | `id` |  |
-| `post_date` |  |
-| `requirement` |  |
-| `salary_range` |  |
+| `postDate` |  |
+| `requirements` |  |
+| `salaryRange` |  |
 | `title` |  |
 
 Operations: list.
@@ -393,11 +394,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `agenda_url` |  |
+| `agendaUrl` |  |
 | `date` |  |
 | `id` |  |
 | `location` |  |
-| `minutes_url` |  |
+| `minutesUrl` |  |
 | `status` |  |
 | `title` |  |
 | `type` |  |
@@ -414,7 +415,7 @@ API path: `/meetings`
 | `category` |  |
 | `content` |  |
 | `id` |  |
-| `publish_date` |  |
+| `publishDate` |  |
 | `summary` |  |
 | `title` |  |
 | `url` |  |
@@ -428,8 +429,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `amenity` |  |
-| `hour` |  |
+| `amenities` |  |
+| `hours` |  |
 | `id` |  |
 | `name` |  |
 | `phone` |  |
@@ -443,13 +444,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `description` |  |
 | `fee` |  |
 | `id` |  |
 | `name` |  |
-| `processing_time` |  |
-| `requirement` |  |
+| `processingTime` |  |
+| `requirements` |  |
 | `type` |  |
 
 Operations: list.
@@ -488,12 +489,12 @@ Create an instance: `const city_info = client.CityInfo()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `annual_visitor` | `number` |  |
+| `annualVisitors` | `number` |  |
 | `established` | `number` |  |
 | `name` | `string` |  |
-| `number_of_park` | `number` |  |
+| `numberOfParks` | `number` |  |
 | `phone` | `string` |  |
-| `square_mile` | `number` |  |
+| `squareMiles` | `number` |  |
 
 #### Example: Load
 
@@ -549,7 +550,7 @@ Create an instance: `const department = client.Department()`
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `service` | `any[]` |  |
+| `services` | `any[]` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -573,9 +574,9 @@ Create an instance: `const economic_development = client.EconomicDevelopment()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `any[]` |  |
-| `initiatif` | `any[]` |  |
-| `resource` | `any[]` |  |
+| `industries` | `any[]` |  |
+| `initiatives` | `any[]` |  |
+| `resources` | `any[]` |  |
 
 #### Example: List
 
@@ -600,12 +601,12 @@ Create an instance: `const event = client.Event()`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `description` | `string` |  |
-| `end_date` | `string` |  |
+| `endDate` | `string` |  |
 | `id` | `string` |  |
-| `is_free` | `boolean` |  |
+| `isFree` | `boolean` |  |
 | `location` | `string` |  |
-| `start_date` | `string` |  |
-| `ticket_url` | `string` |  |
+| `startDate` | `string` |  |
+| `ticketUrl` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -629,15 +630,15 @@ Create an instance: `const job = client.Job()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `category` | `string` |  |
-| `close_date` | `string` |  |
+| `closeDate` | `string` |  |
 | `department` | `string` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `post_date` | `string` |  |
-| `requirement` | `any[]` |  |
-| `salary_range` | `Record<string, any>` |  |
+| `postDate` | `string` |  |
+| `requirements` | `any[]` |  |
+| `salaryRange` | `Record<string, any>` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -661,11 +662,11 @@ Create an instance: `const meeting = client.Meeting()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `string` |  |
+| `agendaUrl` | `string` |  |
 | `date` | `string` |  |
 | `id` | `string` |  |
 | `location` | `string` |  |
-| `minutes_url` | `string` |  |
+| `minutesUrl` | `string` |  |
 | `status` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
@@ -695,7 +696,7 @@ Create an instance: `const new_ = client.New()`
 | `category` | `string` |  |
 | `content` | `string` |  |
 | `id` | `string` |  |
-| `publish_date` | `string` |  |
+| `publishDate` | `string` |  |
 | `summary` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -722,8 +723,8 @@ Create an instance: `const park = client.Park()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `amenity` | `any[]` |  |
-| `hour` | `Record<string, any>` |  |
+| `amenities` | `any[]` |  |
+| `hours` | `Record<string, any>` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 | `phone` | `string` |  |
@@ -750,13 +751,13 @@ Create an instance: `const permit = client.Permit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `description` | `string` |  |
 | `fee` | `number` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `processing_time` | `string` |  |
-| `requirement` | `any[]` |  |
+| `processingTime` | `string` |  |
+| `requirements` | `any[]` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -855,16 +856,16 @@ import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const cityinfo = client.CityInfo()
-await cityinfo.load()
+const council = client.Council()
+await council.list()
 
-// cityinfo.data() now returns the cityinfo data from the last `load`
-// cityinfo.match() returns the last match criteria
+// council.data() now returns the council data from the last `list`
+// council.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

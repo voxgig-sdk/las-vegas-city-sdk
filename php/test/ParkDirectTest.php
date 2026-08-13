@@ -66,11 +66,11 @@ function park_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "LASVEGASCITY_TEST_PARK_ENTID" => [],
-        "LASVEGASCITY_TEST_LIVE" => "FALSE",
+        "LAS_VEGAS_CITY_TEST_PARK_ENTID" => [],
+        "LAS_VEGAS_CITY_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["LASVEGASCITY_TEST_LIVE"] === "TRUE";
+    $live = $env["LAS_VEGAS_CITY_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

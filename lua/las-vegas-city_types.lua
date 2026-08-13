@@ -8,21 +8,21 @@
 
 ---@class CityInfo
 ---@field address? string
----@field annual_visitor? number
+---@field annualVisitors? number
 ---@field established? number
 ---@field name? string
----@field number_of_park? number
+---@field numberOfParks? number
 ---@field phone? string
----@field square_mile? number
+---@field squareMiles? number
 
 ---@class CityInfoLoadMatch
 ---@field address? string
----@field annual_visitor? number
+---@field annualVisitors? number
 ---@field established? number
 ---@field name? string
----@field number_of_park? number
+---@field numberOfParks? number
 ---@field phone? string
----@field square_mile? number
+---@field squareMiles? number
 
 ---@class Council
 ---@field bio? string
@@ -47,7 +47,7 @@
 ---@field description? string
 ---@field id? string
 ---@field name? string
----@field service? table
+---@field services? table
 ---@field url? string
 
 ---@class DepartmentListMatch
@@ -55,81 +55,81 @@
 ---@field description? string
 ---@field id? string
 ---@field name? string
----@field service? table
+---@field services? table
 ---@field url? string
 
 ---@class EconomicDevelopment
----@field industry? table
----@field initiatif? table
----@field resource? table
+---@field industries? table
+---@field initiatives? table
+---@field resources? table
 
 ---@class EconomicDevelopmentListMatch
----@field industry? table
----@field initiatif? table
----@field resource? table
+---@field industries? table
+---@field initiatives? table
+---@field resources? table
 
 ---@class Event
 ---@field category? string
 ---@field description? string
----@field end_date? string
+---@field endDate? string
 ---@field id? string
----@field is_free? boolean
+---@field isFree? boolean
 ---@field location? string
----@field start_date? string
----@field ticket_url? string
+---@field startDate? string
+---@field ticketUrl? string
 ---@field title? string
 
 ---@class EventListMatch
 ---@field category? string
 ---@field description? string
----@field end_date? string
+---@field endDate? string
 ---@field id? string
----@field is_free? boolean
+---@field isFree? boolean
 ---@field location? string
----@field start_date? string
----@field ticket_url? string
+---@field startDate? string
+---@field ticketUrl? string
 ---@field title? string
 
 ---@class Job
----@field application_url? string
+---@field applicationUrl? string
 ---@field category? string
----@field close_date? string
+---@field closeDate? string
 ---@field department? string
 ---@field description? string
 ---@field id? string
----@field post_date? string
----@field requirement? table
----@field salary_range? table
+---@field postDate? string
+---@field requirements? table
+---@field salaryRange? table
 ---@field title? string
 
 ---@class JobListMatch
----@field application_url? string
+---@field applicationUrl? string
 ---@field category? string
----@field close_date? string
+---@field closeDate? string
 ---@field department? string
 ---@field description? string
 ---@field id? string
----@field post_date? string
----@field requirement? table
----@field salary_range? table
+---@field postDate? string
+---@field requirements? table
+---@field salaryRange? table
 ---@field title? string
 
 ---@class Meeting
----@field agenda_url? string
+---@field agendaUrl? string
 ---@field date? string
 ---@field id? string
 ---@field location? string
----@field minutes_url? string
+---@field minutesUrl? string
 ---@field status? string
 ---@field title? string
 ---@field type? string
 
 ---@class MeetingListMatch
----@field agenda_url? string
+---@field agendaUrl? string
 ---@field date? string
 ---@field id? string
 ---@field location? string
----@field minutes_url? string
+---@field minutesUrl? string
 ---@field status? string
 ---@field title? string
 ---@field type? string
@@ -139,7 +139,7 @@
 ---@field category? string
 ---@field content? string
 ---@field id? string
----@field publish_date? string
+---@field publishDate? string
 ---@field summary? string
 ---@field title? string
 ---@field url? string
@@ -149,15 +149,15 @@
 ---@field category? string
 ---@field content? string
 ---@field id? string
----@field publish_date? string
+---@field publishDate? string
 ---@field summary? string
 ---@field title? string
 ---@field url? string
 
 ---@class Park
 ---@field address? string
----@field amenity? table
----@field hour? table
+---@field amenities? table
+---@field hours? table
 ---@field id? string
 ---@field name? string
 ---@field phone? string
@@ -165,31 +165,31 @@
 
 ---@class ParkListMatch
 ---@field address? string
----@field amenity? table
----@field hour? table
+---@field amenities? table
+---@field hours? table
 ---@field id? string
 ---@field name? string
 ---@field phone? string
 ---@field type? string
 
 ---@class Permit
----@field application_url? string
+---@field applicationUrl? string
 ---@field description? string
 ---@field fee? number
 ---@field id? string
 ---@field name? string
----@field processing_time? string
----@field requirement? table
+---@field processingTime? string
+---@field requirements? table
 ---@field type? string
 
 ---@class PermitListMatch
----@field application_url? string
+---@field applicationUrl? string
 ---@field description? string
 ---@field fee? number
 ---@field id? string
 ---@field name? string
----@field processing_time? string
----@field requirement? table
+---@field processingTime? string
+---@field requirements? table
 ---@field type? string
 
 ---@class PublicSafety

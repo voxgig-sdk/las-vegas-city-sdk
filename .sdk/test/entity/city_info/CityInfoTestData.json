@@ -3,32 +3,32 @@
     "city_info": {
       "CITY_INFO00": {
         "address": "s46",
-        "annual_visitor": 71,
+        "annualVisitors": 71,
         "established": "s48",
         "name": "s49",
-        "number_of_park": "s4a",
+        "numberOfParks": "s4a",
         "phone": "s4b",
-        "square_mile": 76,
+        "squareMiles": 76,
         "id": "CITY_INFO00"
       },
       "CITY_INFO01": {
         "address": "s8c",
-        "annual_visitor": 141,
+        "annualVisitors": 141,
         "established": "s8e",
         "name": "s8f",
-        "number_of_park": "s90",
+        "numberOfParks": "s90",
         "phone": "s91",
-        "square_mile": 146,
+        "squareMiles": 146,
         "id": "CITY_INFO01"
       },
       "CITY_INFO02": {
         "address": "sd2",
-        "annual_visitor": 211,
+        "annualVisitors": 211,
         "established": "sd4",
         "name": "sd5",
-        "number_of_park": "sd6",
+        "numberOfParks": "sd6",
         "phone": "sd7",
-        "square_mile": 216,
+        "squareMiles": 216,
         "id": "CITY_INFO02"
       }
     }
@@ -37,12 +37,12 @@
     "city_info": {
       "city_info_ref01": {
         "address": "s118",
-        "annual_visitor": 281,
+        "annualVisitors": 281,
         "established": "s11a",
         "name": "s11b",
-        "number_of_park": "s11c",
+        "numberOfParks": "s11c",
         "phone": "s11d",
-        "square_mile": 286
+        "squareMiles": 286
       }
     }
   }

@@ -3,8 +3,8 @@
     "park": {
       "PARK00": {
         "address": "s46",
-        "amenity": [],
-        "hour": {},
+        "amenities": [],
+        "hours": {},
         "id": "PARK00",
         "name": "s4a",
         "phone": "s4b",
@@ -12,8 +12,8 @@
       },
       "PARK01": {
         "address": "s8c",
-        "amenity": [],
-        "hour": {},
+        "amenities": [],
+        "hours": {},
         "id": "PARK01",
         "name": "s90",
         "phone": "s91",
@@ -21,8 +21,8 @@
       },
       "PARK02": {
         "address": "sd2",
-        "amenity": [],
-        "hour": {},
+        "amenities": [],
+        "hours": {},
         "id": "PARK02",
         "name": "sd6",
         "phone": "sd7",
@@ -34,8 +34,8 @@
     "park": {
       "park_ref01": {
         "address": "s118",
-        "amenity": [],
-        "hour": {},
+        "amenities": [],
+        "hours": {},
         "name": "s11c",
         "phone": "s11d",
         "type": "s11e"

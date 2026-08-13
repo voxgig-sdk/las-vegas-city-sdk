@@ -11,12 +11,12 @@ main: kit: entity: park: {
       type: "`$STRING`"
     }
     {
-      name: "amenity"
+      name: "amenities"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "hour"
+      name: "hours"
       req: false
       type: "`$OBJECT`"
     }

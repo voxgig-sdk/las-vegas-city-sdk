@@ -43,8 +43,8 @@ class LasVegasCityTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('LASVEGASCITY_TEST_LIVE');
-        $override = self::getenv('LASVEGASCITY_TEST_OVERRIDE');
+        $live = self::getenv('LAS_VEGAS_CITY_TEST_LIVE');
+        $override = self::getenv('LAS_VEGAS_CITY_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class LasVegasCityTestRunner
             }
         }
 
-        $explain = self::getenv('LASVEGASCITY_TEST_EXPLAIN');
+        $explain = self::getenv('LAS_VEGAS_CITY_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['LASVEGASCITY_TEST_EXPLAIN'] = $explain;
+            $m['LAS_VEGAS_CITY_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import LasVegasCitySDK
-from core.error import LasVegasCityError
-from core.result import LasVegasCityResult
-from core.response import LasVegasCityResponse
-from core.spec import LasVegasCitySpec
-from feature.base_feature import LasVegasCityBaseFeature
+from projectname_sdk.core.error import LasVegasCityError
+from projectname_sdk.core.result import LasVegasCityResult
+from projectname_sdk.core.response import LasVegasCityResponse
+from projectname_sdk.core.spec import LasVegasCitySpec
+from projectname_sdk.feature.base_feature import LasVegasCityBaseFeature
 
 
 def _client():

@@ -92,7 +92,7 @@ func TestJobEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set LASVEGASCITY_TEST_JOB_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set LAS_VEGAS_CITY_TEST_JOB_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -160,21 +160,21 @@ func jobBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("LASVEGASCITY_TEST_JOB_ENTID")
+	entidEnvRaw := os.Getenv("LAS_VEGAS_CITY_TEST_JOB_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"LASVEGASCITY_TEST_JOB_ENTID": idmap,
-		"LASVEGASCITY_TEST_LIVE":      "FALSE",
-		"LASVEGASCITY_TEST_EXPLAIN":   "FALSE",
+		"LAS_VEGAS_CITY_TEST_JOB_ENTID": idmap,
+		"LAS_VEGAS_CITY_TEST_LIVE":      "FALSE",
+		"LAS_VEGAS_CITY_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["LASVEGASCITY_TEST_JOB_ENTID"])
+	idmapResolved := core.ToMapAny(env["LAS_VEGAS_CITY_TEST_JOB_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["LASVEGASCITY_TEST_LIVE"] == "TRUE" {
+	if env["LAS_VEGAS_CITY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -183,13 +183,13 @@ func jobBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewLasVegasCitySDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
+	live := env["LAS_VEGAS_CITY_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["LASVEGASCITY_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["LAS_VEGAS_CITY_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

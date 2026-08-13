@@ -26,8 +26,8 @@ import {
 describe('NewEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LASVEGASCITY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LASVEGASCITY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LAS_VEGAS_CITY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LAS_VEGAS_CITY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LasVegasCitySDK.test()
@@ -63,7 +63,7 @@ describe('NewEntity', async () => {
     const new_ref01_ent = client.New()
     const new_ref01_match: any = {}
 
-    const new_ref01_list = await new_ref01_ent.list(new_ref01_match)
+    const new_ref01_list = (await new_ref01_ent.list(new_ref01_match)).map((e: any) => e.data())
 
 
   })

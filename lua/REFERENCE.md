@@ -131,12 +131,12 @@ local city_info = client:CityInfo(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `annual_visitor` | `number` | No |  |
+| `annualVisitors` | `number` | No |  |
 | `established` | `number` | No |  |
 | `name` | `string` | No |  |
-| `number_of_park` | `number` | No |  |
+| `numberOfParks` | `number` | No |  |
 | `phone` | `string` | No |  |
-| `square_mile` | `number` | No |  |
+| `squareMiles` | `number` | No |  |
 
 ### Operations
 
@@ -250,7 +250,7 @@ local department = client:Department(nil)
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `service` | `table` | No |  |
+| `services` | `table` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -303,9 +303,9 @@ local economic_development = client:EconomicDevelopment(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `table` | No |  |
-| `initiatif` | `table` | No |  |
-| `resource` | `table` | No |  |
+| `industries` | `table` | No |  |
+| `initiatives` | `table` | No |  |
+| `resources` | `table` | No |  |
 
 ### Operations
 
@@ -359,12 +359,12 @@ local event = client:Event(nil)
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `description` | `string` | No |  |
-| `end_date` | `string` | No |  |
+| `endDate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `is_free` | `boolean` | No |  |
+| `isFree` | `boolean` | No |  |
 | `location` | `string` | No |  |
-| `start_date` | `string` | No |  |
-| `ticket_url` | `string` | No |  |
+| `startDate` | `string` | No |  |
+| `ticketUrl` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -417,15 +417,15 @@ local job = client:Job(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `category` | `string` | No |  |
-| `close_date` | `string` | No |  |
+| `closeDate` | `string` | No |  |
 | `department` | `string` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `post_date` | `string` | No |  |
-| `requirement` | `table` | No |  |
-| `salary_range` | `table` | No |  |
+| `postDate` | `string` | No |  |
+| `requirements` | `table` | No |  |
+| `salaryRange` | `table` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -478,11 +478,11 @@ local meeting = client:Meeting(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `string` | No |  |
+| `agendaUrl` | `string` | No |  |
 | `date` | `string` | No |  |
 | `id` | `string` | No |  |
 | `location` | `string` | No |  |
-| `minutes_url` | `string` | No |  |
+| `minutesUrl` | `string` | No |  |
 | `status` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -541,7 +541,7 @@ local new = client:New(nil)
 | `category` | `string` | No |  |
 | `content` | `string` | No |  |
 | `id` | `string` | No |  |
-| `publish_date` | `string` | No |  |
+| `publishDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -597,8 +597,8 @@ local park = client:Park(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `amenity` | `table` | No |  |
-| `hour` | `table` | No |  |
+| `amenities` | `table` | No |  |
+| `hours` | `table` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 | `phone` | `string` | No |  |
@@ -654,13 +654,13 @@ local permit = client:Permit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `description` | `string` | No |  |
 | `fee` | `number` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `processing_time` | `string` | No |  |
-| `requirement` | `table` | No |  |
+| `processingTime` | `string` | No |  |
+| `requirements` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

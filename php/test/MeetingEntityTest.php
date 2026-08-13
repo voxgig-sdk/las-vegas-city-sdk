@@ -72,7 +72,7 @@ class MeetingEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set LASVEGASCITY_TEST_MEETING_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set LAS_VEGAS_CITY_TEST_MEETING_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -117,22 +117,22 @@ function meeting_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("LASVEGASCITY_TEST_MEETING_ENTID");
+    $entid_env_raw = getenv("LAS_VEGAS_CITY_TEST_MEETING_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "LASVEGASCITY_TEST_MEETING_ENTID" => $idmap,
-        "LASVEGASCITY_TEST_LIVE" => "FALSE",
-        "LASVEGASCITY_TEST_EXPLAIN" => "FALSE",
+        "LAS_VEGAS_CITY_TEST_MEETING_ENTID" => $idmap,
+        "LAS_VEGAS_CITY_TEST_LIVE" => "FALSE",
+        "LAS_VEGAS_CITY_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["LASVEGASCITY_TEST_MEETING_ENTID"]);
+        $env["LAS_VEGAS_CITY_TEST_MEETING_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["LASVEGASCITY_TEST_LIVE"] === "TRUE") {
+    if ($env["LAS_VEGAS_CITY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -141,13 +141,13 @@ function meeting_basic_setup($extra)
         $client = new LasVegasCitySDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["LASVEGASCITY_TEST_LIVE"] === "TRUE";
+    $live = $env["LAS_VEGAS_CITY_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["LASVEGASCITY_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["LAS_VEGAS_CITY_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

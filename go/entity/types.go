@@ -6,28 +6,32 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/las-vegas-city-sdk/go/core"
+)
 
 // CityInfo is the typed data model for the city_info entity.
 type CityInfo struct {
 	Address *string `json:"address,omitempty"`
-	AnnualVisitor *float64 `json:"annual_visitor,omitempty"`
+	AnnualVisitors *float64 `json:"annualVisitors,omitempty"`
 	Established *int `json:"established,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NumberOfPark *int `json:"number_of_park,omitempty"`
+	NumberOfParks *int `json:"numberOfParks,omitempty"`
 	Phone *string `json:"phone,omitempty"`
-	SquareMile *float64 `json:"square_mile,omitempty"`
+	SquareMiles *float64 `json:"squareMiles,omitempty"`
 }
 
 // CityInfoLoadMatch is the typed request payload for CityInfo.LoadTyped.
 type CityInfoLoadMatch struct {
 	Address *string `json:"address,omitempty"`
-	AnnualVisitor *float64 `json:"annual_visitor,omitempty"`
+	AnnualVisitors *float64 `json:"annualVisitors,omitempty"`
 	Established *int `json:"established,omitempty"`
 	Name *string `json:"name,omitempty"`
-	NumberOfPark *int `json:"number_of_park,omitempty"`
+	NumberOfParks *int `json:"numberOfParks,omitempty"`
 	Phone *string `json:"phone,omitempty"`
-	SquareMile *float64 `json:"square_mile,omitempty"`
+	SquareMiles *float64 `json:"squareMiles,omitempty"`
 }
 
 // Council is the typed data model for the council entity.
@@ -58,7 +62,7 @@ type Department struct {
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Service *[]any `json:"service,omitempty"`
+	Services *[]any `json:"services,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
@@ -68,34 +72,34 @@ type DepartmentListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Service *[]any `json:"service,omitempty"`
+	Services *[]any `json:"services,omitempty"`
 	Url *string `json:"url,omitempty"`
 }
 
 // EconomicDevelopment is the typed data model for the economic_development entity.
 type EconomicDevelopment struct {
-	Industry *[]any `json:"industry,omitempty"`
-	Initiatif *[]any `json:"initiatif,omitempty"`
-	Resource *[]any `json:"resource,omitempty"`
+	Industries *[]any `json:"industries,omitempty"`
+	Initiatives *[]any `json:"initiatives,omitempty"`
+	Resources *[]any `json:"resources,omitempty"`
 }
 
 // EconomicDevelopmentListMatch is the typed request payload for EconomicDevelopment.ListTyped.
 type EconomicDevelopmentListMatch struct {
-	Industry *[]any `json:"industry,omitempty"`
-	Initiatif *[]any `json:"initiatif,omitempty"`
-	Resource *[]any `json:"resource,omitempty"`
+	Industries *[]any `json:"industries,omitempty"`
+	Initiatives *[]any `json:"initiatives,omitempty"`
+	Resources *[]any `json:"resources,omitempty"`
 }
 
 // Event is the typed data model for the event entity.
 type Event struct {
 	Category *string `json:"category,omitempty"`
 	Description *string `json:"description,omitempty"`
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate *string `json:"endDate,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IsFree *bool `json:"is_free,omitempty"`
+	IsFree *bool `json:"isFree,omitempty"`
 	Location *string `json:"location,omitempty"`
-	StartDate *string `json:"start_date,omitempty"`
-	TicketUrl *string `json:"ticket_url,omitempty"`
+	StartDate *string `json:"startDate,omitempty"`
+	TicketUrl *string `json:"ticketUrl,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
@@ -103,50 +107,50 @@ type Event struct {
 type EventListMatch struct {
 	Category *string `json:"category,omitempty"`
 	Description *string `json:"description,omitempty"`
-	EndDate *string `json:"end_date,omitempty"`
+	EndDate *string `json:"endDate,omitempty"`
 	Id *string `json:"id,omitempty"`
-	IsFree *bool `json:"is_free,omitempty"`
+	IsFree *bool `json:"isFree,omitempty"`
 	Location *string `json:"location,omitempty"`
-	StartDate *string `json:"start_date,omitempty"`
-	TicketUrl *string `json:"ticket_url,omitempty"`
+	StartDate *string `json:"startDate,omitempty"`
+	TicketUrl *string `json:"ticketUrl,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
 // Job is the typed data model for the job entity.
 type Job struct {
-	ApplicationUrl *string `json:"application_url,omitempty"`
+	ApplicationUrl *string `json:"applicationUrl,omitempty"`
 	Category *string `json:"category,omitempty"`
-	CloseDate *string `json:"close_date,omitempty"`
+	CloseDate *string `json:"closeDate,omitempty"`
 	Department *string `json:"department,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
-	PostDate *string `json:"post_date,omitempty"`
-	Requirement *[]any `json:"requirement,omitempty"`
-	SalaryRange *map[string]any `json:"salary_range,omitempty"`
+	PostDate *string `json:"postDate,omitempty"`
+	Requirements *[]any `json:"requirements,omitempty"`
+	SalaryRange *map[string]any `json:"salaryRange,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
 // JobListMatch is the typed request payload for Job.ListTyped.
 type JobListMatch struct {
-	ApplicationUrl *string `json:"application_url,omitempty"`
+	ApplicationUrl *string `json:"applicationUrl,omitempty"`
 	Category *string `json:"category,omitempty"`
-	CloseDate *string `json:"close_date,omitempty"`
+	CloseDate *string `json:"closeDate,omitempty"`
 	Department *string `json:"department,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Id *string `json:"id,omitempty"`
-	PostDate *string `json:"post_date,omitempty"`
-	Requirement *[]any `json:"requirement,omitempty"`
-	SalaryRange *map[string]any `json:"salary_range,omitempty"`
+	PostDate *string `json:"postDate,omitempty"`
+	Requirements *[]any `json:"requirements,omitempty"`
+	SalaryRange *map[string]any `json:"salaryRange,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
 // Meeting is the typed data model for the meeting entity.
 type Meeting struct {
-	AgendaUrl *string `json:"agenda_url,omitempty"`
+	AgendaUrl *string `json:"agendaUrl,omitempty"`
 	Date *string `json:"date,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Location *string `json:"location,omitempty"`
-	MinutesUrl *string `json:"minutes_url,omitempty"`
+	MinutesUrl *string `json:"minutesUrl,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -154,11 +158,11 @@ type Meeting struct {
 
 // MeetingListMatch is the typed request payload for Meeting.ListTyped.
 type MeetingListMatch struct {
-	AgendaUrl *string `json:"agenda_url,omitempty"`
+	AgendaUrl *string `json:"agendaUrl,omitempty"`
 	Date *string `json:"date,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Location *string `json:"location,omitempty"`
-	MinutesUrl *string `json:"minutes_url,omitempty"`
+	MinutesUrl *string `json:"minutesUrl,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -170,7 +174,7 @@ type New struct {
 	Category *string `json:"category,omitempty"`
 	Content *string `json:"content,omitempty"`
 	Id *string `json:"id,omitempty"`
-	PublishDate *string `json:"publish_date,omitempty"`
+	PublishDate *string `json:"publishDate,omitempty"`
 	Summary *string `json:"summary,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -182,7 +186,7 @@ type NewListMatch struct {
 	Category *string `json:"category,omitempty"`
 	Content *string `json:"content,omitempty"`
 	Id *string `json:"id,omitempty"`
-	PublishDate *string `json:"publish_date,omitempty"`
+	PublishDate *string `json:"publishDate,omitempty"`
 	Summary *string `json:"summary,omitempty"`
 	Title *string `json:"title,omitempty"`
 	Url *string `json:"url,omitempty"`
@@ -191,8 +195,8 @@ type NewListMatch struct {
 // Park is the typed data model for the park entity.
 type Park struct {
 	Address *string `json:"address,omitempty"`
-	Amenity *[]any `json:"amenity,omitempty"`
-	Hour *map[string]any `json:"hour,omitempty"`
+	Amenities *[]any `json:"amenities,omitempty"`
+	Hours *map[string]any `json:"hours,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -202,8 +206,8 @@ type Park struct {
 // ParkListMatch is the typed request payload for Park.ListTyped.
 type ParkListMatch struct {
 	Address *string `json:"address,omitempty"`
-	Amenity *[]any `json:"amenity,omitempty"`
-	Hour *map[string]any `json:"hour,omitempty"`
+	Amenities *[]any `json:"amenities,omitempty"`
+	Hours *map[string]any `json:"hours,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Phone *string `json:"phone,omitempty"`
@@ -212,25 +216,25 @@ type ParkListMatch struct {
 
 // Permit is the typed data model for the permit entity.
 type Permit struct {
-	ApplicationUrl *string `json:"application_url,omitempty"`
+	ApplicationUrl *string `json:"applicationUrl,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Fee *float64 `json:"fee,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	ProcessingTime *string `json:"processing_time,omitempty"`
-	Requirement *[]any `json:"requirement,omitempty"`
+	ProcessingTime *string `json:"processingTime,omitempty"`
+	Requirements *[]any `json:"requirements,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
 // PermitListMatch is the typed request payload for Permit.ListTyped.
 type PermitListMatch struct {
-	ApplicationUrl *string `json:"application_url,omitempty"`
+	ApplicationUrl *string `json:"applicationUrl,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Fee *float64 `json:"fee,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
-	ProcessingTime *string `json:"processing_time,omitempty"`
-	Requirement *[]any `json:"requirement,omitempty"`
+	ProcessingTime *string `json:"processingTime,omitempty"`
+	Requirements *[]any `json:"requirements,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -260,12 +264,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -277,12 +295,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

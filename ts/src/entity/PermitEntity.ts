@@ -37,7 +37,7 @@ class PermitEntity extends LasVegasCityEntityBase<Permit> {
 
 
 
-  async list(this: any, reqmatch?: PermitListMatch, ctrl?: Control): Promise<Permit[]> {
+  async list(this: any, reqmatch?: PermitListMatch, ctrl?: Control): Promise<PermitEntity[]> {
 
     const utility = this._utility
 

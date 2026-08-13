@@ -128,12 +128,12 @@ city_info = client.CityInfo()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
-| `annual_visitor` | `float` | No |  |
+| `annualVisitors` | `float` | No |  |
 | `established` | `int` | No |  |
 | `name` | `str` | No |  |
-| `number_of_park` | `int` | No |  |
+| `numberOfParks` | `int` | No |  |
 | `phone` | `str` | No |  |
-| `square_mile` | `float` | No |  |
+| `squareMiles` | `float` | No |  |
 
 ### Operations
 
@@ -247,7 +247,7 @@ department = client.Department()
 | `description` | `str` | No |  |
 | `id` | `str` | No |  |
 | `name` | `str` | No |  |
-| `service` | `list` | No |  |
+| `services` | `list` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -301,9 +301,9 @@ economic_development = client.EconomicDevelopment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `list` | No |  |
-| `initiatif` | `list` | No |  |
-| `resource` | `list` | No |  |
+| `industries` | `list` | No |  |
+| `initiatives` | `list` | No |  |
+| `resources` | `list` | No |  |
 
 ### Operations
 
@@ -358,12 +358,12 @@ event = client.Event()
 | --- | --- | --- | --- |
 | `category` | `str` | No |  |
 | `description` | `str` | No |  |
-| `end_date` | `str` | No |  |
+| `endDate` | `str` | No |  |
 | `id` | `str` | No |  |
-| `is_free` | `bool` | No |  |
+| `isFree` | `bool` | No |  |
 | `location` | `str` | No |  |
-| `start_date` | `str` | No |  |
-| `ticket_url` | `str` | No |  |
+| `startDate` | `str` | No |  |
+| `ticketUrl` | `str` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -417,15 +417,15 @@ job = client.Job()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `str` | No |  |
+| `applicationUrl` | `str` | No |  |
 | `category` | `str` | No |  |
-| `close_date` | `str` | No |  |
+| `closeDate` | `str` | No |  |
 | `department` | `str` | No |  |
 | `description` | `str` | No |  |
 | `id` | `str` | No |  |
-| `post_date` | `str` | No |  |
-| `requirement` | `list` | No |  |
-| `salary_range` | `dict` | No |  |
+| `postDate` | `str` | No |  |
+| `requirements` | `list` | No |  |
+| `salaryRange` | `dict` | No |  |
 | `title` | `str` | No |  |
 
 ### Operations
@@ -479,11 +479,11 @@ meeting = client.Meeting()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `str` | No |  |
+| `agendaUrl` | `str` | No |  |
 | `date` | `str` | No |  |
 | `id` | `str` | No |  |
 | `location` | `str` | No |  |
-| `minutes_url` | `str` | No |  |
+| `minutesUrl` | `str` | No |  |
 | `status` | `str` | No |  |
 | `title` | `str` | No |  |
 | `type` | `str` | No |  |
@@ -543,7 +543,7 @@ new = client.New()
 | `category` | `str` | No |  |
 | `content` | `str` | No |  |
 | `id` | `str` | No |  |
-| `publish_date` | `str` | No |  |
+| `publishDate` | `str` | No |  |
 | `summary` | `str` | No |  |
 | `title` | `str` | No |  |
 | `url` | `str` | No |  |
@@ -600,8 +600,8 @@ park = client.Park()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
-| `amenity` | `list` | No |  |
-| `hour` | `dict` | No |  |
+| `amenities` | `list` | No |  |
+| `hours` | `dict` | No |  |
 | `id` | `str` | No |  |
 | `name` | `str` | No |  |
 | `phone` | `str` | No |  |
@@ -658,13 +658,13 @@ permit = client.Permit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `str` | No |  |
+| `applicationUrl` | `str` | No |  |
 | `description` | `str` | No |  |
 | `fee` | `float` | No |  |
 | `id` | `str` | No |  |
 | `name` | `str` | No |  |
-| `processing_time` | `str` | No |  |
-| `requirement` | `list` | No |  |
+| `processingTime` | `str` | No |  |
+| `requirements` | `list` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from lasvegascity_sdk.utility.voxgig_struct import voxgig_struct as vs
 from lasvegascity_sdk import LasVegasCitySDK
-from core import helpers
+from lasvegascity_sdk.core import helpers
 from test import runner
 
 
@@ -56,11 +56,11 @@ def _public_safety_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "LASVEGASCITY_TEST_PUBLIC_SAFETY_ENTID": {},
-        "LASVEGASCITY_TEST_LIVE": "FALSE",
+        "LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID": {},
+        "LAS_VEGAS_CITY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("LASVEGASCITY_TEST_LIVE") == "TRUE"
+    live = env.get("LAS_VEGAS_CITY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

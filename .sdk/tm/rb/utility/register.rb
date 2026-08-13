@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ LasVegasCityUtility.registrar = ->(u) {
   u.prepare_params = LasVegasCityUtilities::PrepareParams
   u.prepare_path = LasVegasCityUtilities::PreparePath
   u.prepare_query = LasVegasCityUtilities::PrepareQuery
+  u.graphql_body = LasVegasCityUtilities::GraphqlBody
+  u.graphql_errors = LasVegasCityUtilities::GraphqlErrors
   u.result_basic = LasVegasCityUtilities::ResultBasic
   u.result_body = LasVegasCityUtilities::ResultBody
   u.result_headers = LasVegasCityUtilities::ResultHeaders

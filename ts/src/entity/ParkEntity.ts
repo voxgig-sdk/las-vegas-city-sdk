@@ -37,7 +37,7 @@ class ParkEntity extends LasVegasCityEntityBase<Park> {
 
 
 
-  async list(this: any, reqmatch?: ParkListMatch, ctrl?: Control): Promise<Park[]> {
+  async list(this: any, reqmatch?: ParkListMatch, ctrl?: Control): Promise<ParkEntity[]> {
 
     const utility = this._utility
 

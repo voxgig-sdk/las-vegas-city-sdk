@@ -61,11 +61,11 @@ function economic_development_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["LASVEGASCITY_TEST_ECONOMIC_DEVELOPMENT_ENTID"] = {},
-    ["LASVEGASCITY_TEST_LIVE"] = "FALSE",
+    ["LAS_VEGAS_CITY_TEST_ECONOMIC_DEVELOPMENT_ENTID"] = {},
+    ["LAS_VEGAS_CITY_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
+  local live = env["LAS_VEGAS_CITY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

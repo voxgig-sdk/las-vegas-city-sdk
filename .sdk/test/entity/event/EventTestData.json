@@ -4,34 +4,34 @@
       "EVENT00": {
         "category": "s5a",
         "description": "s5b",
-        "end_date": "s5c",
+        "endDate": "s5c",
         "id": "EVENT00",
-        "is_free": true,
+        "isFree": true,
         "location": "s5f",
-        "start_date": "s60",
-        "ticket_url": "s61",
+        "startDate": "s60",
+        "ticketUrl": "s61",
         "title": "s62"
       },
       "EVENT01": {
         "category": "sb4",
         "description": "sb5",
-        "end_date": "sb6",
+        "endDate": "sb6",
         "id": "EVENT01",
-        "is_free": true,
+        "isFree": true,
         "location": "sb9",
-        "start_date": "sba",
-        "ticket_url": "sbb",
+        "startDate": "sba",
+        "ticketUrl": "sbb",
         "title": "sbc"
       },
       "EVENT02": {
         "category": "s10e",
         "description": "s10f",
-        "end_date": "s110",
+        "endDate": "s110",
         "id": "EVENT02",
-        "is_free": true,
+        "isFree": true,
         "location": "s113",
-        "start_date": "s114",
-        "ticket_url": "s115",
+        "startDate": "s114",
+        "ticketUrl": "s115",
         "title": "s116"
       }
     }
@@ -41,11 +41,11 @@
       "event_ref01": {
         "category": "s168",
         "description": "s169",
-        "end_date": "s16a",
-        "is_free": true,
+        "endDate": "s16a",
+        "isFree": true,
         "location": "s16d",
-        "start_date": "s16e",
-        "ticket_url": "s16f",
+        "startDate": "s16e",
+        "ticketUrl": "s16f",
         "title": "s170"
       }
     }

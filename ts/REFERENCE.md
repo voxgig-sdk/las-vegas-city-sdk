@@ -237,12 +237,12 @@ const city_info = client.CityInfo()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `annual_visitor` | `number` | No |  |
+| `annualVisitors` | `number` | No |  |
 | `established` | `number` | No |  |
 | `name` | `string` | No |  |
-| `number_of_park` | `number` | No |  |
+| `numberOfParks` | `number` | No |  |
 | `phone` | `string` | No |  |
-| `square_mile` | `number` | No |  |
+| `squareMiles` | `number` | No |  |
 
 ### Operations
 
@@ -352,7 +352,7 @@ const department = client.Department()
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `service` | `any[]` | No |  |
+| `services` | `any[]` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -403,9 +403,9 @@ const economic_development = client.EconomicDevelopment()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `any[]` | No |  |
-| `initiatif` | `any[]` | No |  |
-| `resource` | `any[]` | No |  |
+| `industries` | `any[]` | No |  |
+| `initiatives` | `any[]` | No |  |
+| `resources` | `any[]` | No |  |
 
 ### Operations
 
@@ -457,12 +457,12 @@ const event = client.Event()
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `description` | `string` | No |  |
-| `end_date` | `string` | No |  |
+| `endDate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `is_free` | `boolean` | No |  |
+| `isFree` | `boolean` | No |  |
 | `location` | `string` | No |  |
-| `start_date` | `string` | No |  |
-| `ticket_url` | `string` | No |  |
+| `startDate` | `string` | No |  |
+| `ticketUrl` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -513,15 +513,15 @@ const job = client.Job()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `category` | `string` | No |  |
-| `close_date` | `string` | No |  |
+| `closeDate` | `string` | No |  |
 | `department` | `string` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `post_date` | `string` | No |  |
-| `requirement` | `any[]` | No |  |
-| `salary_range` | `Record<string, any>` | No |  |
+| `postDate` | `string` | No |  |
+| `requirements` | `any[]` | No |  |
+| `salaryRange` | `Record<string, any>` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -572,11 +572,11 @@ const meeting = client.Meeting()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `string` | No |  |
+| `agendaUrl` | `string` | No |  |
 | `date` | `string` | No |  |
 | `id` | `string` | No |  |
 | `location` | `string` | No |  |
-| `minutes_url` | `string` | No |  |
+| `minutesUrl` | `string` | No |  |
 | `status` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -633,7 +633,7 @@ const new_ = client.New()
 | `category` | `string` | No |  |
 | `content` | `string` | No |  |
 | `id` | `string` | No |  |
-| `publish_date` | `string` | No |  |
+| `publishDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -687,8 +687,8 @@ const park = client.Park()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `amenity` | `any[]` | No |  |
-| `hour` | `Record<string, any>` | No |  |
+| `amenities` | `any[]` | No |  |
+| `hours` | `Record<string, any>` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 | `phone` | `string` | No |  |
@@ -742,13 +742,13 @@ const permit = client.Permit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `description` | `string` | No |  |
 | `fee` | `number` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `processing_time` | `string` | No |  |
-| `requirement` | `any[]` | No |  |
+| `processingTime` | `string` | No |  |
+| `requirements` | `any[]` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

@@ -26,8 +26,8 @@ import {
 describe('CityInfoEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LASVEGASCITY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LASVEGASCITY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LAS_VEGAS_CITY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LAS_VEGAS_CITY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LasVegasCitySDK.test()
@@ -62,7 +62,7 @@ describe('CityInfoEntity', async () => {
     // LOAD
     const city_info_ref01_ent = client.CityInfo()
     const city_info_ref01_match_dt0: any = {}
-    const city_info_ref01_data_dt0 = await city_info_ref01_ent.load(city_info_ref01_match_dt0)
+    const city_info_ref01_data_dt0 = (await city_info_ref01_ent.load(city_info_ref01_match_dt0)).data()
     assert(null != city_info_ref01_data_dt0)
 
 

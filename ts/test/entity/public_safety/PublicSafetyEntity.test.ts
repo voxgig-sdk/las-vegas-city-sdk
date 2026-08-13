@@ -26,8 +26,8 @@ import {
 describe('PublicSafetyEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LASVEGASCITY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LASVEGASCITY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LAS_VEGAS_CITY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LAS_VEGAS_CITY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LasVegasCitySDK.test()
@@ -62,7 +62,7 @@ describe('PublicSafetyEntity', async () => {
     // LOAD
     const public_safety_ref01_ent = client.PublicSafety()
     const public_safety_ref01_match_dt0: any = {}
-    const public_safety_ref01_data_dt0 = await public_safety_ref01_ent.load(public_safety_ref01_match_dt0)
+    const public_safety_ref01_data_dt0 = (await public_safety_ref01_ent.load(public_safety_ref01_match_dt0)).data()
     assert(null != public_safety_ref01_data_dt0)
 
 

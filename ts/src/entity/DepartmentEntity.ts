@@ -37,7 +37,7 @@ class DepartmentEntity extends LasVegasCityEntityBase<Department> {
 
 
 
-  async list(this: any, reqmatch?: DepartmentListMatch, ctrl?: Control): Promise<Department[]> {
+  async list(this: any, reqmatch?: DepartmentListMatch, ctrl?: Control): Promise<DepartmentEntity[]> {
 
     const utility = this._utility
 

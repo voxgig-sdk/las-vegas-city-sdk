@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local cityinfo, err = client:CityInfo():load()
+local councils, err = client:Council():list()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:CityInfo():load()
+local result, err = client:Council():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -238,12 +238,12 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `annual_visitor` |  |
+| `annualVisitors` |  |
 | `established` |  |
 | `name` |  |
-| `number_of_park` |  |
+| `numberOfParks` |  |
 | `phone` |  |
-| `square_mile` |  |
+| `squareMiles` |  |
 
 Operations: Load.
 
@@ -273,7 +273,7 @@ API path: `/council`
 | `description` |  |
 | `id` |  |
 | `name` |  |
-| `service` |  |
+| `services` |  |
 | `url` |  |
 
 Operations: List.
@@ -284,9 +284,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `industry` |  |
-| `initiatif` |  |
-| `resource` |  |
+| `industries` |  |
+| `initiatives` |  |
+| `resources` |  |
 
 Operations: List.
 
@@ -298,12 +298,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `category` |  |
 | `description` |  |
-| `end_date` |  |
+| `endDate` |  |
 | `id` |  |
-| `is_free` |  |
+| `isFree` |  |
 | `location` |  |
-| `start_date` |  |
-| `ticket_url` |  |
+| `startDate` |  |
+| `ticketUrl` |  |
 | `title` |  |
 
 Operations: List.
@@ -314,15 +314,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `category` |  |
-| `close_date` |  |
+| `closeDate` |  |
 | `department` |  |
 | `description` |  |
 | `id` |  |
-| `post_date` |  |
-| `requirement` |  |
-| `salary_range` |  |
+| `postDate` |  |
+| `requirements` |  |
+| `salaryRange` |  |
 | `title` |  |
 
 Operations: List.
@@ -333,11 +333,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `agenda_url` |  |
+| `agendaUrl` |  |
 | `date` |  |
 | `id` |  |
 | `location` |  |
-| `minutes_url` |  |
+| `minutesUrl` |  |
 | `status` |  |
 | `title` |  |
 | `type` |  |
@@ -354,7 +354,7 @@ API path: `/meetings`
 | `category` |  |
 | `content` |  |
 | `id` |  |
-| `publish_date` |  |
+| `publishDate` |  |
 | `summary` |  |
 | `title` |  |
 | `url` |  |
@@ -368,8 +368,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `amenity` |  |
-| `hour` |  |
+| `amenities` |  |
+| `hours` |  |
 | `id` |  |
 | `name` |  |
 | `phone` |  |
@@ -383,13 +383,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `description` |  |
 | `fee` |  |
 | `id` |  |
 | `name` |  |
-| `processing_time` |  |
-| `requirement` |  |
+| `processingTime` |  |
+| `requirements` |  |
 | `type` |  |
 
 Operations: List.
@@ -428,12 +428,12 @@ Create an instance: `local city_info = client:CityInfo(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `annual_visitor` | `number` |  |
+| `annualVisitors` | `number` |  |
 | `established` | `number` |  |
 | `name` | `string` |  |
-| `number_of_park` | `number` |  |
+| `numberOfParks` | `number` |  |
 | `phone` | `string` |  |
-| `square_mile` | `number` |  |
+| `squareMiles` | `number` |  |
 
 #### Example: Load
 
@@ -489,7 +489,7 @@ Create an instance: `local department = client:Department(nil)`
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `service` | `table` |  |
+| `services` | `table` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -513,9 +513,9 @@ Create an instance: `local economic_development = client:EconomicDevelopment(nil
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `table` |  |
-| `initiatif` | `table` |  |
-| `resource` | `table` |  |
+| `industries` | `table` |  |
+| `initiatives` | `table` |  |
+| `resources` | `table` |  |
 
 #### Example: List
 
@@ -540,12 +540,12 @@ Create an instance: `local event = client:Event(nil)`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `description` | `string` |  |
-| `end_date` | `string` |  |
+| `endDate` | `string` |  |
 | `id` | `string` |  |
-| `is_free` | `boolean` |  |
+| `isFree` | `boolean` |  |
 | `location` | `string` |  |
-| `start_date` | `string` |  |
-| `ticket_url` | `string` |  |
+| `startDate` | `string` |  |
+| `ticketUrl` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -569,15 +569,15 @@ Create an instance: `local job = client:Job(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `category` | `string` |  |
-| `close_date` | `string` |  |
+| `closeDate` | `string` |  |
 | `department` | `string` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `post_date` | `string` |  |
-| `requirement` | `table` |  |
-| `salary_range` | `table` |  |
+| `postDate` | `string` |  |
+| `requirements` | `table` |  |
+| `salaryRange` | `table` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -601,11 +601,11 @@ Create an instance: `local meeting = client:Meeting(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `string` |  |
+| `agendaUrl` | `string` |  |
 | `date` | `string` |  |
 | `id` | `string` |  |
 | `location` | `string` |  |
-| `minutes_url` | `string` |  |
+| `minutesUrl` | `string` |  |
 | `status` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
@@ -635,7 +635,7 @@ Create an instance: `local new = client:New(nil)`
 | `category` | `string` |  |
 | `content` | `string` |  |
 | `id` | `string` |  |
-| `publish_date` | `string` |  |
+| `publishDate` | `string` |  |
 | `summary` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -662,8 +662,8 @@ Create an instance: `local park = client:Park(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `amenity` | `table` |  |
-| `hour` | `table` |  |
+| `amenities` | `table` |  |
+| `hours` | `table` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 | `phone` | `string` |  |
@@ -690,13 +690,13 @@ Create an instance: `local permit = client:Permit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `description` | `string` |  |
 | `fee` | `number` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `processing_time` | `string` |  |
-| `requirement` | `table` |  |
+| `processingTime` | `string` |  |
+| `requirements` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -803,15 +803,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local cityinfo = client:CityInfo()
-cityinfo:load()
+local council = client:Council()
+council:list()
 
--- cityinfo:data_get() now returns the cityinfo data from the last load
--- cityinfo:match_get() returns the last match criteria
+-- council:data_get() now returns the council data from the last list
+-- council:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

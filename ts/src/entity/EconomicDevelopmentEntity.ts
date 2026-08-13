@@ -37,7 +37,7 @@ class EconomicDevelopmentEntity extends LasVegasCityEntityBase<EconomicDevelopme
 
 
 
-  async list(this: any, reqmatch?: EconomicDevelopmentListMatch, ctrl?: Control): Promise<EconomicDevelopment[]> {
+  async list(this: any, reqmatch?: EconomicDevelopmentListMatch, ctrl?: Control): Promise<EconomicDevelopmentEntity[]> {
 
     const utility = this._utility
 

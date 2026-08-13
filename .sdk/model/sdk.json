@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "city_info": {
           "active": true,
@@ -33,7 +38,7 @@
             },
             {
               "active": true,
-              "name": "annual_visitor",
+              "name": "annualVisitors",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -51,7 +56,7 @@
             },
             {
               "active": true,
-              "name": "number_of_park",
+              "name": "numberOfParks",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -63,7 +68,7 @@
             },
             {
               "active": true,
-              "name": "square_mile",
+              "name": "squareMiles",
               "req": false,
               "type": "`$NUMBER`"
             }
@@ -77,6 +82,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/city-info",
                   "parts": [
@@ -157,6 +163,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/council",
                   "parts": [
@@ -207,7 +214,7 @@
             },
             {
               "active": true,
-              "name": "service",
+              "name": "services",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -231,6 +238,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/departments",
                   "parts": [
@@ -257,19 +265,19 @@
           "fields": [
             {
               "active": true,
-              "name": "industry",
+              "name": "industries",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "initiatif",
+              "name": "initiatives",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "resource",
+              "name": "resources",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -283,6 +291,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/business/economic-development",
                   "parts": [
@@ -322,7 +331,7 @@
             },
             {
               "active": true,
-              "name": "end_date",
+              "name": "endDate",
               "req": false,
               "type": "`$STRING`"
             },
@@ -334,7 +343,7 @@
             },
             {
               "active": true,
-              "name": "is_free",
+              "name": "isFree",
               "req": false,
               "type": "`$BOOLEAN`"
             },
@@ -346,13 +355,13 @@
             },
             {
               "active": true,
-              "name": "start_date",
+              "name": "startDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "ticket_url",
+              "name": "ticketUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -403,6 +412,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/events",
                   "parts": [
@@ -435,7 +445,7 @@
           "fields": [
             {
               "active": true,
-              "name": "application_url",
+              "name": "applicationUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -447,7 +457,7 @@
             },
             {
               "active": true,
-              "name": "close_date",
+              "name": "closeDate",
               "req": false,
               "type": "`$STRING`"
             },
@@ -471,19 +481,19 @@
             },
             {
               "active": true,
-              "name": "post_date",
+              "name": "postDate",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "requirement",
+              "name": "requirements",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "salary_range",
+              "name": "salaryRange",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -526,6 +536,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/jobs",
                   "parts": [
@@ -557,7 +568,7 @@
           "fields": [
             {
               "active": true,
-              "name": "agenda_url",
+              "name": "agendaUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -581,7 +592,7 @@
             },
             {
               "active": true,
-              "name": "minutes_url",
+              "name": "minutesUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -636,6 +647,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/meetings",
                   "parts": [
@@ -691,7 +703,7 @@
             },
             {
               "active": true,
-              "name": "publish_date",
+              "name": "publishDate",
               "req": false,
               "type": "`$STRING`"
             },
@@ -747,6 +759,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/news",
                   "parts": [
@@ -784,13 +797,13 @@
             },
             {
               "active": true,
-              "name": "amenity",
+              "name": "amenities",
               "req": false,
               "type": "`$ARRAY`"
             },
             {
               "active": true,
-              "name": "hour",
+              "name": "hours",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -851,6 +864,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/parks",
                   "parts": [
@@ -882,7 +896,7 @@
           "fields": [
             {
               "active": true,
-              "name": "application_url",
+              "name": "applicationUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -912,13 +926,13 @@
             },
             {
               "active": true,
-              "name": "processing_time",
+              "name": "processingTime",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "requirement",
+              "name": "requirements",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -953,6 +967,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/permits",
                   "parts": [
@@ -1009,6 +1024,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/public-safety",
                   "parts": [
@@ -1437,18 +1453,41 @@
         "website": "https://lasvegasnevada.gov"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1470,22 +1509,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1524,21 +1581,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1577,12 +1652,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1594,10 +1674,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1619,22 +1712,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1656,13 +1767,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1674,10 +1790,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1699,13 +1828,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1722,10 +1856,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1747,13 +1894,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1776,10 +1928,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "las-vegas-city"
+            "goversion": "",
+            "name": "las-vegas-city",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1801,9 +1966,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

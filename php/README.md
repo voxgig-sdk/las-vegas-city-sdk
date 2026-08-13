@@ -35,7 +35,7 @@ $client = new LasVegasCitySDK();
 
 ```php
 try {
-    // load() returns the bare CityInfo record (throws on error).
+    // load() returns the ENTITY — call data_get() for the CityInfo record (throws on error).
     $cityinfo = $client->CityInfo()->load();
     print_r($cityinfo);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $cityinfo = $client->CityInfo()->load();
+    $councils = $client->Council()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -123,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = LasVegasCitySDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$cityinfo = $client->CityInfo()->load();
-print_r($cityinfo);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$council = $client->Council()->list();
+print_r($council);
 ```
 
 ### Use a custom fetch function
@@ -233,7 +234,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -256,12 +257,12 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `annual_visitor` |  |
+| `annualVisitors` |  |
 | `established` |  |
 | `name` |  |
-| `number_of_park` |  |
+| `numberOfParks` |  |
 | `phone` |  |
-| `square_mile` |  |
+| `squareMiles` |  |
 
 Operations: Load.
 
@@ -291,7 +292,7 @@ API path: `/council`
 | `description` |  |
 | `id` |  |
 | `name` |  |
-| `service` |  |
+| `services` |  |
 | `url` |  |
 
 Operations: List.
@@ -302,9 +303,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `industry` |  |
-| `initiatif` |  |
-| `resource` |  |
+| `industries` |  |
+| `initiatives` |  |
+| `resources` |  |
 
 Operations: List.
 
@@ -316,12 +317,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `category` |  |
 | `description` |  |
-| `end_date` |  |
+| `endDate` |  |
 | `id` |  |
-| `is_free` |  |
+| `isFree` |  |
 | `location` |  |
-| `start_date` |  |
-| `ticket_url` |  |
+| `startDate` |  |
+| `ticketUrl` |  |
 | `title` |  |
 
 Operations: List.
@@ -332,15 +333,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `category` |  |
-| `close_date` |  |
+| `closeDate` |  |
 | `department` |  |
 | `description` |  |
 | `id` |  |
-| `post_date` |  |
-| `requirement` |  |
-| `salary_range` |  |
+| `postDate` |  |
+| `requirements` |  |
+| `salaryRange` |  |
 | `title` |  |
 
 Operations: List.
@@ -351,11 +352,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `agenda_url` |  |
+| `agendaUrl` |  |
 | `date` |  |
 | `id` |  |
 | `location` |  |
-| `minutes_url` |  |
+| `minutesUrl` |  |
 | `status` |  |
 | `title` |  |
 | `type` |  |
@@ -372,7 +373,7 @@ API path: `/meetings`
 | `category` |  |
 | `content` |  |
 | `id` |  |
-| `publish_date` |  |
+| `publishDate` |  |
 | `summary` |  |
 | `title` |  |
 | `url` |  |
@@ -386,8 +387,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `amenity` |  |
-| `hour` |  |
+| `amenities` |  |
+| `hours` |  |
 | `id` |  |
 | `name` |  |
 | `phone` |  |
@@ -401,13 +402,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `description` |  |
 | `fee` |  |
 | `id` |  |
 | `name` |  |
-| `processing_time` |  |
-| `requirement` |  |
+| `processingTime` |  |
+| `requirements` |  |
 | `type` |  |
 
 Operations: List.
@@ -446,17 +447,17 @@ Create an instance: `$city_info = $client->CityInfo();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `annual_visitor` | `float` |  |
+| `annualVisitors` | `float` |  |
 | `established` | `int` |  |
 | `name` | `string` |  |
-| `number_of_park` | `int` |  |
+| `numberOfParks` | `int` |  |
 | `phone` | `string` |  |
-| `square_mile` | `float` |  |
+| `squareMiles` | `float` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare CityInfo record (throws on error).
+// load() returns the ENTITY — call data_get() for the CityInfo record (throws on error).
 $city_info = $client->CityInfo()->load();
 ```
 
@@ -509,7 +510,7 @@ Create an instance: `$department = $client->Department();`
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `service` | `array` |  |
+| `services` | `array` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -534,9 +535,9 @@ Create an instance: `$economic_development = $client->EconomicDevelopment();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `array` |  |
-| `initiatif` | `array` |  |
-| `resource` | `array` |  |
+| `industries` | `array` |  |
+| `initiatives` | `array` |  |
+| `resources` | `array` |  |
 
 #### Example: List
 
@@ -562,12 +563,12 @@ Create an instance: `$event = $client->Event();`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `description` | `string` |  |
-| `end_date` | `string` |  |
+| `endDate` | `string` |  |
 | `id` | `string` |  |
-| `is_free` | `bool` |  |
+| `isFree` | `bool` |  |
 | `location` | `string` |  |
-| `start_date` | `string` |  |
-| `ticket_url` | `string` |  |
+| `startDate` | `string` |  |
+| `ticketUrl` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -592,15 +593,15 @@ Create an instance: `$job = $client->Job();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `category` | `string` |  |
-| `close_date` | `string` |  |
+| `closeDate` | `string` |  |
 | `department` | `string` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `post_date` | `string` |  |
-| `requirement` | `array` |  |
-| `salary_range` | `array` |  |
+| `postDate` | `string` |  |
+| `requirements` | `array` |  |
+| `salaryRange` | `array` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -625,11 +626,11 @@ Create an instance: `$meeting = $client->Meeting();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `string` |  |
+| `agendaUrl` | `string` |  |
 | `date` | `string` |  |
 | `id` | `string` |  |
 | `location` | `string` |  |
-| `minutes_url` | `string` |  |
+| `minutesUrl` | `string` |  |
 | `status` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
@@ -660,7 +661,7 @@ Create an instance: `$new = $client->New();`
 | `category` | `string` |  |
 | `content` | `string` |  |
 | `id` | `string` |  |
-| `publish_date` | `string` |  |
+| `publishDate` | `string` |  |
 | `summary` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -688,8 +689,8 @@ Create an instance: `$park = $client->Park();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `amenity` | `array` |  |
-| `hour` | `array` |  |
+| `amenities` | `array` |  |
+| `hours` | `array` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 | `phone` | `string` |  |
@@ -717,13 +718,13 @@ Create an instance: `$permit = $client->Permit();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `description` | `string` |  |
 | `fee` | `float` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `processing_time` | `string` |  |
-| `requirement` | `array` |  |
+| `processingTime` | `string` |  |
+| `requirements` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -755,7 +756,7 @@ Create an instance: `$public_safety = $client->PublicSafety();`
 #### Example: Load
 
 ```php
-// load() returns the bare PublicSafety record (throws on error).
+// load() returns the ENTITY — call data_get() for the PublicSafety record (throws on error).
 $public_safety = $client->PublicSafety()->load();
 ```
 
@@ -832,15 +833,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$cityinfo = $client->CityInfo();
-$cityinfo->load();
+$council = $client->Council();
+$council->list();
 
-// $cityinfo->data_get() now returns the cityinfo data from the last load
-// $cityinfo->match_get() returns the last match criteria
+// $council->data_get() now returns the council data from the last list
+// $council->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

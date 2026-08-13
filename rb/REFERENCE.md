@@ -134,12 +134,12 @@ city_info = client.CityInfo
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
-| `annual_visitor` | `Float` | No |  |
+| `annualVisitors` | `Float` | No |  |
 | `established` | `Integer` | No |  |
 | `name` | `String` | No |  |
-| `number_of_park` | `Integer` | No |  |
+| `numberOfParks` | `Integer` | No |  |
 | `phone` | `String` | No |  |
-| `square_mile` | `Float` | No |  |
+| `squareMiles` | `Float` | No |  |
 
 ### Operations
 
@@ -253,7 +253,7 @@ department = client.Department
 | `description` | `String` | No |  |
 | `id` | `String` | No |  |
 | `name` | `String` | No |  |
-| `service` | `Array` | No |  |
+| `services` | `Array` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -306,9 +306,9 @@ economic_development = client.EconomicDevelopment
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `Array` | No |  |
-| `initiatif` | `Array` | No |  |
-| `resource` | `Array` | No |  |
+| `industries` | `Array` | No |  |
+| `initiatives` | `Array` | No |  |
+| `resources` | `Array` | No |  |
 
 ### Operations
 
@@ -362,12 +362,12 @@ event = client.Event
 | --- | --- | --- | --- |
 | `category` | `String` | No |  |
 | `description` | `String` | No |  |
-| `end_date` | `String` | No |  |
+| `endDate` | `String` | No |  |
 | `id` | `String` | No |  |
-| `is_free` | `Boolean` | No |  |
+| `isFree` | `Boolean` | No |  |
 | `location` | `String` | No |  |
-| `start_date` | `String` | No |  |
-| `ticket_url` | `String` | No |  |
+| `startDate` | `String` | No |  |
+| `ticketUrl` | `String` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -420,15 +420,15 @@ job = client.Job
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `String` | No |  |
+| `applicationUrl` | `String` | No |  |
 | `category` | `String` | No |  |
-| `close_date` | `String` | No |  |
+| `closeDate` | `String` | No |  |
 | `department` | `String` | No |  |
 | `description` | `String` | No |  |
 | `id` | `String` | No |  |
-| `post_date` | `String` | No |  |
-| `requirement` | `Array` | No |  |
-| `salary_range` | `Hash` | No |  |
+| `postDate` | `String` | No |  |
+| `requirements` | `Array` | No |  |
+| `salaryRange` | `Hash` | No |  |
 | `title` | `String` | No |  |
 
 ### Operations
@@ -481,11 +481,11 @@ meeting = client.Meeting
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `String` | No |  |
+| `agendaUrl` | `String` | No |  |
 | `date` | `String` | No |  |
 | `id` | `String` | No |  |
 | `location` | `String` | No |  |
-| `minutes_url` | `String` | No |  |
+| `minutesUrl` | `String` | No |  |
 | `status` | `String` | No |  |
 | `title` | `String` | No |  |
 | `type` | `String` | No |  |
@@ -544,7 +544,7 @@ new = client.New
 | `category` | `String` | No |  |
 | `content` | `String` | No |  |
 | `id` | `String` | No |  |
-| `publish_date` | `String` | No |  |
+| `publishDate` | `String` | No |  |
 | `summary` | `String` | No |  |
 | `title` | `String` | No |  |
 | `url` | `String` | No |  |
@@ -600,8 +600,8 @@ park = client.Park
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
-| `amenity` | `Array` | No |  |
-| `hour` | `Hash` | No |  |
+| `amenities` | `Array` | No |  |
+| `hours` | `Hash` | No |  |
 | `id` | `String` | No |  |
 | `name` | `String` | No |  |
 | `phone` | `String` | No |  |
@@ -657,13 +657,13 @@ permit = client.Permit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `String` | No |  |
+| `applicationUrl` | `String` | No |  |
 | `description` | `String` | No |  |
 | `fee` | `Float` | No |  |
 | `id` | `String` | No |  |
 | `name` | `String` | No |  |
-| `processing_time` | `String` | No |  |
-| `requirement` | `Array` | No |  |
+| `processingTime` | `String` | No |  |
+| `requirements` | `Array` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations

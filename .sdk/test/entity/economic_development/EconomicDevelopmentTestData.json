@@ -2,28 +2,28 @@
   "existing": {
     "economic_development": {
       "ECONOMIC_DEVELOPMENT00": {
-        "industry": [],
-        "initiatif": [],
-        "resource": []
+        "industries": [],
+        "initiatives": [],
+        "resources": []
       },
       "ECONOMIC_DEVELOPMENT01": {
-        "industry": [],
-        "initiatif": [],
-        "resource": []
+        "industries": [],
+        "initiatives": [],
+        "resources": []
       },
       "ECONOMIC_DEVELOPMENT02": {
-        "industry": [],
-        "initiatif": [],
-        "resource": []
+        "industries": [],
+        "initiatives": [],
+        "resources": []
       }
     }
   },
   "new": {
     "economic_development": {
       "economic_development_ref01": {
-        "industry": [],
-        "initiatif": [],
-        "resource": []
+        "industries": [],
+        "initiatives": [],
+        "resources": []
       }
     }
   }

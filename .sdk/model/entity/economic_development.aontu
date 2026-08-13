@@ -6,17 +6,17 @@ main: kit: entity: economic_development: {
 
   fields: [
     {
-      name: "industry"
+      name: "industries"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "initiatif"
+      name: "initiatives"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "resource"
+      name: "resources"
       req: false
       type: "`$ARRAY`"
     }

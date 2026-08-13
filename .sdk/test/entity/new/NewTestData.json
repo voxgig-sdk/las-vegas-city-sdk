@@ -6,7 +6,7 @@
         "category": "s51",
         "content": "s52",
         "id": "NEW00",
-        "publish_date": "s54",
+        "publishDate": "s54",
         "summary": "s55",
         "title": "s56",
         "url": "s57"
@@ -16,7 +16,7 @@
         "category": "sa1",
         "content": "sa2",
         "id": "NEW01",
-        "publish_date": "sa4",
+        "publishDate": "sa4",
         "summary": "sa5",
         "title": "sa6",
         "url": "sa7"
@@ -26,7 +26,7 @@
         "category": "sf1",
         "content": "sf2",
         "id": "NEW02",
-        "publish_date": "sf4",
+        "publishDate": "sf4",
         "summary": "sf5",
         "title": "sf6",
         "url": "sf7"
@@ -39,7 +39,7 @@
         "author": "s140",
         "category": "s141",
         "content": "s142",
-        "publish_date": "s144",
+        "publishDate": "s144",
         "summary": "s145",
         "title": "s146",
         "url": "s147"

@@ -6,7 +6,7 @@ main: kit: entity: job: {
 
   fields: [
     {
-      name: "application_url"
+      name: "applicationUrl"
       req: false
       type: "`$STRING`"
     }
@@ -16,7 +16,7 @@ main: kit: entity: job: {
       type: "`$STRING`"
     }
     {
-      name: "close_date"
+      name: "closeDate"
       req: false
       type: "`$STRING`"
     }
@@ -36,17 +36,17 @@ main: kit: entity: job: {
       type: "`$STRING`"
     }
     {
-      name: "post_date"
+      name: "postDate"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "requirement"
+      name: "requirements"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "salary_range"
+      name: "salaryRange"
       req: false
       type: "`$OBJECT`"
     }

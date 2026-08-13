@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'LasVegasCity',
   }
 
 
@@ -93,7 +93,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "annual_visitor",
+          "name": "annualVisitors",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 1
@@ -114,7 +114,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "number_of_park",
+          "name": "numberOfParks",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 4
@@ -128,7 +128,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "square_mile",
+          "name": "squareMiles",
           "req": false,
           "type": "`$NUMBER`",
           "index$": 6
@@ -143,6 +143,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/city-info",
               "parts": [
@@ -224,6 +225,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/council",
               "parts": [
@@ -276,7 +278,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "service",
+          "name": "services",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 4
@@ -298,6 +300,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/departments",
               "parts": [
@@ -322,21 +325,21 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "industry",
+          "name": "industries",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "initiatif",
+          "name": "initiatives",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "resource",
+          "name": "resources",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -351,6 +354,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/business/economic-development",
               "parts": [
@@ -390,7 +394,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "end_date",
+          "name": "endDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -404,7 +408,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "is_free",
+          "name": "isFree",
           "req": false,
           "type": "`$BOOLEAN`",
           "index$": 4
@@ -418,14 +422,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "start_date",
+          "name": "startDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "ticket_url",
+          "name": "ticketUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 7
@@ -474,6 +478,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/events",
               "parts": [
@@ -504,7 +509,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "application_url",
+          "name": "applicationUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -518,7 +523,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "close_date",
+          "name": "closeDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -546,21 +551,21 @@ class Config {
         },
         {
           "active": true,
-          "name": "post_date",
+          "name": "postDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 6
         },
         {
           "active": true,
-          "name": "requirement",
+          "name": "requirements",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "salary_range",
+          "name": "salaryRange",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 8
@@ -601,6 +606,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/jobs",
               "parts": [
@@ -630,7 +636,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "agenda_url",
+          "name": "agendaUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -658,7 +664,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "minutes_url",
+          "name": "minutesUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
@@ -713,6 +719,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/meetings",
               "parts": [
@@ -770,7 +777,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "publish_date",
+          "name": "publishDate",
           "req": false,
           "type": "`$STRING`",
           "index$": 4
@@ -826,6 +833,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/news",
               "parts": [
@@ -862,14 +870,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "amenity",
+          "name": "amenities",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "hour",
+          "name": "hours",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 2
@@ -931,6 +939,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/parks",
               "parts": [
@@ -960,7 +969,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "application_url",
+          "name": "applicationUrl",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
@@ -995,14 +1004,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "processing_time",
+          "name": "processingTime",
           "req": false,
           "type": "`$STRING`",
           "index$": 5
         },
         {
           "active": true,
-          "name": "requirement",
+          "name": "requirements",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 6
@@ -1035,6 +1044,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/permits",
               "parts": [
@@ -1092,6 +1102,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/public-safety",
               "parts": [

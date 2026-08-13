@@ -38,7 +38,7 @@ client = LasVegasCitySDK()
 
 ### 3. Load a cityinfo
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,10 +55,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    cityinfo = client.CityInfo().load()
-    print(cityinfo)
+    councils = client.Council().list()
+    print(councils)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = LasVegasCitySDK.test()
 
-# Entity ops return the bare record and raise on error.
-cityinfo = client.CityInfo().load()
-# cityinfo contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+council = client.Council().list()
+# council contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -229,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -252,12 +253,12 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `annual_visitor` |  |
+| `annualVisitors` |  |
 | `established` |  |
 | `name` |  |
-| `number_of_park` |  |
+| `numberOfParks` |  |
 | `phone` |  |
-| `square_mile` |  |
+| `squareMiles` |  |
 
 Operations: Load.
 
@@ -287,7 +288,7 @@ API path: `/council`
 | `description` |  |
 | `id` |  |
 | `name` |  |
-| `service` |  |
+| `services` |  |
 | `url` |  |
 
 Operations: List.
@@ -298,9 +299,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `industry` |  |
-| `initiatif` |  |
-| `resource` |  |
+| `industries` |  |
+| `initiatives` |  |
+| `resources` |  |
 
 Operations: List.
 
@@ -312,12 +313,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `category` |  |
 | `description` |  |
-| `end_date` |  |
+| `endDate` |  |
 | `id` |  |
-| `is_free` |  |
+| `isFree` |  |
 | `location` |  |
-| `start_date` |  |
-| `ticket_url` |  |
+| `startDate` |  |
+| `ticketUrl` |  |
 | `title` |  |
 
 Operations: List.
@@ -328,15 +329,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `category` |  |
-| `close_date` |  |
+| `closeDate` |  |
 | `department` |  |
 | `description` |  |
 | `id` |  |
-| `post_date` |  |
-| `requirement` |  |
-| `salary_range` |  |
+| `postDate` |  |
+| `requirements` |  |
+| `salaryRange` |  |
 | `title` |  |
 
 Operations: List.
@@ -347,11 +348,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `agenda_url` |  |
+| `agendaUrl` |  |
 | `date` |  |
 | `id` |  |
 | `location` |  |
-| `minutes_url` |  |
+| `minutesUrl` |  |
 | `status` |  |
 | `title` |  |
 | `type` |  |
@@ -368,7 +369,7 @@ API path: `/meetings`
 | `category` |  |
 | `content` |  |
 | `id` |  |
-| `publish_date` |  |
+| `publishDate` |  |
 | `summary` |  |
 | `title` |  |
 | `url` |  |
@@ -382,8 +383,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `amenity` |  |
-| `hour` |  |
+| `amenities` |  |
+| `hours` |  |
 | `id` |  |
 | `name` |  |
 | `phone` |  |
@@ -397,13 +398,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `description` |  |
 | `fee` |  |
 | `id` |  |
 | `name` |  |
-| `processing_time` |  |
-| `requirement` |  |
+| `processingTime` |  |
+| `requirements` |  |
 | `type` |  |
 
 Operations: List.
@@ -442,12 +443,12 @@ Create an instance: `city_info = client.CityInfo()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `str` |  |
-| `annual_visitor` | `float` |  |
+| `annualVisitors` | `float` |  |
 | `established` | `int` |  |
 | `name` | `str` |  |
-| `number_of_park` | `int` |  |
+| `numberOfParks` | `int` |  |
 | `phone` | `str` |  |
-| `square_mile` | `float` |  |
+| `squareMiles` | `float` |  |
 
 #### Example: Load
 
@@ -503,7 +504,7 @@ Create an instance: `department = client.Department()`
 | `description` | `str` |  |
 | `id` | `str` |  |
 | `name` | `str` |  |
-| `service` | `list` |  |
+| `services` | `list` |  |
 | `url` | `str` |  |
 
 #### Example: List
@@ -527,9 +528,9 @@ Create an instance: `economic_development = client.EconomicDevelopment()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `list` |  |
-| `initiatif` | `list` |  |
-| `resource` | `list` |  |
+| `industries` | `list` |  |
+| `initiatives` | `list` |  |
+| `resources` | `list` |  |
 
 #### Example: List
 
@@ -554,12 +555,12 @@ Create an instance: `event = client.Event()`
 | --- | --- | --- |
 | `category` | `str` |  |
 | `description` | `str` |  |
-| `end_date` | `str` |  |
+| `endDate` | `str` |  |
 | `id` | `str` |  |
-| `is_free` | `bool` |  |
+| `isFree` | `bool` |  |
 | `location` | `str` |  |
-| `start_date` | `str` |  |
-| `ticket_url` | `str` |  |
+| `startDate` | `str` |  |
+| `ticketUrl` | `str` |  |
 | `title` | `str` |  |
 
 #### Example: List
@@ -583,15 +584,15 @@ Create an instance: `job = client.Job()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `str` |  |
+| `applicationUrl` | `str` |  |
 | `category` | `str` |  |
-| `close_date` | `str` |  |
+| `closeDate` | `str` |  |
 | `department` | `str` |  |
 | `description` | `str` |  |
 | `id` | `str` |  |
-| `post_date` | `str` |  |
-| `requirement` | `list` |  |
-| `salary_range` | `dict` |  |
+| `postDate` | `str` |  |
+| `requirements` | `list` |  |
+| `salaryRange` | `dict` |  |
 | `title` | `str` |  |
 
 #### Example: List
@@ -615,11 +616,11 @@ Create an instance: `meeting = client.Meeting()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `str` |  |
+| `agendaUrl` | `str` |  |
 | `date` | `str` |  |
 | `id` | `str` |  |
 | `location` | `str` |  |
-| `minutes_url` | `str` |  |
+| `minutesUrl` | `str` |  |
 | `status` | `str` |  |
 | `title` | `str` |  |
 | `type` | `str` |  |
@@ -649,7 +650,7 @@ Create an instance: `new = client.New()`
 | `category` | `str` |  |
 | `content` | `str` |  |
 | `id` | `str` |  |
-| `publish_date` | `str` |  |
+| `publishDate` | `str` |  |
 | `summary` | `str` |  |
 | `title` | `str` |  |
 | `url` | `str` |  |
@@ -676,8 +677,8 @@ Create an instance: `park = client.Park()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `str` |  |
-| `amenity` | `list` |  |
-| `hour` | `dict` |  |
+| `amenities` | `list` |  |
+| `hours` | `dict` |  |
 | `id` | `str` |  |
 | `name` | `str` |  |
 | `phone` | `str` |  |
@@ -704,13 +705,13 @@ Create an instance: `permit = client.Permit()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `str` |  |
+| `applicationUrl` | `str` |  |
 | `description` | `str` |  |
 | `fee` | `float` |  |
 | `id` | `str` |  |
 | `name` | `str` |  |
-| `processing_time` | `str` |  |
-| `requirement` | `list` |  |
+| `processingTime` | `str` |  |
+| `requirements` | `list` |  |
 | `type` | `str` |  |
 
 #### Example: List
@@ -816,15 +817,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-cityinfo = client.CityInfo()
-cityinfo.load()
+council = client.Council()
+council.list()
 
-# cityinfo.data_get() now returns the cityinfo data from the last load
-# cityinfo.match_get() returns the last match criteria
+# council.data_get() now returns the council data from the last list
+# council.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

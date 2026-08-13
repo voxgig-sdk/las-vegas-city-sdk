@@ -37,7 +37,7 @@ class MeetingEntity extends LasVegasCityEntityBase<Meeting> {
 
 
 
-  async list(this: any, reqmatch?: MeetingListMatch, ctrl?: Control): Promise<Meeting[]> {
+  async list(this: any, reqmatch?: MeetingListMatch, ctrl?: Control): Promise<MeetingEntity[]> {
 
     const utility = this._utility
 

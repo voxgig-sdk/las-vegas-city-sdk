@@ -26,7 +26,7 @@ main: kit: entity: new: {
       type: "`$STRING`"
     }
     {
-      name: "publish_date"
+      name: "publishDate"
       req: false
       type: "`$STRING`"
     }

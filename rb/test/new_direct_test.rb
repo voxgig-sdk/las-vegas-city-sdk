@@ -60,11 +60,11 @@ def new_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "LASVEGASCITY_TEST_NEW_ENTID" => {},
-    "LASVEGASCITY_TEST_LIVE" => "FALSE",
+    "LAS_VEGAS_CITY_TEST_NEW_ENTID" => {},
+    "LAS_VEGAS_CITY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["LASVEGASCITY_TEST_LIVE"] == "TRUE"
+  live = env["LAS_VEGAS_CITY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

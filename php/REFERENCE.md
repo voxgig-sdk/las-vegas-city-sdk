@@ -133,12 +133,12 @@ $city_info = $client->CityInfo();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `annual_visitor` | `float` | No |  |
+| `annualVisitors` | `float` | No |  |
 | `established` | `int` | No |  |
 | `name` | `string` | No |  |
-| `number_of_park` | `int` | No |  |
+| `numberOfParks` | `int` | No |  |
 | `phone` | `string` | No |  |
-| `square_mile` | `float` | No |  |
+| `squareMiles` | `float` | No |  |
 
 ### Operations
 
@@ -252,7 +252,7 @@ $department = $client->Department();
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `service` | `array` | No |  |
+| `services` | `array` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -305,9 +305,9 @@ $economic_development = $client->EconomicDevelopment();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `industry` | `array` | No |  |
-| `initiatif` | `array` | No |  |
-| `resource` | `array` | No |  |
+| `industries` | `array` | No |  |
+| `initiatives` | `array` | No |  |
+| `resources` | `array` | No |  |
 
 ### Operations
 
@@ -361,12 +361,12 @@ $event = $client->Event();
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `description` | `string` | No |  |
-| `end_date` | `string` | No |  |
+| `endDate` | `string` | No |  |
 | `id` | `string` | No |  |
-| `is_free` | `bool` | No |  |
+| `isFree` | `bool` | No |  |
 | `location` | `string` | No |  |
-| `start_date` | `string` | No |  |
-| `ticket_url` | `string` | No |  |
+| `startDate` | `string` | No |  |
+| `ticketUrl` | `string` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -419,15 +419,15 @@ $job = $client->Job();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `category` | `string` | No |  |
-| `close_date` | `string` | No |  |
+| `closeDate` | `string` | No |  |
 | `department` | `string` | No |  |
 | `description` | `string` | No |  |
 | `id` | `string` | No |  |
-| `post_date` | `string` | No |  |
-| `requirement` | `array` | No |  |
-| `salary_range` | `array` | No |  |
+| `postDate` | `string` | No |  |
+| `requirements` | `array` | No |  |
+| `salaryRange` | `array` | No |  |
 | `title` | `string` | No |  |
 
 ### Operations
@@ -480,11 +480,11 @@ $meeting = $client->Meeting();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agenda_url` | `string` | No |  |
+| `agendaUrl` | `string` | No |  |
 | `date` | `string` | No |  |
 | `id` | `string` | No |  |
 | `location` | `string` | No |  |
-| `minutes_url` | `string` | No |  |
+| `minutesUrl` | `string` | No |  |
 | `status` | `string` | No |  |
 | `title` | `string` | No |  |
 | `type` | `string` | No |  |
@@ -543,7 +543,7 @@ $new = $client->New();
 | `category` | `string` | No |  |
 | `content` | `string` | No |  |
 | `id` | `string` | No |  |
-| `publish_date` | `string` | No |  |
+| `publishDate` | `string` | No |  |
 | `summary` | `string` | No |  |
 | `title` | `string` | No |  |
 | `url` | `string` | No |  |
@@ -599,8 +599,8 @@ $park = $client->Park();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
-| `amenity` | `array` | No |  |
-| `hour` | `array` | No |  |
+| `amenities` | `array` | No |  |
+| `hours` | `array` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
 | `phone` | `string` | No |  |
@@ -656,13 +656,13 @@ $permit = $client->Permit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `application_url` | `string` | No |  |
+| `applicationUrl` | `string` | No |  |
 | `description` | `string` | No |  |
 | `fee` | `float` | No |  |
 | `id` | `string` | No |  |
 | `name` | `string` | No |  |
-| `processing_time` | `string` | No |  |
-| `requirement` | `array` | No |  |
+| `processingTime` | `string` | No |  |
+| `requirements` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations

@@ -11,7 +11,7 @@ main: kit: entity: city_info: {
       type: "`$STRING`"
     }
     {
-      name: "annual_visitor"
+      name: "annualVisitors"
       req: false
       type: "`$NUMBER`"
     }
@@ -26,7 +26,7 @@ main: kit: entity: city_info: {
       type: "`$STRING`"
     }
     {
-      name: "number_of_park"
+      name: "numberOfParks"
       req: false
       type: "`$INTEGER`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: city_info: {
       type: "`$STRING`"
     }
     {
-      name: "square_mile"
+      name: "squareMiles"
       req: false
       type: "`$NUMBER`"
     }

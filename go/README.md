@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-cityinfo, err := client.CityInfo(nil).Load(nil, nil)
+councils, err := client.Council(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = cityinfo
+_ = councils
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-cityInfo, err := client.CityInfo(nil).Load(
+council, err := client.Council(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(cityInfo) // the returned mock data
+fmt.Println(council) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -271,12 +271,12 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"address"` |  |
-| `"annual_visitor"` |  |
+| `"annualVisitors"` |  |
 | `"established"` |  |
 | `"name"` |  |
-| `"number_of_park"` |  |
+| `"numberOfParks"` |  |
 | `"phone"` |  |
-| `"square_mile"` |  |
+| `"squareMiles"` |  |
 
 Operations: Load.
 
@@ -306,7 +306,7 @@ API path: `/council`
 | `"description"` |  |
 | `"id"` |  |
 | `"name"` |  |
-| `"service"` |  |
+| `"services"` |  |
 | `"url"` |  |
 
 Operations: List.
@@ -317,9 +317,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `"industry"` |  |
-| `"initiatif"` |  |
-| `"resource"` |  |
+| `"industries"` |  |
+| `"initiatives"` |  |
+| `"resources"` |  |
 
 Operations: List.
 
@@ -331,12 +331,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `"category"` |  |
 | `"description"` |  |
-| `"end_date"` |  |
+| `"endDate"` |  |
 | `"id"` |  |
-| `"is_free"` |  |
+| `"isFree"` |  |
 | `"location"` |  |
-| `"start_date"` |  |
-| `"ticket_url"` |  |
+| `"startDate"` |  |
+| `"ticketUrl"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -347,15 +347,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `"application_url"` |  |
+| `"applicationUrl"` |  |
 | `"category"` |  |
-| `"close_date"` |  |
+| `"closeDate"` |  |
 | `"department"` |  |
 | `"description"` |  |
 | `"id"` |  |
-| `"post_date"` |  |
-| `"requirement"` |  |
-| `"salary_range"` |  |
+| `"postDate"` |  |
+| `"requirements"` |  |
+| `"salaryRange"` |  |
 | `"title"` |  |
 
 Operations: List.
@@ -366,11 +366,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `"agenda_url"` |  |
+| `"agendaUrl"` |  |
 | `"date"` |  |
 | `"id"` |  |
 | `"location"` |  |
-| `"minutes_url"` |  |
+| `"minutesUrl"` |  |
 | `"status"` |  |
 | `"title"` |  |
 | `"type"` |  |
@@ -387,7 +387,7 @@ API path: `/meetings`
 | `"category"` |  |
 | `"content"` |  |
 | `"id"` |  |
-| `"publish_date"` |  |
+| `"publishDate"` |  |
 | `"summary"` |  |
 | `"title"` |  |
 | `"url"` |  |
@@ -401,8 +401,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `"address"` |  |
-| `"amenity"` |  |
-| `"hour"` |  |
+| `"amenities"` |  |
+| `"hours"` |  |
 | `"id"` |  |
 | `"name"` |  |
 | `"phone"` |  |
@@ -416,13 +416,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `"application_url"` |  |
+| `"applicationUrl"` |  |
 | `"description"` |  |
 | `"fee"` |  |
 | `"id"` |  |
 | `"name"` |  |
-| `"processing_time"` |  |
-| `"requirement"` |  |
+| `"processingTime"` |  |
+| `"requirements"` |  |
 | `"type"` |  |
 
 Operations: List.
@@ -461,12 +461,12 @@ Create an instance: `cityInfo := client.CityInfo(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `annual_visitor` | `float64` |  |
+| `annualVisitors` | `float64` |  |
 | `established` | `int` |  |
 | `name` | `string` |  |
-| `number_of_park` | `int` |  |
+| `numberOfParks` | `int` |  |
 | `phone` | `string` |  |
-| `square_mile` | `float64` |  |
+| `squareMiles` | `float64` |  |
 
 #### Example: Load
 
@@ -530,7 +530,7 @@ Create an instance: `department := client.Department(nil)`
 | `description` | `string` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `service` | `[]any` |  |
+| `services` | `[]any` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -558,9 +558,9 @@ Create an instance: `economicDevelopment := client.EconomicDevelopment(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `[]any` |  |
-| `initiatif` | `[]any` |  |
-| `resource` | `[]any` |  |
+| `industries` | `[]any` |  |
+| `initiatives` | `[]any` |  |
+| `resources` | `[]any` |  |
 
 #### Example: List
 
@@ -589,12 +589,12 @@ Create an instance: `event := client.Event(nil)`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `description` | `string` |  |
-| `end_date` | `string` |  |
+| `endDate` | `string` |  |
 | `id` | `string` |  |
-| `is_free` | `bool` |  |
+| `isFree` | `bool` |  |
 | `location` | `string` |  |
-| `start_date` | `string` |  |
-| `ticket_url` | `string` |  |
+| `startDate` | `string` |  |
+| `ticketUrl` | `string` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -622,15 +622,15 @@ Create an instance: `job := client.Job(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `category` | `string` |  |
-| `close_date` | `string` |  |
+| `closeDate` | `string` |  |
 | `department` | `string` |  |
 | `description` | `string` |  |
 | `id` | `string` |  |
-| `post_date` | `string` |  |
-| `requirement` | `[]any` |  |
-| `salary_range` | `map[string]any` |  |
+| `postDate` | `string` |  |
+| `requirements` | `[]any` |  |
+| `salaryRange` | `map[string]any` |  |
 | `title` | `string` |  |
 
 #### Example: List
@@ -658,11 +658,11 @@ Create an instance: `meeting := client.Meeting(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `string` |  |
+| `agendaUrl` | `string` |  |
 | `date` | `string` |  |
 | `id` | `string` |  |
 | `location` | `string` |  |
-| `minutes_url` | `string` |  |
+| `minutesUrl` | `string` |  |
 | `status` | `string` |  |
 | `title` | `string` |  |
 | `type` | `string` |  |
@@ -696,7 +696,7 @@ Create an instance: `new := client.New(nil)`
 | `category` | `string` |  |
 | `content` | `string` |  |
 | `id` | `string` |  |
-| `publish_date` | `string` |  |
+| `publishDate` | `string` |  |
 | `summary` | `string` |  |
 | `title` | `string` |  |
 | `url` | `string` |  |
@@ -727,8 +727,8 @@ Create an instance: `park := client.Park(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `string` |  |
-| `amenity` | `[]any` |  |
-| `hour` | `map[string]any` |  |
+| `amenities` | `[]any` |  |
+| `hours` | `map[string]any` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
 | `phone` | `string` |  |
@@ -759,13 +759,13 @@ Create an instance: `permit := client.Permit(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `string` |  |
+| `applicationUrl` | `string` |  |
 | `description` | `string` |  |
 | `fee` | `float64` |  |
 | `id` | `string` |  |
 | `name` | `string` |  |
-| `processing_time` | `string` |  |
-| `requirement` | `[]any` |  |
+| `processingTime` | `string` |  |
+| `requirements` | `[]any` |  |
 | `type` | `string` |  |
 
 #### Example: List
@@ -877,15 +877,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-cityinfo := client.CityInfo(nil)
-cityinfo.Load(nil, nil)
+council := client.Council(nil)
+council.List(nil, nil)
 
-// cityinfo.Data() now returns the cityinfo data from the last load
-// cityinfo.Match() returns the last match criteria
+// council.Data() now returns the council data from the last list
+// council.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

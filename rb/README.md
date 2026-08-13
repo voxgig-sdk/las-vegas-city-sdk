@@ -34,7 +34,7 @@ client = LasVegasCitySDK.new
 
 ```ruby
 begin
-  # load returns the bare CityInfo record (raises on error).
+  # load returns the ENTITY — call data_get for the CityInfo record (raises on error).
   cityinfo = client.CityInfo.load()
   puts cityinfo
 rescue => err
@@ -49,9 +49,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  cityinfo = client.CityInfo.load()
+  councils = client.Council.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -117,9 +117,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = LasVegasCitySDK.test
 
-# Entity ops return the bare mock record (raises on error).
-cityinfo = client.CityInfo.load()
-puts cityinfo
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+council = client.Council.list()
+puts council
 ```
 
 ### Use a custom fetch function
@@ -246,12 +247,12 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `annual_visitor` |  |
+| `annualVisitors` |  |
 | `established` |  |
 | `name` |  |
-| `number_of_park` |  |
+| `numberOfParks` |  |
 | `phone` |  |
-| `square_mile` |  |
+| `squareMiles` |  |
 
 Operations: Load.
 
@@ -281,7 +282,7 @@ API path: `/council`
 | `description` |  |
 | `id` |  |
 | `name` |  |
-| `service` |  |
+| `services` |  |
 | `url` |  |
 
 Operations: List.
@@ -292,9 +293,9 @@ API path: `/departments`
 
 | Field | Description |
 | --- | --- |
-| `industry` |  |
-| `initiatif` |  |
-| `resource` |  |
+| `industries` |  |
+| `initiatives` |  |
+| `resources` |  |
 
 Operations: List.
 
@@ -306,12 +307,12 @@ API path: `/business/economic-development`
 | --- | --- |
 | `category` |  |
 | `description` |  |
-| `end_date` |  |
+| `endDate` |  |
 | `id` |  |
-| `is_free` |  |
+| `isFree` |  |
 | `location` |  |
-| `start_date` |  |
-| `ticket_url` |  |
+| `startDate` |  |
+| `ticketUrl` |  |
 | `title` |  |
 
 Operations: List.
@@ -322,15 +323,15 @@ API path: `/events`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `category` |  |
-| `close_date` |  |
+| `closeDate` |  |
 | `department` |  |
 | `description` |  |
 | `id` |  |
-| `post_date` |  |
-| `requirement` |  |
-| `salary_range` |  |
+| `postDate` |  |
+| `requirements` |  |
+| `salaryRange` |  |
 | `title` |  |
 
 Operations: List.
@@ -341,11 +342,11 @@ API path: `/jobs`
 
 | Field | Description |
 | --- | --- |
-| `agenda_url` |  |
+| `agendaUrl` |  |
 | `date` |  |
 | `id` |  |
 | `location` |  |
-| `minutes_url` |  |
+| `minutesUrl` |  |
 | `status` |  |
 | `title` |  |
 | `type` |  |
@@ -362,7 +363,7 @@ API path: `/meetings`
 | `category` |  |
 | `content` |  |
 | `id` |  |
-| `publish_date` |  |
+| `publishDate` |  |
 | `summary` |  |
 | `title` |  |
 | `url` |  |
@@ -376,8 +377,8 @@ API path: `/news`
 | Field | Description |
 | --- | --- |
 | `address` |  |
-| `amenity` |  |
-| `hour` |  |
+| `amenities` |  |
+| `hours` |  |
 | `id` |  |
 | `name` |  |
 | `phone` |  |
@@ -391,13 +392,13 @@ API path: `/parks`
 
 | Field | Description |
 | --- | --- |
-| `application_url` |  |
+| `applicationUrl` |  |
 | `description` |  |
 | `fee` |  |
 | `id` |  |
 | `name` |  |
-| `processing_time` |  |
-| `requirement` |  |
+| `processingTime` |  |
+| `requirements` |  |
 | `type` |  |
 
 Operations: List.
@@ -436,17 +437,17 @@ Create an instance: `city_info = client.CityInfo`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `String` |  |
-| `annual_visitor` | `Float` |  |
+| `annualVisitors` | `Float` |  |
 | `established` | `Integer` |  |
 | `name` | `String` |  |
-| `number_of_park` | `Integer` |  |
+| `numberOfParks` | `Integer` |  |
 | `phone` | `String` |  |
-| `square_mile` | `Float` |  |
+| `squareMiles` | `Float` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare CityInfo record (raises on error).
+# load returns the ENTITY — call data_get for the CityInfo record (raises on error).
 city_info = client.CityInfo.load()
 ```
 
@@ -499,7 +500,7 @@ Create an instance: `department = client.Department`
 | `description` | `String` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
-| `service` | `Array` |  |
+| `services` | `Array` |  |
 | `url` | `String` |  |
 
 #### Example: List
@@ -524,9 +525,9 @@ Create an instance: `economic_development = client.EconomicDevelopment`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `industry` | `Array` |  |
-| `initiatif` | `Array` |  |
-| `resource` | `Array` |  |
+| `industries` | `Array` |  |
+| `initiatives` | `Array` |  |
+| `resources` | `Array` |  |
 
 #### Example: List
 
@@ -552,12 +553,12 @@ Create an instance: `event = client.Event`
 | --- | --- | --- |
 | `category` | `String` |  |
 | `description` | `String` |  |
-| `end_date` | `String` |  |
+| `endDate` | `String` |  |
 | `id` | `String` |  |
-| `is_free` | `Boolean` |  |
+| `isFree` | `Boolean` |  |
 | `location` | `String` |  |
-| `start_date` | `String` |  |
-| `ticket_url` | `String` |  |
+| `startDate` | `String` |  |
+| `ticketUrl` | `String` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -582,15 +583,15 @@ Create an instance: `job = client.Job`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `String` |  |
+| `applicationUrl` | `String` |  |
 | `category` | `String` |  |
-| `close_date` | `String` |  |
+| `closeDate` | `String` |  |
 | `department` | `String` |  |
 | `description` | `String` |  |
 | `id` | `String` |  |
-| `post_date` | `String` |  |
-| `requirement` | `Array` |  |
-| `salary_range` | `Hash` |  |
+| `postDate` | `String` |  |
+| `requirements` | `Array` |  |
+| `salaryRange` | `Hash` |  |
 | `title` | `String` |  |
 
 #### Example: List
@@ -615,11 +616,11 @@ Create an instance: `meeting = client.Meeting`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agenda_url` | `String` |  |
+| `agendaUrl` | `String` |  |
 | `date` | `String` |  |
 | `id` | `String` |  |
 | `location` | `String` |  |
-| `minutes_url` | `String` |  |
+| `minutesUrl` | `String` |  |
 | `status` | `String` |  |
 | `title` | `String` |  |
 | `type` | `String` |  |
@@ -650,7 +651,7 @@ Create an instance: `new = client.New`
 | `category` | `String` |  |
 | `content` | `String` |  |
 | `id` | `String` |  |
-| `publish_date` | `String` |  |
+| `publishDate` | `String` |  |
 | `summary` | `String` |  |
 | `title` | `String` |  |
 | `url` | `String` |  |
@@ -678,8 +679,8 @@ Create an instance: `park = client.Park`
 | Field | Type | Description |
 | --- | --- | --- |
 | `address` | `String` |  |
-| `amenity` | `Array` |  |
-| `hour` | `Hash` |  |
+| `amenities` | `Array` |  |
+| `hours` | `Hash` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
 | `phone` | `String` |  |
@@ -707,13 +708,13 @@ Create an instance: `permit = client.Permit`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `application_url` | `String` |  |
+| `applicationUrl` | `String` |  |
 | `description` | `String` |  |
 | `fee` | `Float` |  |
 | `id` | `String` |  |
 | `name` | `String` |  |
-| `processing_time` | `String` |  |
-| `requirement` | `Array` |  |
+| `processingTime` | `String` |  |
+| `requirements` | `Array` |  |
 | `type` | `String` |  |
 
 #### Example: List
@@ -745,7 +746,7 @@ Create an instance: `public_safety = client.PublicSafety`
 #### Example: Load
 
 ```ruby
-# load returns the bare PublicSafety record (raises on error).
+# load returns the ENTITY — call data_get for the PublicSafety record (raises on error).
 public_safety = client.PublicSafety.load()
 ```
 
@@ -822,15 +823,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-cityinfo = client.CityInfo
-cityinfo.load()
+council = client.Council
+council.list()
 
-# cityinfo.data_get now returns the cityinfo data from the last load
-# cityinfo.match_get returns the last match criteria
+# council.data_get now returns the council data from the last list
+# council.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

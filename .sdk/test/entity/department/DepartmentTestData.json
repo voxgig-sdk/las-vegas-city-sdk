@@ -6,7 +6,7 @@
         "description": "s3d",
         "id": "DEPARTMENT00",
         "name": "s3f",
-        "service": [],
+        "services": [],
         "url": "s41"
       },
       "DEPARTMENT01": {
@@ -14,7 +14,7 @@
         "description": "s79",
         "id": "DEPARTMENT01",
         "name": "s7b",
-        "service": [],
+        "services": [],
         "url": "s7d"
       },
       "DEPARTMENT02": {
@@ -22,7 +22,7 @@
         "description": "sb5",
         "id": "DEPARTMENT02",
         "name": "sb7",
-        "service": [],
+        "services": [],
         "url": "sb9"
       }
     }
@@ -33,7 +33,7 @@
         "contact": {},
         "description": "sf1",
         "name": "sf3",
-        "service": [],
+        "services": [],
         "url": "sf5"
       }
     }

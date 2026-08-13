@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = LasVegasCitySDK.test()
-const cityinfo = await client.CityInfo().load()
-// cityinfo is a bare CityInfo populated with mock data
-console.log(cityinfo)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = LasVegasCitySDK.test({
+  entity: {
+    council: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const councils = await client.Council().list()
+// councils is an array of Council entities, populated with mock data
+// — call councils[0].data() for the record itself
+console.log(councils)
 ```
 
 ### Python
 
 ```python
 client = LasVegasCitySDK.test()
-cityinfo = client.CityInfo().load()
-print(cityinfo)
+councils = client.Council().list()
+print(councils)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(cityinfo)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = LasVegasCitySDK::test([
-    "entity" => ["cityinfo" => ["test01" => []]],
+    "entity" => ["council" => ["test01" => []]],
 ]);
-$cityinfo = $client->CityInfo()->load();
+$councils = $client->Council()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.CityInfo(nil).Load(
+result, err := client.Council(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.CityInfo(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = LasVegasCitySDK.test({
-  "entity" => { "cityinfo" => { "test01" => {} } },
+  "entity" => { "council" => { "test01" => {} } },
 })
-cityinfo = client.CityInfo.load()
+councils = client.Council.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:CityInfo():load()
+local results, err = client:Council():list()
 ```
 
 ## Packages
@@ -192,7 +201,7 @@ require_once 'lasvegascity_sdk.php';
 $client = new LasVegasCitySDK();
 
 
-// Load a specific cityinfo (returns the bare record; throws on error)
+// Load a specific cityinfo (returns the ENTITY; call data_get() for the record; throws on error)
 $cityinfo = $client->CityInfo()->load();
 print_r($cityinfo);
 ```
@@ -220,7 +229,7 @@ require_relative "LasVegasCity_sdk"
 client = LasVegasCitySDK.new
 
 
-# Load a specific cityinfo (returns the bare record; raises on error)
+# Load a specific cityinfo (returns the ENTITY; call data_get for the record)
 cityinfo = client.CityInfo.load()
 puts cityinfo
 ```
@@ -354,6 +363,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://www.lasvegasnevada.gov/](https://www.lasvegasnevada.gov/)
 

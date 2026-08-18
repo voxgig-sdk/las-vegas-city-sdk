@@ -40,7 +40,7 @@ class LasVegasCitySDK
         $utility = new LasVegasCityUtility();
         $this->_utility = $utility;
 
-        $config = LasVegasCityConfig::make_config();
+        $config = LasVegasCityConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

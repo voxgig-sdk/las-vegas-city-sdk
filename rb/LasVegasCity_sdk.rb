@@ -28,7 +28,7 @@ class LasVegasCitySDK
     utility = LasVegasCityUtility.new
     @_utility = utility
 
-    config = LasVegasCityConfig.make_config
+    config = LasVegasCityConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

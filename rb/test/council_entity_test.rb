@@ -33,7 +33,7 @@ class CouncilEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = LasVegasCityConfig.make_config
+    cfg = LasVegasCityConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = LasVegasCitySDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

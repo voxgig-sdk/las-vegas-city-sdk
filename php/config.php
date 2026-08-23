@@ -33,6 +33,9 @@ class LasVegasCityConfig
         return [
             "main" => [
                 "name" => "LasVegasCity",
+                "slug" => "las-vegas-city",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [

@@ -28,6 +28,7 @@ module LasVegasCityConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {

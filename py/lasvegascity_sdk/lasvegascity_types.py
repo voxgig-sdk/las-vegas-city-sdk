@@ -100,14 +100,8 @@ class Event(TypedDict, total=False):
 
 class EventListMatch(TypedDict, total=False):
     category: str
-    description: str
-    endDate: str
-    id: str
-    isFree: bool
-    location: str
-    startDate: str
-    ticketUrl: str
-    title: str
+    end_date: str
+    start_date: str
 
 
 class Job(TypedDict, total=False):
@@ -124,16 +118,8 @@ class Job(TypedDict, total=False):
 
 
 class JobListMatch(TypedDict, total=False):
-    applicationUrl: str
     category: str
-    closeDate: str
     department: str
-    description: str
-    id: str
-    postDate: str
-    requirements: list
-    salaryRange: dict
-    title: str
 
 
 class Meeting(TypedDict, total=False):
@@ -148,13 +134,7 @@ class Meeting(TypedDict, total=False):
 
 
 class MeetingListMatch(TypedDict, total=False):
-    agendaUrl: str
-    date: str
-    id: str
-    location: str
-    minutesUrl: str
-    status: str
-    title: str
+    start_date: str
     type: str
 
 
@@ -170,14 +150,8 @@ class New(TypedDict, total=False):
 
 
 class NewListMatch(TypedDict, total=False):
-    author: str
     category: str
-    content: str
-    id: str
-    publishDate: str
-    summary: str
-    title: str
-    url: str
+    limit: int
 
 
 class Park(TypedDict, total=False):
@@ -191,13 +165,8 @@ class Park(TypedDict, total=False):
 
 
 class ParkListMatch(TypedDict, total=False):
-    address: str
-    amenities: list
-    hours: dict
-    id: str
-    name: str
-    phone: str
-    type: str
+    amenity: str
+    location: str
 
 
 class Permit(TypedDict, total=False):
@@ -212,13 +181,6 @@ class Permit(TypedDict, total=False):
 
 
 class PermitListMatch(TypedDict, total=False):
-    applicationUrl: str
-    description: str
-    fee: float
-    id: str
-    name: str
-    processingTime: str
-    requirements: list
     type: str
 
 

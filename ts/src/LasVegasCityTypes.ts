@@ -89,14 +89,8 @@ export interface Event {
 
 export interface EventListMatch {
   category?: string
-  description?: string
-  endDate?: string
-  id?: string
-  isFree?: boolean
-  location?: string
-  startDate?: string
-  ticketUrl?: string
-  title?: string
+  end_date?: string
+  start_date?: string
 }
 
 export interface Job {
@@ -113,16 +107,8 @@ export interface Job {
 }
 
 export interface JobListMatch {
-  applicationUrl?: string
   category?: string
-  closeDate?: string
   department?: string
-  description?: string
-  id?: string
-  postDate?: string
-  requirements?: any[]
-  salaryRange?: Record<string, any>
-  title?: string
 }
 
 export interface Meeting {
@@ -137,13 +123,7 @@ export interface Meeting {
 }
 
 export interface MeetingListMatch {
-  agendaUrl?: string
-  date?: string
-  id?: string
-  location?: string
-  minutesUrl?: string
-  status?: string
-  title?: string
+  start_date?: string
   type?: string
 }
 
@@ -159,14 +139,8 @@ export interface New {
 }
 
 export interface NewListMatch {
-  author?: string
   category?: string
-  content?: string
-  id?: string
-  publishDate?: string
-  summary?: string
-  title?: string
-  url?: string
+  limit?: number
 }
 
 export interface Park {
@@ -180,13 +154,8 @@ export interface Park {
 }
 
 export interface ParkListMatch {
-  address?: string
-  amenities?: any[]
-  hours?: Record<string, any>
-  id?: string
-  name?: string
-  phone?: string
-  type?: string
+  amenity?: string
+  location?: string
 }
 
 export interface Permit {
@@ -201,13 +170,6 @@ export interface Permit {
 }
 
 export interface PermitListMatch {
-  applicationUrl?: string
-  description?: string
-  fee?: number
-  id?: string
-  name?: string
-  processingTime?: string
-  requirements?: any[]
   type?: string
 }
 

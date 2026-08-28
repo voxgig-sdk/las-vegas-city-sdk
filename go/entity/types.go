@@ -106,14 +106,8 @@ type Event struct {
 // EventListMatch is the typed request payload for Event.ListTyped.
 type EventListMatch struct {
 	Category *string `json:"category,omitempty"`
-	Description *string `json:"description,omitempty"`
-	EndDate *string `json:"endDate,omitempty"`
-	Id *string `json:"id,omitempty"`
-	IsFree *bool `json:"isFree,omitempty"`
-	Location *string `json:"location,omitempty"`
-	StartDate *string `json:"startDate,omitempty"`
-	TicketUrl *string `json:"ticketUrl,omitempty"`
-	Title *string `json:"title,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 }
 
 // Job is the typed data model for the job entity.
@@ -132,16 +126,8 @@ type Job struct {
 
 // JobListMatch is the typed request payload for Job.ListTyped.
 type JobListMatch struct {
-	ApplicationUrl *string `json:"applicationUrl,omitempty"`
 	Category *string `json:"category,omitempty"`
-	CloseDate *string `json:"closeDate,omitempty"`
 	Department *string `json:"department,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id *string `json:"id,omitempty"`
-	PostDate *string `json:"postDate,omitempty"`
-	Requirements *[]any `json:"requirements,omitempty"`
-	SalaryRange *map[string]any `json:"salaryRange,omitempty"`
-	Title *string `json:"title,omitempty"`
 }
 
 // Meeting is the typed data model for the meeting entity.
@@ -158,13 +144,7 @@ type Meeting struct {
 
 // MeetingListMatch is the typed request payload for Meeting.ListTyped.
 type MeetingListMatch struct {
-	AgendaUrl *string `json:"agendaUrl,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Location *string `json:"location,omitempty"`
-	MinutesUrl *string `json:"minutesUrl,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Title *string `json:"title,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 
@@ -182,14 +162,8 @@ type New struct {
 
 // NewListMatch is the typed request payload for New.ListTyped.
 type NewListMatch struct {
-	Author *string `json:"author,omitempty"`
 	Category *string `json:"category,omitempty"`
-	Content *string `json:"content,omitempty"`
-	Id *string `json:"id,omitempty"`
-	PublishDate *string `json:"publishDate,omitempty"`
-	Summary *string `json:"summary,omitempty"`
-	Title *string `json:"title,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Park is the typed data model for the park entity.
@@ -205,13 +179,8 @@ type Park struct {
 
 // ParkListMatch is the typed request payload for Park.ListTyped.
 type ParkListMatch struct {
-	Address *string `json:"address,omitempty"`
-	Amenities *[]any `json:"amenities,omitempty"`
-	Hours *map[string]any `json:"hours,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Phone *string `json:"phone,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Amenity *string `json:"amenity,omitempty"`
+	Location *string `json:"location,omitempty"`
 }
 
 // Permit is the typed data model for the permit entity.
@@ -228,13 +197,6 @@ type Permit struct {
 
 // PermitListMatch is the typed request payload for Permit.ListTyped.
 type PermitListMatch struct {
-	ApplicationUrl *string `json:"applicationUrl,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Fee *float64 `json:"fee,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ProcessingTime *string `json:"processingTime,omitempty"`
-	Requirements *[]any `json:"requirements,omitempty"`
 	Type *string `json:"type,omitempty"`
 }
 

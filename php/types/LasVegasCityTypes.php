@@ -116,14 +116,8 @@ class Event
 class EventListMatch
 {
     public ?string $category = null;
-    public ?string $description = null;
-    public ?string $endDate = null;
-    public ?string $id = null;
-    public ?bool $isFree = null;
-    public ?string $location = null;
-    public ?string $startDate = null;
-    public ?string $ticketUrl = null;
-    public ?string $title = null;
+    public ?string $end_date = null;
+    public ?string $start_date = null;
 }
 
 /** Job entity data model. */
@@ -144,16 +138,8 @@ class Job
 /** Request payload for Job#list. */
 class JobListMatch
 {
-    public ?string $applicationUrl = null;
     public ?string $category = null;
-    public ?string $closeDate = null;
     public ?string $department = null;
-    public ?string $description = null;
-    public ?string $id = null;
-    public ?string $postDate = null;
-    public ?array $requirements = null;
-    public ?array $salaryRange = null;
-    public ?string $title = null;
 }
 
 /** Meeting entity data model. */
@@ -172,13 +158,7 @@ class Meeting
 /** Request payload for Meeting#list. */
 class MeetingListMatch
 {
-    public ?string $agendaUrl = null;
-    public ?string $date = null;
-    public ?string $id = null;
-    public ?string $location = null;
-    public ?string $minutesUrl = null;
-    public ?string $status = null;
-    public ?string $title = null;
+    public ?string $start_date = null;
     public ?string $type = null;
 }
 
@@ -198,14 +178,8 @@ class NewType
 /** Request payload for New#list. */
 class NewListMatch
 {
-    public ?string $author = null;
     public ?string $category = null;
-    public ?string $content = null;
-    public ?string $id = null;
-    public ?string $publishDate = null;
-    public ?string $summary = null;
-    public ?string $title = null;
-    public ?string $url = null;
+    public ?int $limit = null;
 }
 
 /** Park entity data model. */
@@ -223,13 +197,8 @@ class Park
 /** Request payload for Park#list. */
 class ParkListMatch
 {
-    public ?string $address = null;
-    public ?array $amenities = null;
-    public ?array $hours = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $phone = null;
-    public ?string $type = null;
+    public ?string $amenity = null;
+    public ?string $location = null;
 }
 
 /** Permit entity data model. */
@@ -248,13 +217,6 @@ class Permit
 /** Request payload for Permit#list. */
 class PermitListMatch
 {
-    public ?string $applicationUrl = null;
-    public ?string $description = null;
-    public ?float $fee = null;
-    public ?string $id = null;
-    public ?string $name = null;
-    public ?string $processingTime = null;
-    public ?array $requirements = null;
     public ?string $type = null;
 }
 

@@ -278,39 +278,15 @@ Event = Struct.new(
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] description
+# @!attribute [rw] end_date
 #   @return [String, nil]
 #
-# @!attribute [rw] endDate
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] isFree
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] location
-#   @return [String, nil]
-#
-# @!attribute [rw] startDate
-#   @return [String, nil]
-#
-# @!attribute [rw] ticketUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] title
+# @!attribute [rw] start_date
 #   @return [String, nil]
 EventListMatch = Struct.new(
   :category,
-  :description,
-  :endDate,
-  :id,
-  :isFree,
-  :location,
-  :startDate,
-  :ticketUrl,
-  :title,
+  :end_date,
+  :start_date,
   keyword_init: true
 )
 
@@ -361,46 +337,14 @@ Job = Struct.new(
 
 # Request payload for Job#list.
 #
-# @!attribute [rw] applicationUrl
-#   @return [String, nil]
-#
 # @!attribute [rw] category
-#   @return [String, nil]
-#
-# @!attribute [rw] closeDate
 #   @return [String, nil]
 #
 # @!attribute [rw] department
 #   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] postDate
-#   @return [String, nil]
-#
-# @!attribute [rw] requirements
-#   @return [Array, nil]
-#
-# @!attribute [rw] salaryRange
-#   @return [Hash, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
 JobListMatch = Struct.new(
-  :applicationUrl,
   :category,
-  :closeDate,
   :department,
-  :description,
-  :id,
-  :postDate,
-  :requirements,
-  :salaryRange,
-  :title,
   keyword_init: true
 )
 
@@ -443,37 +387,13 @@ Meeting = Struct.new(
 
 # Request payload for Meeting#list.
 #
-# @!attribute [rw] agendaUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] location
-#   @return [String, nil]
-#
-# @!attribute [rw] minutesUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] title
+# @!attribute [rw] start_date
 #   @return [String, nil]
 #
 # @!attribute [rw] type
 #   @return [String, nil]
 MeetingListMatch = Struct.new(
-  :agendaUrl,
-  :date,
-  :id,
-  :location,
-  :minutesUrl,
-  :status,
-  :title,
+  :start_date,
   :type,
   keyword_init: true
 )
@@ -517,38 +437,14 @@ New = Struct.new(
 
 # Request payload for New#list.
 #
-# @!attribute [rw] author
-#   @return [String, nil]
-#
 # @!attribute [rw] category
 #   @return [String, nil]
 #
-# @!attribute [rw] content
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] publishDate
-#   @return [String, nil]
-#
-# @!attribute [rw] summary
-#   @return [String, nil]
-#
-# @!attribute [rw] title
-#   @return [String, nil]
-#
-# @!attribute [rw] url
-#   @return [String, nil]
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 NewListMatch = Struct.new(
-  :author,
   :category,
-  :content,
-  :id,
-  :publishDate,
-  :summary,
-  :title,
-  :url,
+  :limit,
   keyword_init: true
 )
 
@@ -587,34 +483,14 @@ Park = Struct.new(
 
 # Request payload for Park#list.
 #
-# @!attribute [rw] address
+# @!attribute [rw] amenity
 #   @return [String, nil]
 #
-# @!attribute [rw] amenities
-#   @return [Array, nil]
-#
-# @!attribute [rw] hours
-#   @return [Hash, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] phone
-#   @return [String, nil]
-#
-# @!attribute [rw] type
+# @!attribute [rw] location
 #   @return [String, nil]
 ParkListMatch = Struct.new(
-  :address,
-  :amenities,
-  :hours,
-  :id,
-  :name,
-  :phone,
-  :type,
+  :amenity,
+  :location,
   keyword_init: true
 )
 
@@ -657,37 +533,9 @@ Permit = Struct.new(
 
 # Request payload for Permit#list.
 #
-# @!attribute [rw] applicationUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] description
-#   @return [String, nil]
-#
-# @!attribute [rw] fee
-#   @return [Float, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] processingTime
-#   @return [String, nil]
-#
-# @!attribute [rw] requirements
-#   @return [Array, nil]
-#
 # @!attribute [rw] type
 #   @return [String, nil]
 PermitListMatch = Struct.new(
-  :applicationUrl,
-  :description,
-  :fee,
-  :id,
-  :name,
-  :processingTime,
-  :requirements,
   :type,
   keyword_init: true
 )

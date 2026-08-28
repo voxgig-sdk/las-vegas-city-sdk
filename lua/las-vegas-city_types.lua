@@ -81,14 +81,8 @@
 
 ---@class EventListMatch
 ---@field category? string
----@field description? string
----@field endDate? string
----@field id? string
----@field isFree? boolean
----@field location? string
----@field startDate? string
----@field ticketUrl? string
----@field title? string
+---@field end_date? string
+---@field start_date? string
 
 ---@class Job
 ---@field applicationUrl? string
@@ -103,16 +97,8 @@
 ---@field title? string
 
 ---@class JobListMatch
----@field applicationUrl? string
 ---@field category? string
----@field closeDate? string
 ---@field department? string
----@field description? string
----@field id? string
----@field postDate? string
----@field requirements? table
----@field salaryRange? table
----@field title? string
 
 ---@class Meeting
 ---@field agendaUrl? string
@@ -125,13 +111,7 @@
 ---@field type? string
 
 ---@class MeetingListMatch
----@field agendaUrl? string
----@field date? string
----@field id? string
----@field location? string
----@field minutesUrl? string
----@field status? string
----@field title? string
+---@field start_date? string
 ---@field type? string
 
 ---@class New
@@ -145,14 +125,8 @@
 ---@field url? string
 
 ---@class NewListMatch
----@field author? string
 ---@field category? string
----@field content? string
----@field id? string
----@field publishDate? string
----@field summary? string
----@field title? string
----@field url? string
+---@field limit? number
 
 ---@class Park
 ---@field address? string
@@ -164,13 +138,8 @@
 ---@field type? string
 
 ---@class ParkListMatch
----@field address? string
----@field amenities? table
----@field hours? table
----@field id? string
----@field name? string
----@field phone? string
----@field type? string
+---@field amenity? string
+---@field location? string
 
 ---@class Permit
 ---@field applicationUrl? string
@@ -183,13 +152,6 @@
 ---@field type? string
 
 ---@class PermitListMatch
----@field applicationUrl? string
----@field description? string
----@field fee? number
----@field id? string
----@field name? string
----@field processingTime? string
----@field requirements? table
 ---@field type? string
 
 ---@class PublicSafety

@@ -6,6 +6,7 @@ main: kit: entity: job: {
 
   fields: [
     {
+      format: "uri"
       name: "applicationUrl"
       req: false
       type: "`$STRING`"
@@ -16,6 +17,7 @@ main: kit: entity: job: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "closeDate"
       req: false
       type: "`$STRING`"
@@ -36,6 +38,7 @@ main: kit: entity: job: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "postDate"
       req: false
       type: "`$STRING`"
@@ -88,8 +91,10 @@ main: kit: entity: job: {
           }
           method: "GET"
           orig: "/jobs"
-          parts: [
-            "jobs"
+          segments: [
+            {
+              lit: "jobs"
+            }
           ]
           select: {
             exist: [

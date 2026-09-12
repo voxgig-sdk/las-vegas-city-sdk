@@ -31,6 +31,7 @@ main: kit: entity: department: {
       type: "`$ARRAY`"
     }
     {
+      format: "uri"
       name: "url"
       req: false
       type: "`$STRING`"
@@ -50,8 +51,10 @@ main: kit: entity: department: {
         {
           method: "GET"
           orig: "/departments"
-          parts: [
-            "departments"
+          segments: [
+            {
+              lit: "departments"
+            }
           ]
           transform: {
             req: "`reqdata`"

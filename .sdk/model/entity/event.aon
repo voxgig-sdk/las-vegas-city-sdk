@@ -16,6 +16,7 @@ main: kit: entity: event: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "endDate"
       req: false
       type: "`$STRING`"
@@ -36,11 +37,13 @@ main: kit: entity: event: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "startDate"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "ticketUrl"
       req: false
       type: "`$STRING`"
@@ -90,8 +93,10 @@ main: kit: entity: event: {
           }
           method: "GET"
           orig: "/events"
-          parts: [
-            "events"
+          segments: [
+            {
+              lit: "events"
+            }
           ]
           select: {
             exist: [

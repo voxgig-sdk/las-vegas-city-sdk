@@ -30,8 +30,10 @@ main: kit: entity: public_safety: {
         {
           method: "GET"
           orig: "/public-safety"
-          parts: [
-            "public-safety"
+          segments: [
+            {
+              lit: "public-safety"
+            }
           ]
           transform: {
             req: "`reqdata`"

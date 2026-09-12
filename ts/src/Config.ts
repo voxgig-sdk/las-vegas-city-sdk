@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -136,14 +147,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/city-info",
-              "parts": [
-                "city-info"
+              "segments": [
+                {
+                  "lit": "city-info"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "city-info"
+              ]
             }
           ]
         }
@@ -159,6 +175,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "email",
           "name": "email",
           "type": "`$STRING`"
         },
@@ -183,6 +200,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "council",
       "op": {
         "list": {
@@ -194,14 +215,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/council",
-              "parts": [
-                "council"
+              "segments": [
+                {
+                  "lit": "council"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "council"
+              ]
             }
           ]
         }
@@ -233,10 +259,15 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "uri",
           "name": "url",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "department",
       "op": {
         "list": {
@@ -248,14 +279,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/departments",
-              "parts": [
-                "departments"
+              "segments": [
+                {
+                  "lit": "departments"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "departments"
+              ]
             }
           ]
         }
@@ -290,15 +326,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/business/economic-development",
-              "parts": [
-                "business",
-                "economic-development"
+              "segments": [
+                {
+                  "lit": "business"
+                },
+                {
+                  "lit": "economic-development"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "business",
+                "economic-development"
+              ]
             }
           ]
         }
@@ -318,6 +362,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "endDate",
           "type": "`$STRING`"
         },
@@ -334,10 +379,12 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "startDate",
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "ticketUrl",
           "type": "`$STRING`"
         },
@@ -346,6 +393,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "event",
       "op": {
         "list": {
@@ -378,8 +429,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/events",
-              "parts": [
-                "events"
+              "segments": [
+                {
+                  "lit": "events"
+                }
               ],
               "select": {
                 "exist": [
@@ -391,7 +444,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "events"
+              ]
             }
           ]
         }
@@ -403,6 +459,7 @@ class Config {
     "job": {
       "fields": [
         {
+          "format": "uri",
           "name": "applicationUrl",
           "type": "`$STRING`"
         },
@@ -411,6 +468,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "closeDate",
           "type": "`$STRING`"
         },
@@ -427,6 +485,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "postDate",
           "type": "`$STRING`"
         },
@@ -443,6 +502,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "job",
       "op": {
         "list": {
@@ -469,8 +532,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/jobs",
-              "parts": [
-                "jobs"
+              "segments": [
+                {
+                  "lit": "jobs"
+                }
               ],
               "select": {
                 "exist": [
@@ -481,7 +546,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "jobs"
+              ]
             }
           ]
         }
@@ -493,10 +561,12 @@ class Config {
     "meeting": {
       "fields": [
         {
+          "format": "uri",
           "name": "agendaUrl",
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "date",
           "type": "`$STRING`"
         },
@@ -509,6 +579,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "minutesUrl",
           "type": "`$STRING`"
         },
@@ -525,6 +596,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "meeting",
       "op": {
         "list": {
@@ -551,8 +626,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/meetings",
-              "parts": [
-                "meetings"
+              "segments": [
+                {
+                  "lit": "meetings"
+                }
               ],
               "select": {
                 "exist": [
@@ -563,7 +640,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "meetings"
+              ]
             }
           ]
         }
@@ -591,6 +671,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "publishDate",
           "type": "`$STRING`"
         },
@@ -603,10 +684,15 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "url",
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "new",
       "op": {
         "list": {
@@ -634,8 +720,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/news",
-              "parts": [
-                "news"
+              "segments": [
+                {
+                  "lit": "news"
+                }
               ],
               "select": {
                 "exist": [
@@ -646,7 +734,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "news"
+              ]
             }
           ]
         }
@@ -686,6 +777,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "park",
       "op": {
         "list": {
@@ -712,8 +807,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/parks",
-              "parts": [
-                "parks"
+              "segments": [
+                {
+                  "lit": "parks"
+                }
               ],
               "select": {
                 "exist": [
@@ -724,7 +821,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "parks"
+              ]
             }
           ]
         }
@@ -736,6 +836,7 @@ class Config {
     "permit": {
       "fields": [
         {
+          "format": "uri",
           "name": "applicationUrl",
           "type": "`$STRING`"
         },
@@ -768,6 +869,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "permit",
       "op": {
         "list": {
@@ -788,8 +893,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/permits",
-              "parts": [
-                "permits"
+              "segments": [
+                {
+                  "lit": "permits"
+                }
               ],
               "select": {
                 "exist": [
@@ -799,7 +906,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "permits"
+              ]
             }
           ]
         }
@@ -834,14 +944,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/public-safety",
-              "parts": [
-                "public-safety"
+              "segments": [
+                {
+                  "lit": "public-safety"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "public-safety"
+              ]
             }
           ]
         }
@@ -857,6 +972,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

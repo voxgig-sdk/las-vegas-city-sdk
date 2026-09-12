@@ -93,14 +93,19 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/city-info",
-                  "parts" => [
-                    "city-info",
+                  "segments" => [
+                    {
+                      "lit" => "city-info",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "city-info",
+                  ],
                 },
               ],
             },
@@ -116,6 +121,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "type" => "`$STRING`",
             },
@@ -140,6 +146,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "council",
           "op" => {
             "list" => {
@@ -151,14 +161,19 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/council",
-                  "parts" => [
-                    "council",
+                  "segments" => [
+                    {
+                      "lit" => "council",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "council",
+                  ],
                 },
               ],
             },
@@ -190,10 +205,15 @@ module LasVegasCityConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "department",
           "op" => {
             "list" => {
@@ -205,14 +225,19 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/departments",
-                  "parts" => [
-                    "departments",
+                  "segments" => [
+                    {
+                      "lit" => "departments",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "departments",
+                  ],
                 },
               ],
             },
@@ -247,15 +272,23 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/business/economic-development",
-                  "parts" => [
-                    "business",
-                    "economic-development",
+                  "segments" => [
+                    {
+                      "lit" => "business",
+                    },
+                    {
+                      "lit" => "economic-development",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "business",
+                    "economic-development",
+                  ],
                 },
               ],
             },
@@ -275,6 +308,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "endDate",
               "type" => "`$STRING`",
             },
@@ -291,10 +325,12 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "startDate",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "ticketUrl",
               "type" => "`$STRING`",
             },
@@ -303,6 +339,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "event",
           "op" => {
             "list" => {
@@ -335,8 +375,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/events",
-                  "parts" => [
-                    "events",
+                  "segments" => [
+                    {
+                      "lit" => "events",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -349,6 +391,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "events",
+                  ],
                 },
               ],
             },
@@ -360,6 +405,7 @@ module LasVegasCityConfig
         "job" => {
           "fields" => [
             {
+              "format" => "uri",
               "name" => "applicationUrl",
               "type" => "`$STRING`",
             },
@@ -368,6 +414,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date",
               "name" => "closeDate",
               "type" => "`$STRING`",
             },
@@ -384,6 +431,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date",
               "name" => "postDate",
               "type" => "`$STRING`",
             },
@@ -400,6 +448,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "job",
           "op" => {
             "list" => {
@@ -426,8 +478,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/jobs",
-                  "parts" => [
-                    "jobs",
+                  "segments" => [
+                    {
+                      "lit" => "jobs",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -439,6 +493,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "jobs",
+                  ],
                 },
               ],
             },
@@ -450,10 +507,12 @@ module LasVegasCityConfig
         "meeting" => {
           "fields" => [
             {
+              "format" => "uri",
               "name" => "agendaUrl",
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "date",
               "type" => "`$STRING`",
             },
@@ -466,6 +525,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "minutesUrl",
               "type" => "`$STRING`",
             },
@@ -482,6 +542,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "meeting",
           "op" => {
             "list" => {
@@ -508,8 +572,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/meetings",
-                  "parts" => [
-                    "meetings",
+                  "segments" => [
+                    {
+                      "lit" => "meetings",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -521,6 +587,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "meetings",
+                  ],
                 },
               ],
             },
@@ -548,6 +617,7 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "publishDate",
               "type" => "`$STRING`",
             },
@@ -560,10 +630,15 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "url",
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "new",
           "op" => {
             "list" => {
@@ -591,8 +666,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/news",
-                  "parts" => [
-                    "news",
+                  "segments" => [
+                    {
+                      "lit" => "news",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -604,6 +681,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "news",
+                  ],
                 },
               ],
             },
@@ -643,6 +723,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "park",
           "op" => {
             "list" => {
@@ -669,8 +753,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/parks",
-                  "parts" => [
-                    "parks",
+                  "segments" => [
+                    {
+                      "lit" => "parks",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -682,6 +768,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "parks",
+                  ],
                 },
               ],
             },
@@ -693,6 +782,7 @@ module LasVegasCityConfig
         "permit" => {
           "fields" => [
             {
+              "format" => "uri",
               "name" => "applicationUrl",
               "type" => "`$STRING`",
             },
@@ -725,6 +815,10 @@ module LasVegasCityConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "permit",
           "op" => {
             "list" => {
@@ -745,8 +839,10 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/permits",
-                  "parts" => [
-                    "permits",
+                  "segments" => [
+                    {
+                      "lit" => "permits",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -757,6 +853,9 @@ module LasVegasCityConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "permits",
+                  ],
                 },
               ],
             },
@@ -791,14 +890,19 @@ module LasVegasCityConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/public-safety",
-                  "parts" => [
-                    "public-safety",
+                  "segments" => [
+                    {
+                      "lit" => "public-safety",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "public-safety",
+                  ],
                 },
               ],
             },

@@ -50,8 +50,10 @@ main: kit: entity: city_info: {
         {
           method: "GET"
           orig: "/city-info"
-          parts: [
-            "city-info"
+          segments: [
+            {
+              lit: "city-info"
+            }
           ]
           transform: {
             req: "`reqdata`"

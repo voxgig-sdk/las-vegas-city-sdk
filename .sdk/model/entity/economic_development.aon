@@ -30,9 +30,13 @@ main: kit: entity: economic_development: {
         {
           method: "GET"
           orig: "/business/economic-development"
-          parts: [
-            "business"
-            "economic-development"
+          segments: [
+            {
+              lit: "business"
+            }
+            {
+              lit: "economic-development"
+            }
           ]
           transform: {
             req: "`reqdata`"

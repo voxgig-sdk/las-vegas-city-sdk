@@ -1,6 +1,14 @@
 # LasVegasCity SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -102,14 +110,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/city-info",
-                "parts": [
-                  "city-info",
+                "segments": [
+                  {
+                    "lit": "city-info",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "city-info",
+                ],
               },
             ],
           },
@@ -125,6 +138,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "email",
             "name": "email",
             "type": "`$STRING`",
           },
@@ -149,6 +163,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "council",
         "op": {
           "list": {
@@ -160,14 +178,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/council",
-                "parts": [
-                  "council",
+                "segments": [
+                  {
+                    "lit": "council",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "council",
+                ],
               },
             ],
           },
@@ -199,10 +222,15 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "uri",
             "name": "url",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "department",
         "op": {
           "list": {
@@ -214,14 +242,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/departments",
-                "parts": [
-                  "departments",
+                "segments": [
+                  {
+                    "lit": "departments",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "departments",
+                ],
               },
             ],
           },
@@ -256,15 +289,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/business/economic-development",
-                "parts": [
-                  "business",
-                  "economic-development",
+                "segments": [
+                  {
+                    "lit": "business",
+                  },
+                  {
+                    "lit": "economic-development",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "business",
+                  "economic-development",
+                ],
               },
             ],
           },
@@ -284,6 +325,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "endDate",
             "type": "`$STRING`",
           },
@@ -300,10 +342,12 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "startDate",
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "ticketUrl",
             "type": "`$STRING`",
           },
@@ -312,6 +356,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "event",
         "op": {
           "list": {
@@ -344,8 +392,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/events",
-                "parts": [
-                  "events",
+                "segments": [
+                  {
+                    "lit": "events",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -358,6 +408,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "events",
+                ],
               },
             ],
           },
@@ -369,6 +422,7 @@ def make_config():
       "job": {
         "fields": [
           {
+            "format": "uri",
             "name": "applicationUrl",
             "type": "`$STRING`",
           },
@@ -377,6 +431,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "closeDate",
             "type": "`$STRING`",
           },
@@ -393,6 +448,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "postDate",
             "type": "`$STRING`",
           },
@@ -409,6 +465,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "job",
         "op": {
           "list": {
@@ -435,8 +495,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/jobs",
-                "parts": [
-                  "jobs",
+                "segments": [
+                  {
+                    "lit": "jobs",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -448,6 +510,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "jobs",
+                ],
               },
             ],
           },
@@ -459,10 +524,12 @@ def make_config():
       "meeting": {
         "fields": [
           {
+            "format": "uri",
             "name": "agendaUrl",
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "date",
             "type": "`$STRING`",
           },
@@ -475,6 +542,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "minutesUrl",
             "type": "`$STRING`",
           },
@@ -491,6 +559,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "meeting",
         "op": {
           "list": {
@@ -517,8 +589,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/meetings",
-                "parts": [
-                  "meetings",
+                "segments": [
+                  {
+                    "lit": "meetings",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -530,6 +604,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "meetings",
+                ],
               },
             ],
           },
@@ -557,6 +634,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "publishDate",
             "type": "`$STRING`",
           },
@@ -569,10 +647,15 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "url",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "new",
         "op": {
           "list": {
@@ -600,8 +683,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/news",
-                "parts": [
-                  "news",
+                "segments": [
+                  {
+                    "lit": "news",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -613,6 +698,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "news",
+                ],
               },
             ],
           },
@@ -652,6 +740,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "park",
         "op": {
           "list": {
@@ -678,8 +770,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/parks",
-                "parts": [
-                  "parks",
+                "segments": [
+                  {
+                    "lit": "parks",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -691,6 +785,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "parks",
+                ],
               },
             ],
           },
@@ -702,6 +799,7 @@ def make_config():
       "permit": {
         "fields": [
           {
+            "format": "uri",
             "name": "applicationUrl",
             "type": "`$STRING`",
           },
@@ -734,6 +832,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "permit",
         "op": {
           "list": {
@@ -754,8 +856,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/permits",
-                "parts": [
-                  "permits",
+                "segments": [
+                  {
+                    "lit": "permits",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -766,6 +870,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "permits",
+                ],
               },
             ],
           },
@@ -800,14 +907,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/public-safety",
-                "parts": [
-                  "public-safety",
+                "segments": [
+                  {
+                    "lit": "public-safety",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "public-safety",
+                ],
               },
             ],
           },

@@ -11,6 +11,7 @@ main: kit: entity: council: {
       type: "`$STRING`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       type: "`$STRING`"
@@ -55,8 +56,10 @@ main: kit: entity: council: {
         {
           method: "GET"
           orig: "/council"
-          parts: [
-            "council"
+          segments: [
+            {
+              lit: "council"
+            }
           ]
           transform: {
             req: "`reqdata`"

@@ -6,6 +6,7 @@ main: kit: entity: permit: {
 
   fields: [
     {
+      format: "uri"
       name: "applicationUrl"
       req: false
       type: "`$STRING`"
@@ -71,8 +72,10 @@ main: kit: entity: permit: {
           }
           method: "GET"
           orig: "/permits"
-          parts: [
-            "permits"
+          segments: [
+            {
+              lit: "permits"
+            }
           ]
           select: {
             exist: [

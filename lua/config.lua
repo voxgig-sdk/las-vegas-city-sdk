@@ -81,13 +81,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/city-info",
-                ["parts"] = {
-                  "city-info",
+                ["segments"] = {
+                  {
+                    ["lit"] = "city-info",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "city-info",
                 },
               },
             },
@@ -104,6 +109,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["type"] = "`$STRING`",
           },
@@ -128,6 +134,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "council",
         ["op"] = {
           ["list"] = {
@@ -139,13 +149,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/council",
-                ["parts"] = {
-                  "council",
+                ["segments"] = {
+                  {
+                    ["lit"] = "council",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "council",
                 },
               },
             },
@@ -178,9 +193,14 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "department",
         ["op"] = {
@@ -193,13 +213,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/departments",
-                ["parts"] = {
-                  "departments",
+                ["segments"] = {
+                  {
+                    ["lit"] = "departments",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "departments",
                 },
               },
             },
@@ -235,14 +260,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/business/economic-development",
-                ["parts"] = {
-                  "business",
-                  "economic-development",
+                ["segments"] = {
+                  {
+                    ["lit"] = "business",
+                  },
+                  {
+                    ["lit"] = "economic-development",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "business",
+                  "economic-development",
                 },
               },
             },
@@ -263,6 +296,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "endDate",
             ["type"] = "`$STRING`",
           },
@@ -279,10 +313,12 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "startDate",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "ticketUrl",
             ["type"] = "`$STRING`",
           },
@@ -290,6 +326,10 @@ local function make_config()
             ["name"] = "title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "event",
         ["op"] = {
@@ -323,8 +363,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/events",
-                ["parts"] = {
-                  "events",
+                ["segments"] = {
+                  {
+                    ["lit"] = "events",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -337,6 +379,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "events",
+                },
               },
             },
           },
@@ -348,6 +393,7 @@ local function make_config()
       ["job"] = {
         ["fields"] = {
           {
+            ["format"] = "uri",
             ["name"] = "applicationUrl",
             ["type"] = "`$STRING`",
           },
@@ -356,6 +402,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "closeDate",
             ["type"] = "`$STRING`",
           },
@@ -372,6 +419,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "postDate",
             ["type"] = "`$STRING`",
           },
@@ -387,6 +435,10 @@ local function make_config()
             ["name"] = "title",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "job",
         ["op"] = {
@@ -414,8 +466,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/jobs",
-                ["parts"] = {
-                  "jobs",
+                ["segments"] = {
+                  {
+                    ["lit"] = "jobs",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -426,6 +480,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "jobs",
                 },
               },
             },
@@ -438,10 +495,12 @@ local function make_config()
       ["meeting"] = {
         ["fields"] = {
           {
+            ["format"] = "uri",
             ["name"] = "agendaUrl",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "date",
             ["type"] = "`$STRING`",
           },
@@ -454,6 +513,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "minutesUrl",
             ["type"] = "`$STRING`",
           },
@@ -469,6 +529,10 @@ local function make_config()
             ["name"] = "type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "meeting",
         ["op"] = {
@@ -496,8 +560,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/meetings",
-                ["parts"] = {
-                  "meetings",
+                ["segments"] = {
+                  {
+                    ["lit"] = "meetings",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -508,6 +574,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "meetings",
                 },
               },
             },
@@ -536,6 +605,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "publishDate",
             ["type"] = "`$STRING`",
           },
@@ -548,9 +618,14 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "url",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "new",
         ["op"] = {
@@ -579,8 +654,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/news",
-                ["parts"] = {
-                  "news",
+                ["segments"] = {
+                  {
+                    ["lit"] = "news",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -591,6 +668,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "news",
                 },
               },
             },
@@ -631,6 +711,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "park",
         ["op"] = {
           ["list"] = {
@@ -657,8 +741,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/parks",
-                ["parts"] = {
-                  "parks",
+                ["segments"] = {
+                  {
+                    ["lit"] = "parks",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -669,6 +755,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "parks",
                 },
               },
             },
@@ -681,6 +770,7 @@ local function make_config()
       ["permit"] = {
         ["fields"] = {
           {
+            ["format"] = "uri",
             ["name"] = "applicationUrl",
             ["type"] = "`$STRING`",
           },
@@ -713,6 +803,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "permit",
         ["op"] = {
           ["list"] = {
@@ -733,8 +827,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/permits",
-                ["parts"] = {
-                  "permits",
+                ["segments"] = {
+                  {
+                    ["lit"] = "permits",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -744,6 +840,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "permits",
                 },
               },
             },
@@ -779,13 +878,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/public-safety",
-                ["parts"] = {
-                  "public-safety",
+                ["segments"] = {
+                  {
+                    ["lit"] = "public-safety",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "public-safety",
                 },
               },
             },

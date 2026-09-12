@@ -6,11 +6,13 @@ main: kit: entity: meeting: {
 
   fields: [
     {
+      format: "uri"
       name: "agendaUrl"
       req: false
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "date"
       req: false
       type: "`$STRING`"
@@ -26,6 +28,7 @@ main: kit: entity: meeting: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "minutesUrl"
       req: false
       type: "`$STRING`"
@@ -78,8 +81,10 @@ main: kit: entity: meeting: {
           }
           method: "GET"
           orig: "/meetings"
-          parts: [
-            "meetings"
+          segments: [
+            {
+              lit: "meetings"
+            }
           ]
           select: {
             exist: [

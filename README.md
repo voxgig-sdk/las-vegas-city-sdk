@@ -105,7 +105,7 @@ local results, err = client:Council():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
+| TypeScript | `@voxgig-sdk/las-vegas-city-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
 | Python | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
 | PHP | `voxgig-sdk/las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/las-vegas-city-sdk/go` | `go get github.com/voxgig-sdk/las-vegas-city-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Council():list()
 ### TypeScript
 
 ```ts
-import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city'
+import { LasVegasCitySDK } from '@voxgig-sdk/las-vegas-city-sdk'
 
 const client = new LasVegasCitySDK()
 

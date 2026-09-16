@@ -45,5 +45,77 @@
         "type": "s147"
       }
     }
+  },
+  "requests": {
+    "GET /permits": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getPermits",
+        "parameters": [
+          {
+            "description": "Type of permit (e.g., business, construction, special event)",
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "applicationUrl": {
+                        "format": "uri",
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "fee": {
+                        "type": "number"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "processingTime": {
+                        "type": "string"
+                      },
+                      "requirements": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

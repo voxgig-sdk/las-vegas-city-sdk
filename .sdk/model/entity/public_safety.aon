@@ -28,6 +28,12 @@ main: kit: entity: public_safety: {
       name: "load"
       points: [
         {
+          contract: {
+            id: "GET /public-safety"
+            json: "{\"operationId\":\"getPublicSafety\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"fire\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"nonEmergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"medical\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"police\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"nonEmergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/public-safety"
           segments: [

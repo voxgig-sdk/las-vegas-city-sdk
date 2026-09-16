@@ -37,5 +37,73 @@
         "url": "sf5"
       }
     }
+  },
+  "requests": {
+    "GET /departments": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getDepartments",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "contact": {
+                        "properties": {
+                          "address": {
+                            "type": "string"
+                          },
+                          "email": {
+                            "format": "email",
+                            "type": "string"
+                          },
+                          "phone": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "services": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "url": {
+                        "format": "uri",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

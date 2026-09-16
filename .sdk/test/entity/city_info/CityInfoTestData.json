@@ -4,9 +4,9 @@
       "CITY_INFO00": {
         "address": "s46",
         "annualVisitors": 71,
-        "established": "s48",
+        "established": 72,
         "name": "s49",
-        "numberOfParks": "s4a",
+        "numberOfParks": 74,
         "phone": "s4b",
         "squareMiles": 76,
         "id": "CITY_INFO00"
@@ -14,9 +14,9 @@
       "CITY_INFO01": {
         "address": "s8c",
         "annualVisitors": 141,
-        "established": "s8e",
+        "established": 142,
         "name": "s8f",
-        "numberOfParks": "s90",
+        "numberOfParks": 144,
         "phone": "s91",
         "squareMiles": 146,
         "id": "CITY_INFO01"
@@ -24,9 +24,9 @@
       "CITY_INFO02": {
         "address": "sd2",
         "annualVisitors": 211,
-        "established": "sd4",
+        "established": 212,
         "name": "sd5",
-        "numberOfParks": "sd6",
+        "numberOfParks": 214,
         "phone": "sd7",
         "squareMiles": 216,
         "id": "CITY_INFO02"
@@ -38,11 +38,70 @@
       "city_info_ref01": {
         "address": "s118",
         "annualVisitors": 281,
-        "established": "s11a",
+        "established": 282,
         "name": "s11b",
-        "numberOfParks": "s11c",
+        "numberOfParks": 284,
         "phone": "s11d",
         "squareMiles": 286
+      }
+    }
+  },
+  "requests": {
+    "GET /city-info": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getCityInfo",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "address": {
+                      "example": "495 S. Main St. Las Vegas, NV 89101",
+                      "type": "string"
+                    },
+                    "annualVisitors": {
+                      "example": 41700000,
+                      "type": "number"
+                    },
+                    "established": {
+                      "example": 1905,
+                      "type": "integer"
+                    },
+                    "name": {
+                      "example": "City of Las Vegas",
+                      "type": "string"
+                    },
+                    "numberOfParks": {
+                      "example": 130,
+                      "type": "integer"
+                    },
+                    "phone": {
+                      "example": "(702) 229-6011",
+                      "type": "string"
+                    },
+                    "squareMiles": {
+                      "example": 142,
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

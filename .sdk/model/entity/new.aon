@@ -79,6 +79,12 @@ main: kit: entity: new: {
               }
             ]
           }
+          contract: {
+            id: "GET /news"
+            json: "{\"operationId\":\"getNews\",\"parameters\":[{\"description\":\"Number of news items to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":10,\"type\":\"integer\"}},{\"description\":\"Filter by news category\",\"in\":\"query\",\"name\":\"category\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"author\":{\"type\":\"string\"},\"category\":{\"type\":\"string\"},\"content\":{\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"publishDate\":{\"format\":\"date-time\",\"type\":\"string\"},\"summary\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"url\":{\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/news"
           segments: [

@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.LAS_VEGAS_CITY_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'public_safety.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'public_safety.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "name": "fire", "req": false, "type": "`$OBJECT`", "index$": 0 }, { "active": true, "name": "medical", "req": false, "type": "`$OBJECT`", "index$": 1 }, { "active": true, "name": "police", "req": false, "type": "`$OBJECT`", "index$": 2 }], "name": "public_safety", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": {}, "contract": { "id": "GET /public-safety", "json": "{\"operationId\":\"getPublicSafety\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"fire\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"nonEmergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"medical\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"police\":{\"properties\":{\"emergencyNumber\":{\"type\":\"string\"},\"nonEmergencyNumber\":{\"type\":\"string\"},\"services\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/public-safety", "segments": [{ "lit": "public-safety" }], "select": {}, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "public_safety", "name__orig": "public_safety", "Name": "PublicSafety", "name_": "public_safety", "name-": "public-safety", "NAME": "PUBLIC_SAFETY", "index$": 10 }, { "active": true, "entity": "public_safety", "key$": "BasicPublicSafetyFlow", "kind": "basic", "name": "BasicPublicSafetyFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "public_safety_ref01", "srcdatavar": "public_safety_ref01_data", "suffix": "_dt0" }, "match": {}, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-public_safety_ref01" } }], "index$": 0 }] }, 'PublicSafety');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -102,12 +100,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID': idmap,
         'LAS_VEGAS_CITY_TEST_LIVE': 'FALSE',
@@ -115,7 +107,13 @@ function basicSetup(extra) {
     });
     idmap = env['LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID'];
     const live = 'TRUE' === env.LAS_VEGAS_CITY_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['LAS_VEGAS_CITY_TEST_PUBLIC_SAFETY_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.LasVegasCitySDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -126,7 +124,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -138,7 +137,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.LAS_VEGAS_CITY_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;

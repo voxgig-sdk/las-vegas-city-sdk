@@ -91,6 +91,12 @@ main: kit: entity: event: {
               }
             ]
           }
+          contract: {
+            id: "GET /events"
+            json: "{\"operationId\":\"getEvents\",\"parameters\":[{\"description\":\"Filter events by category (e.g., arts, culture, concerts)\",\"in\":\"query\",\"name\":\"category\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter events starting from this date (ISO 8601 format)\",\"in\":\"query\",\"name\":\"startDate\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}},{\"description\":\"Filter events ending before this date (ISO 8601 format)\",\"in\":\"query\",\"name\":\"endDate\",\"required\":false,\"schema\":{\"format\":\"date\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"items\":{\"properties\":{\"category\":{\"enum\":[\"arts\",\"culture\",\"concerts\",\"dance\",\"plays\",\"community\"],\"type\":\"string\"},\"description\":{\"type\":\"string\"},\"endDate\":{\"format\":\"date-time\",\"type\":\"string\"},\"id\":{\"type\":\"string\"},\"isFree\":{\"type\":\"boolean\"},\"location\":{\"type\":\"string\"},\"startDate\":{\"format\":\"date-time\",\"type\":\"string\"},\"ticketUrl\":{\"format\":\"uri\",\"type\":\"string\"},\"title\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}}},\"description\":\"Successful response\"},\"400\":{\"description\":\"Bad request\"},\"500\":{\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/events"
           segments: [

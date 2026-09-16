@@ -53,5 +53,102 @@
         "title": "s199"
       }
     }
+  },
+  "requests": {
+    "GET /jobs": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getJobs",
+        "parameters": [
+          {
+            "description": "Filter by department",
+            "in": "query",
+            "name": "department",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by job category",
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "applicationUrl": {
+                        "format": "uri",
+                        "type": "string"
+                      },
+                      "category": {
+                        "type": "string"
+                      },
+                      "closeDate": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "department": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "postDate": {
+                        "format": "date",
+                        "type": "string"
+                      },
+                      "requirements": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "salaryRange": {
+                        "properties": {
+                          "max": {
+                            "type": "number"
+                          },
+                          "min": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "title": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

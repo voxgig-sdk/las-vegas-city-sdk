@@ -1,12 +1,18 @@
 # LasVegasCity SDK feature factory
 
 from lasvegascity_sdk.feature.base_feature import LasVegasCityBaseFeature
+from lasvegascity_sdk.feature.ratelimit_feature import LasVegasCityRatelimitFeature
+from lasvegascity_sdk.feature.retry_feature import LasVegasCityRetryFeature
 from lasvegascity_sdk.feature.test_feature import LasVegasCityTestFeature
+from lasvegascity_sdk.feature.timeout_feature import LasVegasCityTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: LasVegasCityBaseFeature(),
+    "ratelimit": lambda: LasVegasCityRatelimitFeature(),
+    "retry": lambda: LasVegasCityRetryFeature(),
     "test": lambda: LasVegasCityTestFeature(),
+    "timeout": lambda: LasVegasCityTimeoutFeature(),
 }
 
 

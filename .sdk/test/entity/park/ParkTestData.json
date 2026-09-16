@@ -41,5 +41,110 @@
         "type": "s11e"
       }
     }
+  },
+  "requests": {
+    "GET /parks": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getParks",
+        "parameters": [
+          {
+            "description": "Filter by location or neighborhood",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by available amenities",
+            "in": "query",
+            "name": "amenities",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "properties": {
+                      "address": {
+                        "type": "string"
+                      },
+                      "amenities": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "hours": {
+                        "properties": {
+                          "friday": {
+                            "type": "string"
+                          },
+                          "monday": {
+                            "type": "string"
+                          },
+                          "saturday": {
+                            "type": "string"
+                          },
+                          "sunday": {
+                            "type": "string"
+                          },
+                          "thursday": {
+                            "type": "string"
+                          },
+                          "tuesday": {
+                            "type": "string"
+                          },
+                          "wednesday": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "phone": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "enum": [
+                          "park",
+                          "community_center",
+                          "recreation_center"
+                        ],
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

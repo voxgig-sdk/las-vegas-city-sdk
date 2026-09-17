@@ -127,39 +127,39 @@ class Config {
 
     entity: {
       
-      city_info: {
-      },
-
-      council: {
-      },
-
-      department: {
-      },
-
-      economic_development: {
-      },
-
-      event: {
-      },
-
-      job: {
-      },
-
-      meeting: {
-      },
-
-      new: {
-      },
-
-      park: {
-      },
-
-      permit: {
-      },
-
-      public_safety: {
-      },
-
+        city_info: {
+        },
+  
+        council: {
+        },
+  
+        department: {
+        },
+  
+        economic_development: {
+        },
+  
+        event: {
+        },
+  
+        job: {
+        },
+  
+        meeting: {
+        },
+  
+        new: {
+        },
+  
+        park: {
+        },
+  
+        permit: {
+        },
+  
+        public_safety: {
+        },
+  
     }
   }
 

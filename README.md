@@ -105,12 +105,12 @@ local results, err = client:Council():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/las-vegas-city-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
-| Python | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
-| PHP | `voxgig-sdk/las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
+| TypeScript | `@voxgig-sdk/las-vegas-city-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/tags) |
+| Python | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/tags) |
+| PHP | `voxgig-sdk/las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/las-vegas-city-sdk/go` | `go get github.com/voxgig-sdk/las-vegas-city-sdk/go@latest` |
-| Ruby | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
-| Lua | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/releases) |
+| Ruby | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/tags) |
+| Lua | `voxgig-sdk-las-vegas-city` | publish pending — [install from git tag](https://github.com/voxgig-sdk/las-vegas-city-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/las-vegas-city-sdk/go-cli` | `go install github.com/voxgig-sdk/las-vegas-city-sdk/go-cli/cmd/las-vegas-city@latest` |
 | Go MCP server | `github.com/voxgig-sdk/las-vegas-city-sdk/go-mcp` | `go get github.com/voxgig-sdk/las-vegas-city-sdk/go-mcp@latest` |
 

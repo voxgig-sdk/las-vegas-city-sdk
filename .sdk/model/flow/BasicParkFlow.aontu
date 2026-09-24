@@ -1,0 +1,22 @@
+# BasicParkFlow
+
+main: kit: flow: BasicParkFlow:
+{
+  entity: "park",
+  kind: "basic",
+  name: "BasicParkFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "park_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicParkFlow"
+}

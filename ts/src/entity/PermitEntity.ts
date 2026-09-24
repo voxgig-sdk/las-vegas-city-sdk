@@ -19,7 +19,6 @@ import type {
   PermitListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class PermitEntity extends LasVegasCityEntityBase<Permit> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

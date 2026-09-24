@@ -19,7 +19,6 @@ import type {
   ParkListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class ParkEntity extends LasVegasCityEntityBase<Park> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

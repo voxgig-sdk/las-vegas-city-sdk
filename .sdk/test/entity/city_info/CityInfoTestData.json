@@ -49,60 +49,8 @@
   "requests": {
     "GET /city-info": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getCityInfo",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "address": {
-                      "example": "495 S. Main St. Las Vegas, NV 89101",
-                      "type": "string"
-                    },
-                    "annualVisitors": {
-                      "example": 41700000,
-                      "type": "number"
-                    },
-                    "established": {
-                      "example": 1905,
-                      "type": "integer"
-                    },
-                    "name": {
-                      "example": "City of Las Vegas",
-                      "type": "string"
-                    },
-                    "numberOfParks": {
-                      "example": 130,
-                      "type": "integer"
-                    },
-                    "phone": {
-                      "example": "(702) 229-6011",
-                      "type": "string"
-                    },
-                    "squareMiles": {
-                      "example": 142,
-                      "type": "number"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Successful response"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "500": {
-            "description": "Internal server error"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

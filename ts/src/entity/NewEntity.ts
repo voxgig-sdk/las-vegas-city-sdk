@@ -19,7 +19,6 @@ import type {
   NewListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class NewEntity extends LasVegasCityEntityBase<New> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

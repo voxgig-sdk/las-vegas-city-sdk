@@ -1,0 +1,81 @@
+# Entity: department
+
+main: kit: entity: department: {
+
+  alias: field: {}
+
+  fields: {
+    contact: {
+      h: "Contact"
+      n: "contact"
+      r: false
+      t: "`$OBJECT`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    services: {
+      h: "Services"
+      n: "services"
+      r: false
+      t: "`$ARRAY`"
+    }
+    url: {
+      fo: "uri"
+      h: "Url"
+      n: "url"
+      r: false
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "department"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /departments"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/departments"
+          s: [
+            {
+              lit: "departments"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

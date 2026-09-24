@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JobEntity = void 0;
 const LasVegasCityEntityBase_1 = require("../LasVegasCityEntityBase");
-// TODO: needs Entity superclass
 class JobEntity extends LasVegasCityEntityBase_1.LasVegasCityEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

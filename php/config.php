@@ -123,30 +123,37 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'address',
+              'title' => 'Address',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'annualVisitors',
+              'title' => 'Annual Visitors',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'established',
+              'title' => 'Established',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'name',
+              'title' => 'Name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'numberOfParks',
+              'title' => 'Number Of Parks',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'phone',
+              'title' => 'Phone',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'squareMiles',
+              'title' => 'Square Miles',
               'type' => '`$NUMBER`',
             ],
           ],
@@ -157,7 +164,6 @@ class LasVegasCityConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/city-info',
@@ -166,14 +172,16 @@ class LasVegasCityConfig
                       'lit' => 'city-info',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'city-info',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'city-info',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -186,31 +194,38 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'bio',
+              'title' => 'Bio',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'email',
               'name' => 'email',
+              'title' => 'Email',
               'type' => '`$STRING`',
+              'format' => 'email',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'title' => 'Name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'phone',
+              'title' => 'Phone',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'ward',
+              'title' => 'Ward',
               'type' => '`$STRING`',
             ],
           ],
@@ -225,7 +240,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/council',
@@ -234,14 +248,16 @@ class LasVegasCityConfig
                       'lit' => 'council',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'council',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'council',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -254,28 +270,34 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'contact',
+              'title' => 'Contact',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'description',
+              'title' => 'Description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'title' => 'Name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'services',
+              'title' => 'Services',
               'type' => '`$ARRAY`',
             ],
             [
-              'format' => 'uri',
               'name' => 'url',
+              'title' => 'Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
           ],
           'id' => [
@@ -289,7 +311,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/departments',
@@ -298,14 +319,16 @@ class LasVegasCityConfig
                       'lit' => 'departments',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'departments',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'departments',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -318,14 +341,17 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'industries',
+              'title' => 'Industries',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'initiatives',
+              'title' => 'Initiatives',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'resources',
+              'title' => 'Resources',
               'type' => '`$ARRAY`',
             ],
           ],
@@ -336,7 +362,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/business/economic-development',
@@ -348,15 +373,17 @@ class LasVegasCityConfig
                       'lit' => 'economic-development',
                     ],
                   ],
-                  'select' => [],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
                   'parts' => [
                     'business',
                     'economic-development',
                   ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],
@@ -369,41 +396,50 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'category',
+              'title' => 'Category',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'description',
+              'title' => 'Description',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'endDate',
+              'title' => 'End Date',
               'type' => '`$STRING`',
+              'format' => 'date-time',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'isFree',
+              'title' => 'Is Free',
               'type' => '`$BOOLEAN`',
             ],
             [
               'name' => 'location',
+              'title' => 'Location',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'startDate',
+              'title' => 'Start Date',
               'type' => '`$STRING`',
+              'format' => 'date-time',
             ],
             [
-              'format' => 'uri',
               'name' => 'ticketUrl',
+              'title' => 'Ticket Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
               'type' => '`$STRING`',
             ],
           ],
@@ -418,28 +454,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'category',
-                        'orig' => 'category',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'end_date',
-                        'orig' => 'end_date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'start_date',
-                        'orig' => 'start_date',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/events',
@@ -448,19 +462,42 @@ class LasVegasCityConfig
                       'lit' => 'events',
                     ],
                   ],
+                  'parts' => [
+                    'events',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'category',
+                        'orig' => 'category',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'end_date',
+                        'orig' => 'end_date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'start_date',
+                        'orig' => 'start_date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'category',
                       'end_date',
                       'start_date',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'events',
                   ],
                 ],
               ],
@@ -473,46 +510,56 @@ class LasVegasCityConfig
         'job' => [
           'fields' => [
             [
-              'format' => 'uri',
               'name' => 'applicationUrl',
+              'title' => 'Application Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
               'name' => 'category',
+              'title' => 'Category',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'date',
               'name' => 'closeDate',
+              'title' => 'Close Date',
               'type' => '`$STRING`',
+              'format' => 'date',
             ],
             [
               'name' => 'department',
+              'title' => 'Department',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'description',
+              'title' => 'Description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'date',
               'name' => 'postDate',
+              'title' => 'Post Date',
               'type' => '`$STRING`',
+              'format' => 'date',
             ],
             [
               'name' => 'requirements',
+              'title' => 'Requirements',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'salaryRange',
+              'title' => 'Salary Range',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
               'type' => '`$STRING`',
             ],
           ],
@@ -527,22 +574,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'category',
-                        'orig' => 'category',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'department',
-                        'orig' => 'department',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/jobs',
@@ -551,18 +582,35 @@ class LasVegasCityConfig
                       'lit' => 'jobs',
                     ],
                   ],
+                  'parts' => [
+                    'jobs',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'category',
+                        'orig' => 'category',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'department',
+                        'orig' => 'department',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'category',
                       'department',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'jobs',
                   ],
                 ],
               ],
@@ -575,38 +623,46 @@ class LasVegasCityConfig
         'meeting' => [
           'fields' => [
             [
-              'format' => 'uri',
               'name' => 'agendaUrl',
+              'title' => 'Agenda Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
-              'format' => 'date-time',
               'name' => 'date',
+              'title' => 'Date',
               'type' => '`$STRING`',
+              'format' => 'date-time',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'location',
+              'title' => 'Location',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'uri',
               'name' => 'minutesUrl',
+              'title' => 'Minutes Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
               'name' => 'status',
+              'title' => 'Status',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'title' => 'Type',
               'type' => '`$STRING`',
             ],
           ],
@@ -621,22 +677,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'start_date',
-                        'orig' => 'start_date',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'type',
-                        'orig' => 'type',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/meetings',
@@ -645,18 +685,35 @@ class LasVegasCityConfig
                       'lit' => 'meetings',
                     ],
                   ],
+                  'parts' => [
+                    'meetings',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'start_date',
+                        'orig' => 'start_date',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'start_date',
                       'type',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'meetings',
                   ],
                 ],
               ],
@@ -670,37 +727,45 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'author',
+              'title' => 'Author',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'category',
+              'title' => 'Category',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'content',
+              'title' => 'Content',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'date-time',
               'name' => 'publishDate',
+              'title' => 'Publish Date',
               'type' => '`$STRING`',
+              'format' => 'date-time',
             ],
             [
               'name' => 'summary',
+              'title' => 'Summary',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'title',
+              'title' => 'Title',
               'type' => '`$STRING`',
             ],
             [
-              'format' => 'uri',
               'name' => 'url',
+              'title' => 'Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
           ],
           'id' => [
@@ -714,23 +779,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'category',
-                        'orig' => 'category',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'example' => 10,
-                        'kind' => 'query',
-                        'name' => 'limit',
-                        'orig' => 'limit',
-                        'type' => '`$INTEGER`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/news',
@@ -739,18 +787,36 @@ class LasVegasCityConfig
                       'lit' => 'news',
                     ],
                   ],
+                  'parts' => [
+                    'news',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'category',
+                        'orig' => 'category',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'limit',
+                        'orig' => 'limit',
+                        'type' => '`$INTEGER`',
+                        'kind' => 'query',
+                        'example' => 10,
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'category',
                       'limit',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'news',
                   ],
                 ],
               ],
@@ -764,30 +830,37 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'address',
+              'title' => 'Address',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'amenities',
+              'title' => 'Amenities',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'hours',
+              'title' => 'Hours',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'title' => 'Name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'phone',
+              'title' => 'Phone',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'type',
+              'title' => 'Type',
               'type' => '`$STRING`',
             ],
           ],
@@ -802,22 +875,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'amenity',
-                        'orig' => 'amenity',
-                        'type' => '`$STRING`',
-                      ],
-                      [
-                        'kind' => 'query',
-                        'name' => 'location',
-                        'orig' => 'location',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/parks',
@@ -826,18 +883,35 @@ class LasVegasCityConfig
                       'lit' => 'parks',
                     ],
                   ],
+                  'parts' => [
+                    'parks',
+                  ],
+                  'rename' => [],
+                  'transform' => [
+                    'req' => '`reqdata`',
+                    'res' => '`body`',
+                  ],
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'amenity',
+                        'orig' => 'amenity',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                      [
+                        'name' => 'location',
+                        'orig' => 'location',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
                   'select' => [
                     'exist' => [
                       'amenity',
                       'location',
                     ],
-                  ],
-                  'transform' => [
-                    'req' => '`reqdata`',
-                    'res' => '`body`',
-                  ],
-                  'parts' => [
-                    'parks',
                   ],
                 ],
               ],
@@ -850,36 +924,44 @@ class LasVegasCityConfig
         'permit' => [
           'fields' => [
             [
-              'format' => 'uri',
               'name' => 'applicationUrl',
+              'title' => 'Application Url',
               'type' => '`$STRING`',
+              'format' => 'uri',
             ],
             [
               'name' => 'description',
+              'title' => 'Description',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'fee',
+              'title' => 'Fee',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'id',
+              'title' => 'Id',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'name',
+              'title' => 'Name',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'processingTime',
+              'title' => 'Processing Time',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'requirements',
+              'title' => 'Requirements',
               'type' => '`$ARRAY`',
             ],
             [
               'name' => 'type',
+              'title' => 'Type',
               'type' => '`$STRING`',
             ],
           ],
@@ -894,16 +976,6 @@ class LasVegasCityConfig
               'name' => 'list',
               'points' => [
                 [
-                  'args' => [
-                    'query' => [
-                      [
-                        'kind' => 'query',
-                        'name' => 'type',
-                        'orig' => 'type',
-                        'type' => '`$STRING`',
-                      ],
-                    ],
-                  ],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/permits',
@@ -912,17 +984,28 @@ class LasVegasCityConfig
                       'lit' => 'permits',
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'type',
-                    ],
+                  'parts' => [
+                    'permits',
                   ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'permits',
+                  'args' => [
+                    'query' => [
+                      [
+                        'name' => 'type',
+                        'orig' => 'type',
+                        'type' => '`$STRING`',
+                        'kind' => 'query',
+                      ],
+                    ],
+                  ],
+                  'select' => [
+                    'exist' => [
+                      'type',
+                    ],
                   ],
                 ],
               ],
@@ -936,14 +1019,17 @@ class LasVegasCityConfig
           'fields' => [
             [
               'name' => 'fire',
+              'title' => 'Fire',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'medical',
+              'title' => 'Medical',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'police',
+              'title' => 'Police',
               'type' => '`$OBJECT`',
             ],
           ],
@@ -954,7 +1040,6 @@ class LasVegasCityConfig
               'name' => 'load',
               'points' => [
                 [
-                  'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/public-safety',
@@ -963,14 +1048,16 @@ class LasVegasCityConfig
                       'lit' => 'public-safety',
                     ],
                   ],
-                  'select' => [],
+                  'parts' => [
+                    'public-safety',
+                  ],
+                  'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'parts' => [
-                    'public-safety',
-                  ],
+                  'args' => [],
+                  'select' => [],
                 ],
               ],
             ],

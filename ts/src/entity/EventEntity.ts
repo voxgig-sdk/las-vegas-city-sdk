@@ -19,7 +19,6 @@ import type {
   EventListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class EventEntity extends LasVegasCityEntityBase<Event> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

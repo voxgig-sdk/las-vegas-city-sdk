@@ -1,0 +1,22 @@
+# BasicPermitFlow
+
+main: kit: flow: BasicPermitFlow:
+{
+  entity: "permit",
+  kind: "basic",
+  name: "BasicPermitFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "permit_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPermitFlow"
+}

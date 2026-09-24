@@ -1,0 +1,28 @@
+# BasicPublicSafetyFlow
+
+main: kit: flow: BasicPublicSafetyFlow:
+{
+  entity: "public_safety",
+  kind: "basic",
+  name: "BasicPublicSafetyFlow",
+  step: [
+    {
+      i: {
+        ref: "public_safety_ref01",
+        srcdatavar: "public_safety_ref01_data",
+        suffix: "_dt0"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-public_safety_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPublicSafetyFlow"
+}

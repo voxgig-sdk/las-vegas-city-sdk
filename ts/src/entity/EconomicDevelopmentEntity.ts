@@ -19,7 +19,6 @@ import type {
   EconomicDevelopmentListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class EconomicDevelopmentEntity extends LasVegasCityEntityBase<EconomicDevelopment> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

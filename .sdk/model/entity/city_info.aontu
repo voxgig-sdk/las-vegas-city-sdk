@@ -1,0 +1,81 @@
+# Entity: city_info
+
+main: kit: entity: city_info: {
+
+  alias: field: {}
+
+  fields: {
+    address: {
+      h: "Address"
+      n: "address"
+      r: false
+      t: "`$STRING`"
+    }
+    annualVisitors: {
+      h: "Annual Visitors"
+      n: "annualVisitors"
+      r: false
+      t: "`$NUMBER`"
+    }
+    established: {
+      h: "Established"
+      n: "established"
+      r: false
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      t: "`$STRING`"
+    }
+    numberOfParks: {
+      h: "Number Of Parks"
+      n: "numberOfParks"
+      r: false
+      t: "`$INTEGER`"
+    }
+    phone: {
+      h: "Phone"
+      n: "phone"
+      r: false
+      t: "`$STRING`"
+    }
+    squareMiles: {
+      h: "Square Miles"
+      n: "squareMiles"
+      r: false
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "city_info"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /city-info"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/city-info"
+          s: [
+            {
+              lit: "city-info"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

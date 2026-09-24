@@ -1,0 +1,60 @@
+# Entity: economic_development
+
+main: kit: entity: economic_development: {
+
+  alias: field: {}
+
+  fields: {
+    industries: {
+      h: "Industries"
+      n: "industries"
+      r: false
+      t: "`$ARRAY`"
+    }
+    initiatives: {
+      h: "Initiatives"
+      n: "initiatives"
+      r: false
+      t: "`$ARRAY`"
+    }
+    resources: {
+      h: "Resources"
+      n: "resources"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "economic_development"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /business/economic-development"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/business/economic-development"
+          s: [
+            {
+              lit: "business"
+            }
+            {
+              lit: "economic-development"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

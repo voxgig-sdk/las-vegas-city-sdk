@@ -1,0 +1,57 @@
+# Entity: public_safety
+
+main: kit: entity: public_safety: {
+
+  alias: field: {}
+
+  fields: {
+    fire: {
+      h: "Fire"
+      n: "fire"
+      r: false
+      t: "`$OBJECT`"
+    }
+    medical: {
+      h: "Medical"
+      n: "medical"
+      r: false
+      t: "`$OBJECT`"
+    }
+    police: {
+      h: "Police"
+      n: "police"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "public_safety"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /public-safety"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/public-safety"
+          s: [
+            {
+              lit: "public-safety"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

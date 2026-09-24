@@ -19,7 +19,6 @@ import type {
   DepartmentListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class DepartmentEntity extends LasVegasCityEntityBase<Department> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

@@ -19,7 +19,6 @@ import type {
   JobListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class JobEntity extends LasVegasCityEntityBase<Job> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {

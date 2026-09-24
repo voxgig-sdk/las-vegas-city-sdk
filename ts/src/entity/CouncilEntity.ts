@@ -19,7 +19,6 @@ import type {
   CouncilListMatch,
 } from '../LasVegasCityTypes'
 
-// TODO: needs Entity superclass
 class CouncilEntity extends LasVegasCityEntityBase<Council> {
 
   constructor(client: LasVegasCitySDK, entopts: any) {
